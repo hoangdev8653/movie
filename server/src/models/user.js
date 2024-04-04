@@ -24,6 +24,9 @@ const user = mongoose.Schema({
   phone: {
     type: String,
   },
+  address: {
+    type: String,
+  },
   refreshToken: {
     type: String,
   },

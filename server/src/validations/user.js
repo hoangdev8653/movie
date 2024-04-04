@@ -13,6 +13,7 @@ const register = (data) => {
       .string()
       .length(10)
       .pattern(/^[0-9]+$/),
+    address: joi.string().required(),
   });
   return register.validate(data);
 };
