@@ -12,6 +12,10 @@ a {
     color: inherit;
 }
 body {
-    font-family: "Lato", "sans-serif";
+    font-size: 16px;
+    line-height: 1.42857143;
+    color: #000;
+    background-color: #fff;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
     overflow: hidden;
 }

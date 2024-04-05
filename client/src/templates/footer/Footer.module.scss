@@ -1,0 +1,41 @@
+.footer {
+   
+    background-color: #222;
+  
+}
+.content {
+    font-size: 12px;
+    max-width: 940px;
+    margin: 0 auto;
+    color: #949494;
+}
+.copyRight {
+    justify-content: space-between;
+    display: flex;
+    padding: 20px 0;
+}
+.info_section {
+    max-width: 30%;
+    display: flex;
+    gap: 50px;
+    a {
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.partner {
+    max-width: 30%;
+}
+.socal_media {
+    max-width: 40%;
+    display: flex;
+    gap: 4px;
+}
+.infoCompany {
+    padding-bottom: 20px;
+    display: flex;
+    gap: 8px;
+    
+}
