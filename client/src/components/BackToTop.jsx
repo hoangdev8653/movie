@@ -21,7 +21,7 @@ function BackToTop() {
   };
 
   return (
-    <div onClick={goToTop} className="backTop">
+    <div onClick={goToTop} className="bg-red-400">
       {isShow ? (
         <>
           <img src={Logo} alt="logo" />

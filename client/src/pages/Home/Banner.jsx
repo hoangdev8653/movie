@@ -6,19 +6,15 @@ function Banner() {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 2,
+    slidesToScroll: 1,
   };
   return (
-    <div>
-      <h2> Single Item</h2>
-      <Slider {...settings}>
-        <div>
-          <h2>hoàng</h2>
-          <h2>huy</h2>
-          <h2>huynh</h2>
-        </div>
-      </Slider>
-    </div>
+    <Slider {...settings}>
+      <h2>hoang</h2>
+      <h2>a</h2>
+      <h2>hoangb</h2>
+      <h2>hoangc</h2>
+    </Slider>
   );
 }
 
