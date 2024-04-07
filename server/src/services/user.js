@@ -30,7 +30,6 @@ const login = async ({ email, password }) => {
     }
 
     const isValid = await user.checkPassword(password);
-    console.log(isValid);
     if (!isValid) {
       throw createHttpError.Unauthorized();
     }

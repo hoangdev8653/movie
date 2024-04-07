@@ -19,6 +19,7 @@ app.use(cookieParser());
 
 app.use("/v1/user/", routers.UserRoutes);
 app.use("/v1/heThongRap/", routers.HeThongRapRoutes);
+app.use("/v1/rap/", routers.RapRoutes);
 
 app.use((req, res, next) => {
   next(createHttpError(404, "Not Found"));
