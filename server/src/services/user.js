@@ -36,11 +36,7 @@ const login = async ({ email, password }) => {
     }
     const accessToken = SignAccessToken(user.id);
     const refreshToken = SignRefreshToken(user.id);
-    const newUser = await User.findByIdAndUpdate(
-      user.id,
-      { refreshToken },
-      { new: true }
-    );
+    await User.findByIdAndUpdate(user.id, { refreshToken }, { new: true });
     return { user, accessToken };
   } catch (error) {
     console.log(error);
