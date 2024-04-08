@@ -30,6 +30,18 @@ const movie = mongoose.Schema({
     type: Boolean,
     require: true,
   },
+  daoDien: {
+    type: String,
+  },
+  dienVien: {
+    type: String,
+  },
+  theLoai: {
+    type: String,
+  },
+  quocGia: {
+    type: String,
+  },
 });
 
 const Movie = mongoose.model("Movie", movie);

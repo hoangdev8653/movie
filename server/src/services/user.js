@@ -1,12 +1,22 @@
 import User from "../models/user.js";
 import createHttpError from "http-errors";
 import { SignAccessToken, SignRefreshToken } from "../utils/generateToken.js";
+import { getkey, setKey, deleteKey } from "../configs/connectRedis.js";
+
+const getAllUser = async () => {
+  try {
+    return await User.find();
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
 
 const register = async ({ email, password, username, phone, address }) => {
   try {
     const checkEmail = await User.findOne({ email });
     if (checkEmail) {
-      throw createHttpError.Conflict("Email is ready in db");
+      throw createHttpError.Conflict("Email is already in use");
     } else {
       const user = new User({
         email,
@@ -18,7 +28,7 @@ const register = async ({ email, password, username, phone, address }) => {
       return await user.save();
     }
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -28,15 +38,14 @@ const login = async ({ email, password }) => {
     if (!user) {
       throw createHttpError.NotFound("Email Not Found");
     }
-
     const isValid = await user.checkPassword(password);
     if (!isValid) {
       throw createHttpError.Unauthorized();
     }
     const accessToken = SignAccessToken(user.id);
     const refreshToken = SignRefreshToken(user.id);
-    await User.findByIdAndUpdate(user.id, { refreshToken }, { new: true });
-    return { user, accessToken };
+    setKey(`refreshToken_${user.id}`, refreshToken);
+    return { user, accessToken, refreshToken };
   } catch (error) {
     console.log(error);
   }
@@ -60,18 +69,15 @@ const logout = async (id) => {
     if (!user) {
       throw createHttpError.NotFound("User not found");
     }
-    const newUser = await User.findByIdAndUpdate(
-      id,
-      { refreshToken: "" },
-      { new: true }
-    );
-    return newUser;
+    deleteKey(`refreshToken_${user.id}`);
+    return user;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
 export const userService = {
+  getAllUser,
   register,
   login,
   currentUser,

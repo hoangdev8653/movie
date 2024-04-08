@@ -15,7 +15,7 @@ export const verifyAccessToken = (req, res, next) => {
       }
       return next(createHttpError.Unauthorized(err.message));
     }
-    req.userId = payload.useId;
+    req.userId = payload.userId;
     req.payload = payload;
     next();
   });

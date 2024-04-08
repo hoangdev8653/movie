@@ -27,9 +27,6 @@ const user = mongoose.Schema({
   address: {
     type: String,
   },
-  refreshToken: {
-    type: String,
-  },
 });
 
 user.pre("save", async function (next) {

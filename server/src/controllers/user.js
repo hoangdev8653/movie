@@ -2,6 +2,19 @@ import { StatusCodes } from "http-status-codes";
 import { userValidate } from "../validations/user.js";
 import createHttpError from "http-errors";
 import { userService } from "../services/user.js";
+import { getkey, setKey, deleteKey } from "../configs/connectRedis.js";
+
+const getAllUser = async (req, res, next) => {
+  try {
+    const user = await userService.getAllUser();
+    return res
+      .status(StatusCodes.OK)
+      .json({ status: 200, message: "Xử lý thành công", content: user });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
 
 const register = async (req, res, next) => {
   try {
@@ -10,7 +23,7 @@ const register = async (req, res, next) => {
     if (error) {
       throw createHttpError(error.details[0].message);
     }
-    const user = userService.register({
+    const user = await userService.register({
       email,
       password,
       username,
@@ -21,19 +34,31 @@ const register = async (req, res, next) => {
       .status(StatusCodes.ACCEPTED)
       .json({ status: 201, message: "Xử lý thành công", content: user });
   } catch (error) {
-    console.log(error);
-    next(error);
+    if (error.statusCode === 409) {
+      return res
+        .status(StatusCodes.CONFLICT)
+        .json({ status: 409, message: error.message });
+    } else {
+      console.error(error);
+      return res
+        .status(StatusCodes.INTERNAL_SERVER_ERROR)
+        .json({ status: 500, message: "Lỗi máy chủ" });
+    }
   }
 };
 
 const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    const { user, accessToken } = await userService.login({ email, password });
+    const { user, accessToken, refreshToken } = await userService.login({
+      email,
+      password,
+    });
     return res.status(StatusCodes.OK).json({
       status: 200,
       message: "Xử lý thành công",
       content: user,
+      refreshToken,
       accessToken,
     });
   } catch (error) {
@@ -58,17 +83,19 @@ const currentUser = async (req, res, next) => {
 const logout = async (req, res, next) => {
   try {
     const id = req.userId;
+    console.log(id);
     const user = await userService.logout(id);
     return res
       .status(StatusCodes.OK)
       .json({ status: 200, message: "Xử lý thành công", content: user });
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
     next(error);
   }
 };
 
 export const userController = {
+  getAllUser,
   register,
   login,
   currentUser,
