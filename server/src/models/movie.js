@@ -9,17 +9,14 @@ const movie = mongoose.Schema({
   },
   trailer: {
     type: String,
+    default: "",
   },
   moTa: {
     type: String,
     require: true,
   },
-  danhGia: {
-    type: String,
-    require: true,
-  },
   ngayKhoiChieu: {
-    type: Date,
+    type: String,
     require: true,
   },
   dangChieu: {
@@ -41,6 +38,13 @@ const movie = mongoose.Schema({
   },
   quocGia: {
     type: String,
+  },
+  thoiLuong: {
+    type: String,
+  },
+  rapId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Rap",
   },
 });
 

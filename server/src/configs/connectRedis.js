@@ -6,6 +6,10 @@ export const connectRedis = async () => {
   await RedisClient.connect();
   RedisClient.on("error", (err) => {
     console.error(`An error occurred with Redis: ${err}`);
+    if (err.code === "ECONNREFUSED") {
+      console.log("Closing server due to Redis connection error ❌");
+      process.exit(1);
+    }
   });
   console.log("Redis connected successfully ✅");
 };
@@ -28,7 +32,7 @@ export const deleteKey = async (key) => {
         reject(err); // Phát hiện lỗi và reject Promise
         return;
       }
-      console.log(`Deleted key ${key} successfully`);
+      console.log(`Deleted key ${key} successfully  `);
       resolve(reply); // Hoàn thành Promise nếu xóa thành công
     });
   });
