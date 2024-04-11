@@ -24,7 +24,6 @@ export const getkey = async (key) => {
 };
 
 export const deleteKey = async (key) => {
-  // Tạo một Promise để bao bọc hoạt động của RedisClient.del
   return new Promise((resolve, reject) => {
     RedisClient.del(key, (err, reply) => {
       if (err) {

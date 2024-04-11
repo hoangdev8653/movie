@@ -7,7 +7,7 @@ export const verifyRefreshToken = (refreshToken) => {
       if (err) {
         reject(createHttpError(err));
       }
-      resolve(payload);
+      resolve(payload.userId);
     });
   });
 };

@@ -2,6 +2,7 @@ import User from "../models/user.js";
 import createHttpError from "http-errors";
 import { SignAccessToken, SignRefreshToken } from "../utils/generateToken.js";
 import { getkey, setKey, deleteKey } from "../configs/connectRedis.js";
+import { verifyRefreshToken } from "../middlewares/verifyRefreshToken.js";
 
 const getAllUser = async () => {
   try {
@@ -57,9 +58,36 @@ const currentUser = async (id) => {
     if (!user) {
       throw createHttpError.NotFound("User Not Found");
     }
+    getkey(`refreshToken_${id}`);
     return await user;
   } catch (error) {
     console.log(error);
+  }
+};
+
+const updateAvarta = async (id, { avarta }) => {
+  try {
+    const user = await User.findById(id);
+    if (!user) {
+      createHttpError.NotFound("User Not Found");
+    }
+    return await User.findByIdAndUpdate(id, { avarta }, { new: true });
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+const refreshToken = async ({ refreshToken }) => {
+  try {
+    const userId = await verifyRefreshToken(refreshToken);
+    const newAccessToken = SignAccessToken(userId);
+    const newRefreshtoken = SignRefreshToken(userId);
+    setKey(`refreshToken_${userId}`, newRefreshtoken);
+    return await { newAccessToken, newRefreshtoken };
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
 };
 
@@ -81,5 +109,7 @@ export const userService = {
   register,
   login,
   currentUser,
+  updateAvarta,
+  refreshToken,
   logout,
 };

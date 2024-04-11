@@ -26,8 +26,9 @@ const createMovie = async ({
 }) => {
   try {
     const movieExits = await Movie.findOne({ tenPhim });
-    if (!movieExits) {
-      createHttpError("Movie is alredy");
+    const rapIdExits = await Movie.findOne({ rapId });
+    if (movieExits && rapIdExits) {
+      throw createHttpError.Conflict("Movie is alredy");
     }
     const movie = new Movie({
       tenPhim,

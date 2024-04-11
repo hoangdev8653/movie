@@ -33,7 +33,6 @@ const createMovie = async (req, res, next) => {
       rapId,
     } = req.body;
     const fileHinhAnh = req.file;
-    console.log(fileHinhAnh);
     const movie = await movieService.createMovie({
       tenPhim,
       hinhAnh: fileHinhAnh?.path,
@@ -52,11 +51,17 @@ const createMovie = async (req, res, next) => {
       .status(StatusCodes.CREATED)
       .json({ status: 201, message: "Xử lý thành công", content: movie });
   } catch (error) {
-    console.log(error);
-    res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ status: 500, message: "Server Error" });
-    next(error);
+    if (error.statusCode === 409) {
+      return res
+        .status(StatusCodes.CONFLICT)
+        .json({ status: 409, message: error.message });
+    } else {
+      console.log(error);
+      res
+        .status(StatusCodes.INTERNAL_SERVER_ERROR)
+        .json({ status: 500, message: "Server Error" });
+      next(error);
+    }
   }
 };
 
@@ -66,7 +71,6 @@ const updateTrailerMovie = async (req, res, next) => {
     const { trailer } = req.body;
     const fileData = req.file;
     console.log(fileData);
-    console.log(req.body);
     const movie = await movieService.updateTrailerMovie(id, {
       trailer: fileData?.path,
     });

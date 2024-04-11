@@ -80,6 +80,47 @@ const currentUser = async (req, res, next) => {
   }
 };
 
+const updateAvarta = async (req, res, next) => {
+  try {
+    const id = req.userId;
+    const { avarta } = req.body;
+    const fileData = req.file;
+    const user = await userService.updateAvarta(id, { avarta: fileData?.path });
+    return res
+      .status(StatusCodes.OK)
+      .json({ status: 200, message: "Xử lý thành công", content: user });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ status: 500, message: "Server Error" });
+    next(error);
+  }
+};
+
+const refreshToken = async (req, res, next) => {
+  try {
+    const { refreshToken } = req.body;
+    const { newAccessToken, newRefreshtoken } = await userService.refreshToken({
+      refreshToken,
+    });
+    return res
+      .status(StatusCodes.OK)
+      .json({
+        status: 200,
+        message: "Xử lý thành công",
+        newAccessToken,
+        newRefreshtoken,
+      });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ status: 500, message: "Server Error" });
+    next(error);
+  }
+};
+
 const logout = async (req, res, next) => {
   try {
     const id = req.userId;
@@ -99,5 +140,7 @@ export const userController = {
   register,
   login,
   currentUser,
+  updateAvarta,
+  refreshToken,
   logout,
 };
