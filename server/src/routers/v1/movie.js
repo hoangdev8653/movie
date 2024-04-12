@@ -5,6 +5,12 @@ import uploadCloud from "../../middlewares/cloundinary.js";
 const router = express.Router();
 
 router.route("/").get(movieController.getAllMovie);
+router.route("/CgvVinCom").get(movieController.getMovieCgvVinCom);
+router.route("/CgvVinhTrung").get(movieController.getMovieCgvVinhTrung);
+router.route("/GalaxyDaNang").get(movieController.getMovieGalaxyDaNang);
+router.route("/LotteDaNang").get(movieController.getMovieLotteDaNang);
+router.route("/LotteHoiAn").get(movieController.getMovieLotteHoiAn);
+router.route("/StartlightDanang").get(movieController.getMovieStarlightDaNang);
 router
   .route("/create")
   .post(uploadCloud.single("hinhAnh"), movieController.createMovie);

@@ -78,9 +78,92 @@ const deleteMovie = async (id) => {
   }
 };
 
+const getMovieCgvVincom = async () => {
+  try {
+    const movies = await Movie.find().populate("rapId");
+    const movieCgvVinCom = await movies.filter(
+      (movie) => movie.rapId.tenRap === "CGV Vincom Đà Nẵng"
+    );
+    return await movieCgvVinCom;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+const getMovieCgvVinhTrung = async () => {
+  try {
+    const movies = await Movie.find().populate("rapId");
+    const movieCgvVinnhTrung = await movies.filter(
+      (movie) => movie.rapId.tenRap === "CGV Vĩnh Trung Plaza"
+    );
+    return await movieCgvVinnhTrung;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+const getMovieGalaxyDaNang = async () => {
+  try {
+    const movies = await Movie.find().populate("rapId");
+    const movieGalaxyDaNang = await movies.filter(
+      (movie) => movie.rapId.tenRap === "Galaxy Đã Nẵng"
+    );
+    return await movieGalaxyDaNang;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+const getMovieLotteDaNang = async () => {
+  try {
+    const movies = await Movie.find().populate("rapId");
+    const movieLotteDaNang = await movies.filter(
+      (movie) => movie.rapId.tenRap === "Lotte Đã Nẵng"
+    );
+    return await movieLotteDaNang;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+const getMovieLotteHoiAn = async () => {
+  try {
+    const movies = await Movie.find().populate("rapId");
+    const movieLotteHoiAn = await movies.filter(
+      (movie) => movie.rapId.tenRap === "Lotte Hội An"
+    );
+    return await movieLotteHoiAn;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+const getMovieStarlightDaNang = async () => {
+  try {
+    const movies = await Movie.find().populate("rapId");
+    const movieStarlightDaNang = await movies.filter(
+      (movie) => movie.rapId.tenRap === "Starlight Đà Nẵng"
+    );
+    return await movieStarlightDaNang;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
 export const movieService = {
   getAllMovie,
   createMovie,
   updateTrailerMovie,
   deleteMovie,
+  getMovieCgvVincom,
+  getMovieCgvVinhTrung,
+  getMovieGalaxyDaNang,
+  getMovieLotteDaNang,
+  getMovieLotteHoiAn,
+  getMovieStarlightDaNang,
 };
