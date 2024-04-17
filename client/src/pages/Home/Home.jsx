@@ -1,5 +1,6 @@
 import Banner from "./Banner";
-
+import CinemaSystem from "./CinemaSystem";
+import News from "./news/News";
 import Application from "./Aplication";
 
 function Home() {
@@ -7,6 +8,8 @@ function Home() {
     <div>
       <p>Home</p>
       {/* <Banner /> */}
+      <CinemaSystem />
+      <News />
       <Application />
     </div>
   );

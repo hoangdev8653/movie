@@ -25,6 +25,7 @@ app.use("/v1/rap/", routers.RapRoutes);
 app.use("/v1/movie/", routers.MovieRoutes);
 app.use("/v1/review/", routers.ReviewRoutes);
 app.use("/v1/suatChieu/", routers.SuatChieuRoutes);
+app.use("/v1/gioChieu/", routers.GioChieuRoutes);
 
 app.use((req, res, next) => {
   next(createHttpError(404, "Not Found"));

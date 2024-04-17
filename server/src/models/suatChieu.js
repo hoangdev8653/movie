@@ -4,9 +4,12 @@ const suatChieu = mongoose.Schema({
   ngaychieu: {
     type: String,
   },
-  gioChieu: {
-    type: Array,
-  },
+  suatChieus: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "GioChieu",
+    },
+  ],
   movieId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Movie",

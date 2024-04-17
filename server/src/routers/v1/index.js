@@ -4,6 +4,7 @@ import RapRoutes from "./rap.js";
 import MovieRoutes from "./movie.js";
 import ReviewRoutes from "./review.js";
 import SuatChieuRoutes from "./suatChieu.js";
+import GioChieuRoutes from "./gioChieu.js";
 
 export const routers = {
   UserRoutes,
@@ -12,4 +13,5 @@ export const routers = {
   MovieRoutes,
   ReviewRoutes,
   SuatChieuRoutes,
+  GioChieuRoutes,
 };

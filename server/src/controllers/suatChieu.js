@@ -16,17 +16,54 @@ const getSuatChieuByMovie = async (req, res, next) => {
   }
 };
 
+const getSuatChieuById = async (req, res, next) => {
+  try {
+    const idSuatChieu = req.query.idSuatChieu;
+    const idGhe = req.query.idGhe;
+    const suatChieu = await suatChieuService.getSuatChieuById(
+      idSuatChieu,
+      idGhe
+    );
+    return res
+      .status(StatusCodes.OK)
+      .json({ status: 200, message: "Xử lý thành công", content: suatChieu });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ status: 500, message: "Server Error" });
+    next(error);
+  }
+};
+
 const createSuatChieu = async (req, res, next) => {
   try {
-    const { ngaychieu, gioChieu, movieId } = req.body;
+    const { ngaychieu, suatChieus, movieId } = req.body;
     const suatChieu = await suatChieuService.createSuatChieu({
       ngaychieu,
-      gioChieu,
+      suatChieus,
       movieId,
     });
     return res
       .status(StatusCodes.CREATED)
       .json({ status: 201, message: "xử lý thành công", content: suatChieu });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ status: 500, message: "Server Error" });
+    next(error);
+  }
+};
+
+const updateStatusGhe = async (req, res, next) => {
+  try {
+    const idSuatChieu = req.query.idSuatChieu;
+    const idGhe = req.query.idGhe;
+    const ghe = suatChieuService.updateStatusGhe(idSuatChieu, idGhe);
+    return res
+      .status(StatusCodes.OK)
+      .json({ status: 200, message: "Xử lý thành công", content: ghe });
   } catch (error) {
     console.log(error);
     res
@@ -54,6 +91,8 @@ const deleteSuatChieu = async (req, res, next) => {
 
 export const suaChieuController = {
   getSuatChieuByMovie,
+  getSuatChieuById,
   createSuatChieu,
+  updateStatusGhe,
   deleteSuatChieu,
 };
