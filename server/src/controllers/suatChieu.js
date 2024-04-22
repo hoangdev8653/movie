@@ -60,7 +60,7 @@ const updateStatusGhe = async (req, res, next) => {
   try {
     const idSuatChieu = req.query.idSuatChieu;
     const idGhe = req.query.idGhe;
-    const ghe = suatChieuService.updateStatusGhe(idSuatChieu, idGhe);
+    const ghe = await suatChieuService.updateStatusGhe(idSuatChieu, idGhe);
     return res
       .status(StatusCodes.OK)
       .json({ status: 200, message: "Xử lý thành công", content: ghe });

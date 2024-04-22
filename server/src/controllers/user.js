@@ -70,6 +70,7 @@ const login = async (req, res, next) => {
 const currentUser = async (req, res, next) => {
   try {
     const id = req.userId;
+    console.log(id);
     const user = await userService.currentUser(id);
     return res
       .status(StatusCodes.OK)
@@ -104,14 +105,12 @@ const refreshToken = async (req, res, next) => {
     const { newAccessToken, newRefreshtoken } = await userService.refreshToken({
       refreshToken,
     });
-    return res
-      .status(StatusCodes.OK)
-      .json({
-        status: 200,
-        message: "Xử lý thành công",
-        newAccessToken,
-        newRefreshtoken,
-      });
+    return res.status(StatusCodes.OK).json({
+      status: 200,
+      message: "Xử lý thành công",
+      newAccessToken,
+      newRefreshtoken,
+    });
   } catch (error) {
     console.log(error);
     res
