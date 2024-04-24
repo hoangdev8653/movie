@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import imgageDeafaut from "../../../assets/imgDeafaut.jpg";
 import styles from "./Chair.module.scss";
-import ShowMessage from "../ShowMesssage";
+import ShowMessage from "./ShowMesssage";
 function chair() {
   const [showMessage, setShowMessage] = useState(false);
-  const [expiredTime, setExpiredTime] = useState(100);
+  const [expiredTime, setExpiredTime] = useState(10);
   useEffect(() => {
     if (expiredTime > 0) {
       setTimeout(() => {
         setExpiredTime(expiredTime - 1);
       }, 1000);
-      clearTimeout(() => {});
+      return clearTimeout(() => {});
     } else {
-      setShowMessage(true);
+      setShowMessage(false);
       return;
     }
   }, [expiredTime]);
@@ -319,7 +319,6 @@ function chair() {
       stt: 100,
     },
   ];
-  console.log(Ghe);
   return (
     <div className="w-full">
       <div style={{ boxShadow: " 0 0 15px rgb(0 0 0 / 30%)" }}>

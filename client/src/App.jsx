@@ -4,7 +4,7 @@ import Home from "./pages/Home/Home";
 import MovieDetail from "./pages/MovieDetail/MovieDetail";
 import Layout from "./templates/Layout";
 
-import Profile from "./pages/Profile";
+import Profile from "./pages/Profile/Profile";
 import Login from "./components/login/Login";
 import Register from "./components/register/Register";
 import BookTicket from "./pages/BookTicket/BookTicKet";
