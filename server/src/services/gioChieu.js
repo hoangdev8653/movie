@@ -57,7 +57,7 @@ const updateStatusGhe = async (id, idGhe) => {
     const dsGhe = gioChieu.danhSachGhe.find(
       (ghe) => ghe._id.toString() === idGhe
     );
-    dsGhe.trangThai = "Trong";
+    dsGhe.trangThai = "DaDat";
     return await gioChieu.save();
   } catch (error) {
     console.log(error);

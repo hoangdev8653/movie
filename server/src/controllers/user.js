@@ -67,6 +67,40 @@ const login = async (req, res, next) => {
   }
 };
 
+const deleteUser = async (req, res, next) => {
+  try {
+    const id = req.query.id;
+    const user = await userService.deleteUser(id);
+    return res
+      .status(StatusCodes.OK)
+      .json({ status: 200, message: "Xử lý thành công", content: user });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ status: 200, message: "Server Error" });
+    next(error);
+  }
+};
+
+const resetPassword = async (req, res, next) => {
+  try {
+    const token = req.query.token;
+    console.log(token);
+    const { password } = req.body;
+    const user = await userService.resetPassword(token, { password });
+    return res
+      .status(StatusCodes.OK)
+      .json({ status: 200, message: "Xử lý thành công", content: user });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ status: 200, message: "Server Error" });
+    next(error);
+  }
+};
+
 const currentUser = async (req, res, next) => {
   try {
     const id = req.userId;
@@ -87,6 +121,22 @@ const updateAvarta = async (req, res, next) => {
     const { avarta } = req.body;
     const fileData = req.file;
     const user = await userService.updateAvarta(id, { avarta: fileData?.path });
+    return res
+      .status(StatusCodes.OK)
+      .json({ status: 200, message: "Xử lý thành công", content: user });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ status: 500, message: "Server Error" });
+    next(error);
+  }
+};
+
+const forgotPassword = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    const user = await userService.forgotPassword({ email });
     return res
       .status(StatusCodes.OK)
       .json({ status: 200, message: "Xử lý thành công", content: user });
@@ -140,6 +190,9 @@ export const userController = {
   login,
   currentUser,
   updateAvarta,
+  deleteUser,
+  forgotPassword,
+  resetPassword,
   refreshToken,
   logout,
 };

@@ -19,11 +19,7 @@ const getSuatChieuByMovie = async (req, res, next) => {
 const getSuatChieuById = async (req, res, next) => {
   try {
     const idSuatChieu = req.query.idSuatChieu;
-    const idGhe = req.query.idGhe;
-    const suatChieu = await suatChieuService.getSuatChieuById(
-      idSuatChieu,
-      idGhe
-    );
+    const suatChieu = await suatChieuService.getSuatChieuById(idSuatChieu);
     return res
       .status(StatusCodes.OK)
       .json({ status: 200, message: "Xử lý thành công", content: suatChieu });
@@ -59,8 +55,13 @@ const createSuatChieu = async (req, res, next) => {
 const updateStatusGhe = async (req, res, next) => {
   try {
     const idSuatChieu = req.query.idSuatChieu;
+    const idGioChieu = req.query.idGioChieu;
     const idGhe = req.query.idGhe;
-    const ghe = await suatChieuService.updateStatusGhe(idSuatChieu, idGhe);
+    const ghe = await suatChieuService.updateStatusGhe(
+      idSuatChieu,
+      idGioChieu,
+      idGhe
+    );
     return res
       .status(StatusCodes.OK)
       .json({ status: 200, message: "Xử lý thành công", content: ghe });

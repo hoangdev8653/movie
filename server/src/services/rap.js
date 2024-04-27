@@ -10,6 +10,19 @@ const getAllRap = async () => {
   }
 };
 
+const getRapByHethong = async (maHeThong) => {
+  try {
+    const rap = await Rap.find().populate("heThongRapId", " -_id");
+    const rapCgv = rap.filter(
+      (item) => item.heThongRapId.maHeThongRap === maHeThong.toUpperCase()
+    );
+    return rapCgv;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 const createRap = async ({ tenRap, hinhAnh, diaChi, heThongRapId }) => {
   try {
     const rap = new Rap({ tenRap, hinhAnh, diaChi, heThongRapId });
@@ -33,6 +46,7 @@ const deleteRap = async (id) => {
 
 export const rapService = {
   getAllRap,
+  getRapByHethong,
   createRap,
   deleteRap,
 };

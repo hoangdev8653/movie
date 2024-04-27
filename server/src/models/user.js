@@ -27,6 +27,14 @@ const user = mongoose.Schema({
   address: {
     type: String,
   },
+  passwordResetToken: {
+    type: String,
+    default: undefined,
+  },
+  passwordResetExpires: {
+    type: Date,
+    default: undefined,
+  },
 });
 
 user.pre("save", async function (next) {

@@ -10,6 +10,27 @@ const getAllMovie = async () => {
   }
 };
 
+const getMovieDangChieu = async () => {
+  try {
+    const movie = await Movie.find().populate("rapId");
+    const movieDangChieu = movie.filter((movie) => movie.dangChieu === true);
+    return movieDangChieu;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+const getMovieSapChieu = async () => {
+  try {
+    const movie = await Movie.find().populate("rapId");
+    const movieSapChieu = movie.filter((movie) => movie.sapChieu === true);
+    return movieSapChieu;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 const createMovie = async ({
   tenPhim,
   hinhAnh,
@@ -72,6 +93,19 @@ const deleteMovie = async (id) => {
       createHttpError.NotFound("Movie Not Found!");
     }
     return await Movie.deleteOne({ _id: id });
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+const getMovieByRap = async (tenRap) => {
+  try {
+    const rap = await Movie.find().populate("rapId");
+    const res = rap.filter((item) => {
+      return item.rapId.tenRap == tenRap;
+    });
+    return await res;
   } catch (error) {
     console.log(error);
     throw error;
@@ -157,6 +191,8 @@ const getMovieStarlightDaNang = async () => {
 };
 export const movieService = {
   getAllMovie,
+  getMovieDangChieu,
+  getMovieSapChieu,
   createMovie,
   updateTrailerMovie,
   deleteMovie,

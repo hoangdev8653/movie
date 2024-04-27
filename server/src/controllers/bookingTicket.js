@@ -41,6 +41,9 @@ const deleteBookTicket = async (req, res, next) => {
   try {
     const id = req.query.id;
     const ticket = await bookTicketService.deleteBookTicket(id);
+    return res
+      .status(StatusCodes.OK)
+      .json({ status: 200, message: "xử lý thành công", content: ticket });
   } catch (error) {
     console.log(error);
     res

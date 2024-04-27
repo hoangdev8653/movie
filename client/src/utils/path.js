@@ -5,5 +5,5 @@ export const PATH = {
   LOGIN: "/login",
   REGISTER: "/register",
   MOVIE: "/phim/:id",
-  DATVE: "datve/:id",
+  DATVE: "/datve/:id",
 };

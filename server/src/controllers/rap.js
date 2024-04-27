@@ -12,6 +12,22 @@ const getAllRap = async (req, res, next) => {
   }
 };
 
+const getRapByHethong = async (req, res, next) => {
+  try {
+    const maHeThong = req.params.maHeThong;
+    const rap = await rapService.getRapByHethong(maHeThong);
+    return res
+      .status(StatusCodes.OK)
+      .json({ status: 200, message: "Xử lý thành công", content: rap });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ status: 500, message: "Server Error" });
+    next(error);
+  }
+};
+
 const createRap = async (req, res, next) => {
   try {
     const { tenRap, hinhAnh, diaChi, heThongRapId } = req.body;
@@ -46,6 +62,7 @@ const deleteRap = async (req, res, next) => {
 
 export const rapController = {
   getAllRap,
+  getRapByHethong,
   createRap,
   deleteRap,
 };

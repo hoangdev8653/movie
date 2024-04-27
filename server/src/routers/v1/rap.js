@@ -3,6 +3,7 @@ import { rapController } from "../../controllers/rap.js";
 import uploadCloud from "../../middlewares/cloundinary.js";
 const router = express.Router();
 
+router.route("/byHeThongRap/:maHeThong").get(rapController.getRapByHethong);
 router.route("/").get(rapController.getAllRap);
 router
   .route("/create")

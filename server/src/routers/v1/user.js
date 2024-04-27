@@ -16,8 +16,13 @@ router
     uploadCloud.single("avarta"),
     userController.updateAvarta
   );
+router.route("/forgot-password").post(userController.forgotPassword);
+router.route("/reset-password/").patch(userController.resetPassword);
+
 router.route("/refreshToken").post(userController.refreshToken);
 
 router.route("/logout").post(verifyAccessToken, userController.logout);
+
+router.route("/delete").delete(userController.deleteUser);
 
 export default router;
