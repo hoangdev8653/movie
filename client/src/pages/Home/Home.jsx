@@ -1,16 +1,14 @@
-import Banner from "./Banner";
-import CinemaSystem from "./CinemaSystem";
 import News from "./news/News";
-import Application from "./Aplication";
-
+import LichChieu from "./lichChieu/LichChieu";
+import Event from "./event/Event";
+import Banner from "./banner/Banner";
 function Home() {
   return (
-    <div>
-      <p>Home</p>
-      {/* <Banner /> */}
-      <CinemaSystem />
+    <div className="">
+      <Banner />
+      <LichChieu />
+      <Event />
       <News />
-      <Application />
     </div>
   );
 }

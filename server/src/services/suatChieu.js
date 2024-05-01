@@ -26,9 +26,9 @@ const getSuatChieuById = async (idSuatChieu) => {
   }
 };
 
-const createSuatChieu = async ({ ngaychieu, suatChieus, movieId }) => {
+const createSuatChieu = async ({ ngaychieu, suatChieus, movieId, giaVe }) => {
   try {
-    return await SuatChieu.create({ ngaychieu, suatChieus, movieId });
+    return await SuatChieu.create({ ngaychieu, suatChieus, movieId, giaVe });
   } catch (error) {
     console.log(error);
     throw error;

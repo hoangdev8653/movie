@@ -6,6 +6,8 @@ import ReviewRoutes from "./review.js";
 import SuatChieuRoutes from "./suatChieu.js";
 import GioChieuRoutes from "./gioChieu.js";
 import BookTicketRoutes from "./bookTicket.js";
+import BannerRoutes from "./banner.js";
+import NewsRoutes from "./news.js";
 
 export const routers = {
   UserRoutes,
@@ -16,4 +18,6 @@ export const routers = {
   SuatChieuRoutes,
   GioChieuRoutes,
   BookTicketRoutes,
+  BannerRoutes,
+  NewsRoutes,
 };

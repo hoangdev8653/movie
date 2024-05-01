@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
-// import "./Login.css";
 import styles from "./Login.module.scss";
 import { Link } from "react-router-dom";
 import { Alert, Space } from "antd";
-import LogoLoader from "../loader/loader";
-import axios from "axios";
+import LogoLoader from "../../components/loader/loader";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

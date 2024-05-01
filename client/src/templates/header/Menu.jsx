@@ -35,13 +35,13 @@ function Menu() {
           Lịch chiếu
         </li>
         <li onClick={goCumRap} className="hover:text-red-500 cursor-pointer">
-          Cụm rạp
+          Hệ thống rạp
         </li>
         <li onClick={goTinTuc} className="hover:text-red-500 cursor-pointer">
           Tin Tức
         </li>
         <li onClick={goUngDung} className="hover:text-red-500 cursor-pointer">
-          Ứng dụng
+          Khuyến mãi/Sự kiện
         </li>
       </ul>
     </>

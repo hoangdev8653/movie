@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Register.module.scss";
-import LogoLoader from "../loader/loader";
+import LogoLoader from "../../components/loader/loader";
 import { Alert, Space } from "antd";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";

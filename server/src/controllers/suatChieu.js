@@ -34,11 +34,12 @@ const getSuatChieuById = async (req, res, next) => {
 
 const createSuatChieu = async (req, res, next) => {
   try {
-    const { ngaychieu, suatChieus, movieId } = req.body;
+    const { ngaychieu, suatChieus, movieId, giaVe } = req.body;
     const suatChieu = await suatChieuService.createSuatChieu({
       ngaychieu,
       suatChieus,
       movieId,
+      giaVe,
     });
     return res
       .status(StatusCodes.CREATED)

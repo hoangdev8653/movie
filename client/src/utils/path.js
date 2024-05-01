@@ -6,4 +6,5 @@ export const PATH = {
   REGISTER: "/register",
   MOVIE: "/phim/:id",
   DATVE: "/datve/:id",
+  HETHONGRAP: "/he-thong-rap",
 };

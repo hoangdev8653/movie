@@ -1,4 +1,5 @@
 import BookTicKet from "../models/bookTicket.js";
+import Movie from "../models/movie.js";
 import createHttpError from "http-errors";
 
 // const getBookTicketByUser = async (id) => {
@@ -27,6 +28,12 @@ const getBookTicketByUser = async (userId) => {
         },
       })
       .populate("userId", "email username avarta");
+    const a = ticketUser.map((item) => {
+      return item.suatChieuId.movieId;
+    });
+    const rap = await Movie.findById(a.rapId).populate("rapId");
+
+    // console.log(rap);
     return ticketUser;
   } catch (error) {
     console.log(error);

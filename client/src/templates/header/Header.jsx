@@ -1,6 +1,7 @@
 import Logo from "../../assets/headTixLogo.png";
 import Menu from "./Menu";
 import Avarta from "./Avarta";
+import { Link } from "react-router-dom";
 function Header() {
   return (
     <div
@@ -11,9 +12,11 @@ function Header() {
       className="w-full bg-white"
     >
       <div className="mx-8 justify-between items-center flex py-2">
-        <div className="logo">
-          <img className="w-[50px] h-[50px]" src={Logo} alt="logo" />
-        </div>
+        <Link to="/">
+          <div className="logo">
+            <img className="w-[50px] h-[50px]" src={Logo} alt="logo" />
+          </div>
+        </Link>
         <div className="ml-28">
           <Menu />
         </div>
