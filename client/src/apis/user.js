@@ -44,3 +44,27 @@ export const resetPassword = async (data) => {
     data,
   });
 };
+
+export const updatePassword = async (data) => {
+  return await axiosConfig({
+    method: "post",
+    url: "/user/updatePassword",
+    data,
+  });
+};
+
+export const updateUser = async (data) => {
+  return await axiosConfig({
+    method: "post",
+    url: "/user/updateUser",
+    data,
+  });
+};
+
+export const updateAvarta = async (data) => {
+  return await axiosConfig({
+    method: "post",
+    url: "/user/updateAvarta",
+    data,
+  });
+};

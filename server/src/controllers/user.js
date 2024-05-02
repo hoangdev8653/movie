@@ -86,7 +86,6 @@ const deleteUser = async (req, res, next) => {
 const resetPassword = async (req, res, next) => {
   try {
     const token = req.query.token;
-    console.log(token);
     const { password } = req.body;
     const user = await userService.resetPassword(token, { password });
     return res
