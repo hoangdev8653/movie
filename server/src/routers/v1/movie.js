@@ -13,6 +13,8 @@ router.route("/GalaxyDaNang").get(movieController.getMovieGalaxyDaNang);
 router.route("/LotteDaNang").get(movieController.getMovieLotteDaNang);
 router.route("/LotteHoiAn").get(movieController.getMovieLotteHoiAn);
 router.route("/StartlightDanang").get(movieController.getMovieStarlightDaNang);
+router.route("/:slug").get(movieController.getMovieBySlug);
+
 router
   .route("/create")
   .post(uploadCloud.single("hinhAnh"), movieController.createMovie);

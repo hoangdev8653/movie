@@ -7,4 +7,7 @@ export const PATH = {
   MOVIE: "/phim/:id",
   DATVE: "/datve/:id",
   HETHONGRAP: "/he-thong-rap",
+  EVENTANDSALE: "/khuyen-mai-su-kien",
+  LICHCHIEU: "lich-chieu/",
+  NOTFOUND: "*",
 };

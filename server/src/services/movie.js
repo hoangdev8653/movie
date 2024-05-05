@@ -10,11 +10,24 @@ const getAllMovie = async () => {
   }
 };
 
+const getMovieBySlug = async (slug) => {
+  try {
+    const movie = await Movie.find().populate("rapId");
+    const movieBySlug = movie.filter((item) => {
+      return item.slug === slug;
+    });
+    return await movieBySlug;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 const getMovieDangChieu = async () => {
   try {
     const movie = await Movie.find().populate("rapId");
     const movieDangChieu = movie.filter((movie) => movie.dangChieu === true);
-    return movieDangChieu;
+    return await movieDangChieu;
   } catch (error) {
     console.log(error);
     throw error;
@@ -43,6 +56,7 @@ const createMovie = async ({
   theLoai,
   quocGia,
   thoiLuong,
+  slug,
   rapId,
 }) => {
   try {
@@ -63,6 +77,7 @@ const createMovie = async ({
       theLoai,
       quocGia,
       thoiLuong,
+      slug,
       rapId,
     });
     return await movie.save();
@@ -191,6 +206,7 @@ const getMovieStarlightDaNang = async () => {
 };
 export const movieService = {
   getAllMovie,
+  getMovieBySlug,
   getMovieDangChieu,
   getMovieSapChieu,
   createMovie,

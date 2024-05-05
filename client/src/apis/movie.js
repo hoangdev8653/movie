@@ -7,6 +7,13 @@ export const getAllMovie = async () => {
   });
 };
 
+export const getAllBanner = async () => {
+  return await axiosConfig({
+    method: "get",
+    url: "/banner/",
+  });
+};
+
 export const getAllMovieSapChieu = async () => {
   return await axiosConfig({
     method: "get",

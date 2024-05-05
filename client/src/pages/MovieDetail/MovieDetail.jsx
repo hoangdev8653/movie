@@ -33,21 +33,20 @@ function PhimDetail() {
   return (
     <div>
       <div
+        className="pb-[50px]"
         style={{
           backgroundColor: "rgb(10, 32, 41)",
-          paddingBottom: "50px",
         }}
       >
         {/* {maPhim && ( */}
         <div className="relative">
           <img
-            style={{ height: "830px" }}
-            className="w-full object-cover blur-md "
+            className="w-full object-cover blur-md h-[830px] "
             // src={maPhim.hinhAnh}
             src="https://movie0706.cybersoft.edu.vn/hinhanh/nha-ba-nu_gp09.jpg"
             alt="bg-movie"
           />
-          <div style={{ left: "22%" }} className="absolute top-20 flex ">
+          <div className="absolute top-20 flex left-[22%] ">
             <div className="w-56 h-80 mr-2 relative  ">
               {/* <VideoModal
                   trailer={maPhim.trailer}
@@ -82,13 +81,13 @@ function PhimDetail() {
                 Mua vé
               </button>
             </div>
-            <div style={{ marginLeft: "200px", marginTop: 60 }}>
-              <div style={{ width: 120, height: 120, color: "white" }}>
+            <div className="ml-[200px] mt-[60px]">
+              <div className="w-[120px] h-[120px] text-white">
                 <div className="relative">
                   <CircularProgressbar value={100} />
                   <p
-                    style={{ top: 24, left: 30, fontSize: 50 }}
-                    className="absolute"
+                    style={{ fontSize: 50 }}
+                    className="absolute top-[24px] left-[30px]"
                   >
                     {/* {maPhim.danhGia} */}
                     10
@@ -96,11 +95,7 @@ function PhimDetail() {
                 </div>
               </div>
               <Rate
-                style={{
-                  color: "yellowgreen",
-                  fontSize: "20px",
-                  display: "inline-flex",
-                }}
+                className="text-green-500 text-xl inline-flex"
                 allowHalf
                 // defaultValue={(maPhim.danhGia / 10) * 5}
                 defaultValue={5}

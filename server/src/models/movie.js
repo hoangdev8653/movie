@@ -42,6 +42,9 @@ const movie = mongoose.Schema({
   thoiLuong: {
     type: String,
   },
+  slug: {
+    type: String,
+  },
   rapId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Rap",

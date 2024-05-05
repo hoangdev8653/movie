@@ -1,13 +1,13 @@
 import News from "./news/News";
-import LichChieu from "./lichChieu/LichChieu";
-import Event from "./event/Event";
+import LichChieu from "../LichChieu/LichChieu";
 import Banner from "./banner/Banner";
+import EventAndSale from "../EventAndSale/EventAndSale";
 function Home() {
   return (
     <div className="">
       <Banner />
       <LichChieu />
-      <Event />
+      <EventAndSale />
       <News />
     </div>
   );

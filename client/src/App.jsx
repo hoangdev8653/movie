@@ -3,12 +3,15 @@ import { PATH } from "./utils/path";
 import Home from "./pages/Home/Home";
 import MovieDetail from "./pages/MovieDetail/MovieDetail";
 import HeThongRap from "./pages/HeThongRap/HeThongRap";
+import EventAndSale from "./pages/EventAndSale/EventAndSale";
+import LichChieu from "./pages/LichChieu/LichChieu";
 import Layout from "./templates/Layout";
 
 import Profile from "./pages/Profile/Profile";
-import Login from "./pages/login/Login";
-import Register from "./pages/register/Register";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
 import BookTicket from "./pages/BookTicket/BookTicKet";
+import NotFound from "./pages/NotFound/NotFound";
 function App() {
   return (
     <Routes>
@@ -16,11 +19,14 @@ function App() {
         <Route path={PATH.HOME} index element={<Home />} />
         <Route path={PATH.MOVIE} element={<MovieDetail />} />
         <Route path={PATH.HETHONGRAP} element={<HeThongRap />} />
+        <Route path={PATH.EVENTANDSALE} element={<EventAndSale />} />
+        <Route path={PATH.LICHCHIEU} element={<LichChieu />} />
       </Route>
       <Route path={PATH.PROFILE} element={<Profile />} />
       <Route path={PATH.DATVE} element={<BookTicket />} />
       <Route path={PATH.LOGIN} element={<Login />} />
       <Route path={PATH.REGISTER} element={<Register />} />
+      <Route path={PATH.NOTFOUND} element={<NotFound />} />
     </Routes>
   );
 }
