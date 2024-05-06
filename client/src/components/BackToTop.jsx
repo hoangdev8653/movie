@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import BackTop from "../assets/Logo-backTop.png";
+import { IoIosArrowUp } from "react-icons/io";
+
 function BackToTop() {
   const [visible, setVisible] = useState(false);
   const toggleVisible = () => {

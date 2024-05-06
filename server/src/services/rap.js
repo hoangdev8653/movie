@@ -10,13 +10,27 @@ const getAllRap = async () => {
   }
 };
 
+const getRapById = async (id) => {
+  try {
+    const rap = await Rap.findById(id);
+    if (!rap) {
+      throw createHttpError(404, "Rap Not Found");
+    }
+    return await rap;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 const getRapByHethong = async (maHeThong) => {
   try {
     const rap = await Rap.find().populate("heThongRapId", " -_id");
-    const rapCgv = rap.filter(
-      (item) => item.heThongRapId.maHeThongRap === maHeThong.toUpperCase()
-    );
-    return rapCgv;
+
+    const rapByHeThong = await rap.filter((item) => {
+      return item.heThongRapId && item.heThongRapId.maHeThongRap === maHeThong;
+    });
+    return rapByHeThong;
   } catch (error) {
     console.log(error);
     throw error;
@@ -29,6 +43,23 @@ const createRap = async ({ tenRap, hinhAnh, diaChi, heThongRapId }) => {
     return await rap.save();
   } catch (error) {
     console.log(error);
+  }
+};
+
+const updateRap = async (id, { tenRap, hinhAnh, diaChi, heThongRapId }) => {
+  try {
+    const rap = await Rap.findById(id);
+    if (!rap) {
+      throw createHttpError(404, "Rap Not Found");
+    }
+    return await Rap.findByIdAndUpdate(
+      id,
+      { tenRap, hinhAnh, diaChi, heThongRapId },
+      { new: true }
+    );
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
 };
 
@@ -46,7 +77,9 @@ const deleteRap = async (id) => {
 
 export const rapService = {
   getAllRap,
+  getRapById,
   getRapByHethong,
+  updateRap,
   createRap,
   deleteRap,
 };

@@ -8,6 +8,7 @@ export const PATH = {
   DATVE: "/datve/:id",
   HETHONGRAP: "/he-thong-rap",
   EVENTANDSALE: "/khuyen-mai-su-kien",
-  LICHCHIEU: "lich-chieu/",
+  LICHCHIEU: "/lich-chieu/",
+  RAP: "/rap-phim/:id",
   NOTFOUND: "*",
 };

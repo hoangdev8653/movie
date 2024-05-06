@@ -31,18 +31,28 @@ function Menu() {
   return (
     <>
       <ul className="flex gap-4 font-medium">
-        <li onClick={goLichChieu} className="hover:text-red-500 cursor-pointer">
-          Lịch chiếu
-        </li>
-        <li onClick={goCumRap} className="hover:text-red-500 cursor-pointer">
-          Hệ thống rạp
-        </li>
+        <a href="/lich-chieu/">
+          <li
+            onClick={goLichChieu}
+            className="hover:text-red-500 cursor-pointer"
+          >
+            Lịch chiếu
+          </li>
+        </a>
+        <a href="/he-thong-rap">
+          <li onClick={goCumRap} className="hover:text-red-500 cursor-pointer">
+            Hệ thống rạp
+          </li>
+        </a>
+
         <li onClick={goTinTuc} className="hover:text-red-500 cursor-pointer">
           Tin Tức
         </li>
-        <li onClick={goUngDung} className="hover:text-red-500 cursor-pointer">
-          Khuyến mãi/Sự kiện
-        </li>
+        <a href="/khuyen-mai-su-kien">
+          <li onClick={goUngDung} className="hover:text-red-500 cursor-pointer">
+            Khuyến mãi/Sự kiện
+          </li>
+        </a>
       </ul>
     </>
   );

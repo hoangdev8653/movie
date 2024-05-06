@@ -5,6 +5,7 @@ import MovieDetail from "./pages/MovieDetail/MovieDetail";
 import HeThongRap from "./pages/HeThongRap/HeThongRap";
 import EventAndSale from "./pages/EventAndSale/EventAndSale";
 import LichChieu from "./pages/LichChieu/LichChieu";
+import Rap from "./pages/RapDeatail/RapDeatail";
 import Layout from "./templates/Layout";
 
 import Profile from "./pages/Profile/Profile";
@@ -19,6 +20,7 @@ function App() {
         <Route path={PATH.HOME} index element={<Home />} />
         <Route path={PATH.MOVIE} element={<MovieDetail />} />
         <Route path={PATH.HETHONGRAP} element={<HeThongRap />} />
+        <Route path={PATH.RAP} element={<Rap />} />
         <Route path={PATH.EVENTANDSALE} element={<EventAndSale />} />
         <Route path={PATH.LICHCHIEU} element={<LichChieu />} />
       </Route>
