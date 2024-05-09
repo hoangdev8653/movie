@@ -1,11 +1,12 @@
 import createHttpError from "http-errors";
 import SuatChieu from "../models/suatChieu.js";
 
-const getSuatChieuByMovie = async () => {
+const getAllSuatChieu = async () => {
   try {
     const suatChieu = await SuatChieu.find()
       .populate("movieId", "tenPhim ngayKhoiChieu dangChieu sapChieu hinhAnh")
-      .populate("suatChieus");
+      .populate({ path: "suatChieus", select: "gioChieu" })
+      .populate("rapId");
     return suatChieu;
   } catch (error) {
     console.log(error);
@@ -17,8 +18,8 @@ const getSuatChieuById = async (idSuatChieu) => {
   try {
     let suatChieus = await SuatChieu.findById(idSuatChieu)
       .populate("movieId", "tenPhim ngayKhoiChieu dangChieu sapChieu hinhAnh")
-      .populate("suatChieus");
-    console.log(suatChieus);
+      .populate({ path: "suatChieus", select: "gioChieu" })
+      .populate("rapId");
     return suatChieus;
   } catch (error) {
     console.log(error);
@@ -26,9 +27,34 @@ const getSuatChieuById = async (idSuatChieu) => {
   }
 };
 
-const createSuatChieu = async ({ ngaychieu, suatChieus, movieId, giaVe }) => {
+const getSuatChieuByMovie = async (id) => {
   try {
-    return await SuatChieu.create({ ngaychieu, suatChieus, movieId, giaVe });
+    const suatChieu = await SuatChieu.findOne({ "movieId._id": id })
+      .populate("movieId", "tenPhim ngayKhoiChieu dangChieu sapChieu hinhAnh")
+      .populate({ path: "suatChieus", select: "gioChieu" })
+      .populate("rapId");
+    return suatChieu;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+const createSuatChieu = async ({
+  ngaychieu,
+  suatChieus,
+  movieId,
+  giaVe,
+  rapId,
+}) => {
+  try {
+    return await SuatChieu.create({
+      ngaychieu,
+      suatChieus,
+      movieId,
+      giaVe,
+      rapId,
+    });
   } catch (error) {
     console.log(error);
     throw error;
@@ -107,8 +133,9 @@ const deleteSuatChieu = async (id) => {
 };
 
 export const suatChieuService = {
-  getSuatChieuByMovie,
+  getAllSuatChieu,
   getSuatChieuById,
+  getSuatChieuByMovie,
   createSuatChieu,
   updateStatusGhe,
   deleteSuatChieu,

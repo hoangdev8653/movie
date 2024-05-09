@@ -6,6 +6,7 @@ const router = express.Router();
 router.route("/").get(rapController.getAllRap);
 router.route("/getById").get(rapController.getRapById);
 router.route("/:maHeThong").get(rapController.getRapByHethong);
+router.route("/:slug").get(rapController.getRapBySlug);
 router
   .route("/create")
   .post(uploadCloud.single("hinhAnh"), rapController.createRap);

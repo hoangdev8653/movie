@@ -93,7 +93,6 @@ const createMovie = async (req, res, next) => {
       quocGia,
       thoiLuong,
       slug,
-      rapId,
     } = req.body;
     const fileHinhAnh = req.file;
     const movie = await movieService.createMovie({
@@ -109,7 +108,6 @@ const createMovie = async (req, res, next) => {
       quocGia,
       thoiLuong,
       slug,
-      rapId,
     });
     return res
       .status(StatusCodes.CREATED)
@@ -166,96 +164,6 @@ const deleteMovie = async (req, res, next) => {
   }
 };
 
-const getMovieCgvVinCom = async (req, res, next) => {
-  try {
-    const movie = await movieService.getMovieCgvVincom();
-    return res
-      .status(StatusCodes.OK)
-      .json({ status: 200, message: "Xử lý thành công", content: movie });
-  } catch (error) {
-    console.log(error);
-    res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ status: 500, message: "Server Error" });
-    next(error);
-  }
-};
-
-const getMovieCgvVinhTrung = async (req, res, next) => {
-  try {
-    const movie = await movieService.getMovieCgvVinhTrung();
-    return res
-      .status(StatusCodes.OK)
-      .json({ status: 200, message: "Xử lý thành công", content: movie });
-  } catch (error) {
-    console.log(error);
-    res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ status: 500, message: "Server Error" });
-    next(error);
-  }
-};
-
-const getMovieGalaxyDaNang = async (req, res, next) => {
-  try {
-    const movie = await movieService.getMovieGalaxyDaNang();
-    return res
-      .status(StatusCodes.OK)
-      .json({ status: 200, message: "Xử lý thành công", content: movie });
-  } catch (error) {
-    console.log(error);
-    res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ status: 500, message: "Server Error" });
-    next(error);
-  }
-};
-
-const getMovieLotteDaNang = async (req, res, next) => {
-  try {
-    const movie = await movieService.getMovieLotteDaNang();
-    return res
-      .status(StatusCodes.OK)
-      .json({ status: 200, message: "Xử lý thành công", content: movie });
-  } catch (error) {
-    console.log(error);
-    res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ status: 500, message: "Server Error" });
-    next(error);
-  }
-};
-
-const getMovieLotteHoiAn = async (req, res, next) => {
-  try {
-    const movie = await movieService.getMovieLotteHoiAn();
-    return res
-      .status(StatusCodes.OK)
-      .json({ status: 200, message: "Xử lý thành công", content: movie });
-  } catch (error) {
-    console.log(error);
-    res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ status: 500, message: "Server Error" });
-    next(error);
-  }
-};
-
-const getMovieStarlightDaNang = async (req, res, next) => {
-  try {
-    const movie = await movieService.getMovieStarlightDaNang();
-    return res
-      .status(StatusCodes.OK)
-      .json({ status: 200, message: "Xử lý thành công", content: movie });
-  } catch (error) {
-    console.log(error);
-    res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ status: 500, message: "Server Error" });
-    next(error);
-  }
-};
-
 export const movieController = {
   getAllMovie,
   getMovieBySlug,
@@ -264,10 +172,4 @@ export const movieController = {
   createMovie,
   updateTrailerMovie,
   deleteMovie,
-  getMovieCgvVinCom,
-  getMovieCgvVinhTrung,
-  getMovieGalaxyDaNang,
-  getMovieLotteDaNang,
-  getMovieLotteHoiAn,
-  getMovieStarlightDaNang,
 };

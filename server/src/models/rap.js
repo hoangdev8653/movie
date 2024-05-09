@@ -10,6 +10,9 @@ const rap = mongoose.Schema({
   diaChi: {
     type: String,
   },
+  slug: {
+    type: String,
+  },
   heThongRapId: { type: mongoose.Schema.Types.ObjectId, ref: "HeThongRap" },
 });
 

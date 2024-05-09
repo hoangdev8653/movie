@@ -1,30 +1,33 @@
 import React from "react";
 
-function ThongTin() {
+function ThongTin({ data }) {
   return (
-    <div
-      style={{ maxWidth: "870px", height: "300px", marginLeft: "25%" }}
-      className="flex text-white justify-center px-6 py-2 "
-    >
-      <div className="w-1/2 flex ">
-        <div className="font-medium mr-3 leading-loose ">
-          <p>Tên Phim:</p>
-          <p>Ngày công chiếu:</p>
-          <p>Bí Danh:</p>
+    <div className="flex text-white justify-center px-6 py-2 max-w-[870px] mx-auto font-medium gap-6 ">
+      <div className="w-1/2 ">
+        <div className="flex gap-2 my-1">
+          <p className="w-[30%]"> Ngày Khởi chiếu: </p>
+          <p className="flex-1">{data[0].ngayKhoiChieu}</p>
         </div>
-        <div className="mr-4 leading-loose ">
-          <p>Mai</p>
-          <p>1-1-2024</p>
-          <p>Mai</p>
-          {/* <p>{infoPhim.tenPhim}</p> */}
-          {/* <p>{moment(infoPhim.ngayKhoiChieu).format("DD MMMM YYYY")}</p> */}
-          {/* <p>{infoPhim.biDanh}</p> */}
+        <div className="flex gap-2 my-1">
+          <p className="w-[30%]"> Đạo diễn: </p>
+          <p className="flex-1">{data[0].daoDien}</p>
+        </div>
+        <div className="flex gap-2 my-1">
+          <p className="w-[30%]"> Diễn viên: </p>
+          <p className="flex-1">{data[0].dienVien}</p>
+        </div>
+        <div className="flex gap-2 my-1">
+          <p className="w-[30%]"> Thể loại: </p>
+          <p className="flex-1">{data[0].theLoai}</p>
+        </div>
+        <div className="flex gap-2 my-1">
+          <p className="w-[30%]"> Quốc gia: </p>
+          <p className="flex-1">{data[0].quocGia}</p>
         </div>
       </div>
       <div className="w-1/2">
         <p>Mô Tả</p>
-        <p>Phim Hay Lôi cuốn</p>
-        {/* <span className="">{infoPhim.moTa}</span> */}
+        <p>{data[0].moTa}.</p>
       </div>
     </div>
   );

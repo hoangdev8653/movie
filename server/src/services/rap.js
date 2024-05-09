@@ -23,6 +23,19 @@ const getRapById = async (id) => {
   }
 };
 
+const getRapBySlug = async (slug) => {
+  try {
+    const rap = await Rap.find();
+    const rapBySlug = rap.filter((item) => {
+      return item.slug === slug;
+    });
+    return await rapBySlug;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 const getRapByHethong = async (maHeThong) => {
   try {
     const rap = await Rap.find().populate("heThongRapId", " -_id");
@@ -46,7 +59,10 @@ const createRap = async ({ tenRap, hinhAnh, diaChi, heThongRapId }) => {
   }
 };
 
-const updateRap = async (id, { tenRap, hinhAnh, diaChi, heThongRapId }) => {
+const updateRap = async (
+  id,
+  { tenRap, hinhAnh, diaChi, heThongRapId, slug }
+) => {
   try {
     const rap = await Rap.findById(id);
     if (!rap) {
@@ -54,7 +70,7 @@ const updateRap = async (id, { tenRap, hinhAnh, diaChi, heThongRapId }) => {
     }
     return await Rap.findByIdAndUpdate(
       id,
-      { tenRap, hinhAnh, diaChi, heThongRapId },
+      { tenRap, hinhAnh, diaChi, heThongRapId, slug },
       { new: true }
     );
   } catch (error) {
@@ -77,6 +93,7 @@ const deleteRap = async (id) => {
 
 export const rapService = {
   getAllRap,
+  getRapBySlug,
   getRapById,
   getRapByHethong,
   updateRap,

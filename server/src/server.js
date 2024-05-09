@@ -8,6 +8,7 @@ import cors from "cors";
 import { corsConfig } from "./configs/cors.js";
 import { connectDb } from "./configs/connectDb.js";
 import { connectRedis } from "./configs/connectRedis.js";
+import morgan from "morgan";
 
 const port = process.env.PORT || 7000;
 connectDb();
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(morgan("dev"));
 
 app.use("/v1/user/", routers.UserRoutes);
 app.use("/v1/heThongRap/", routers.HeThongRapRoutes);

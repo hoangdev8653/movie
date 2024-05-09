@@ -28,6 +28,22 @@ const getRapById = async (req, res, next) => {
   }
 };
 
+const getRapBySlug = async (req, res, next) => {
+  try {
+    const slug = req.params.slug;
+    const rap = await rapService.getRapBySlug(slug);
+    return res
+      .status(StatusCodes.OK)
+      .json({ status: 200, message: "Xử lý thành công", content: rap });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ status: 500, message: "Server Error" });
+    next(error);
+  }
+};
+
 const getRapByHethong = async (req, res, next) => {
   try {
     const maHeThong = req.params.maHeThong;
@@ -66,13 +82,14 @@ const createRap = async (req, res, next) => {
 const updateRap = async (req, res, next) => {
   try {
     const id = req.query.id;
-    const { tenRap, hinhAnh, diaChi, heThongRapId } = req.body;
+    const { tenRap, hinhAnh, diaChi, heThongRapId, slug } = req.body;
     const fileData = req.file;
     const rap = await rapService.updateRap(id, {
       tenRap,
       hinhAnh: fileData?.path,
       diaChi,
       heThongRapId,
+      slug,
     });
     return res
       .status(StatusCodes.OK)
@@ -101,6 +118,7 @@ const deleteRap = async (req, res, next) => {
 
 export const rapController = {
   getAllRap,
+  getRapBySlug,
   getRapById,
   getRapByHethong,
   createRap,

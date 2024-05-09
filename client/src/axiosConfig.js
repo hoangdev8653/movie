@@ -53,13 +53,13 @@ axiosConfig.interceptors.response.use(
           // Redirect to login page or handle in any other way
           return Promise.reject(error);
         }
-        setLocalStorage("accessToken", accessToken);
-        originalRequest.headers.Authorization = `Bearer ${accessToken}`;
-        return axios(originalRequest);
+        // setLocalStorage("accessToken", accessToken);
+        // originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+        // return axios(originalRequest);
       } catch (error) {
         // refreshToken is Required
         console.log(error.message);
-        clearLocalStorage();
+        // clearLocalStorage();
       }
     }
 

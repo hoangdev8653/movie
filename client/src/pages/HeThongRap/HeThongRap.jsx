@@ -3,8 +3,10 @@ import styles from "./HeThongRap.module.scss";
 import { AiOutlineLike } from "react-icons/ai";
 import { CiShare2 } from "react-icons/ci";
 import { getAllHeThongRap } from "../../apis/heThongRap";
+import { getRapByHeThongRap } from "../../apis/rap";
 function HeThongRap() {
   const [data, setData] = useState([]);
+  const [maHeThongRap, setMaHeThongRap] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,6 +19,15 @@ function HeThongRap() {
     };
     fetchData();
   }, []);
+
+  const handleHeThongRap = async (mahethong) => {
+    const response = await getAllHeThongRap(maHeThongRap);
+    console.log(response);
+    if (response.status === 200) {
+      setMaHeThongRap(response.data.content);
+    }
+  };
+
   console.log(data);
 
   return (
@@ -27,13 +38,15 @@ function HeThongRap() {
           {data.length > 0 &&
             data.map((item, index) => (
               <div key={index} className=" my-8 ">
-                <img
-                  className="text-center mx-auto cursor-pointer"
-                  width="243"
-                  height="330"
-                  src={item.logo}
-                  alt={item.maHeThongRap}
-                />
+                <a href={`/rap-phim/${item.maHeThongRap}`}>
+                  <img
+                    className="text-center mx-auto cursor-pointer"
+                    width="243"
+                    height="330"
+                    src={item.logo}
+                    alt={item.maHeThongRap}
+                  />
+                </a>
                 <p className="font-semibold my-2 text-left flex gap-1 justify-center">
                   <span className="hover:text-green-500">
                     {item.tenHeThongRap}
@@ -43,12 +56,14 @@ function HeThongRap() {
                   </span>
                 </p>
                 <div className="flex gap-2 justify-center">
-                  <div
-                    style={{ background: "#B2EC0F" }}
-                    className="px-2 py-2 rounded-md font-semibold cursor-pointer hover:opacity-85"
-                  >
-                    Thông tin chi tiết
-                  </div>
+                  <a href={`/rap-phim/${item.maHeThongRap}`}>
+                    <div
+                      style={{ background: "#B2EC0F" }}
+                      className="px-2 py-2 rounded-md font-semibold cursor-pointer hover:opacity-85"
+                    >
+                      Thông tin chi tiết
+                    </div>
+                  </a>
                   <div className="px-2 py-2 rounded-md font-semibold flex border-[1px] border-green-500 cursor-pointer hover:opacity-80">
                     <CiShare2 />
                     <span className="mx-[2px]">Chia Sẽ</span>

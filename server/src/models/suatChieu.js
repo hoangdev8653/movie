@@ -14,6 +14,10 @@ const suatChieu = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Movie",
   },
+  rapId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Rap",
+  },
   giaVe: {
     type: String,
   },

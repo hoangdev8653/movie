@@ -4,11 +4,11 @@ export const PATH = {
   PROFILE: "/profile",
   LOGIN: "/login",
   REGISTER: "/register",
-  MOVIE: "/phim/:id",
+  MOVIE: "/phim/:slug",
   DATVE: "/datve/:id",
   HETHONGRAP: "/he-thong-rap",
   EVENTANDSALE: "/khuyen-mai-su-kien",
   LICHCHIEU: "/lich-chieu/",
-  RAP: "/rap-phim/:id",
+  RAP: "/rap-phim/:mahethong",
   NOTFOUND: "*",
 };

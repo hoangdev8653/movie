@@ -14,7 +14,9 @@ const register = Yup.object().shape({
 
 const login = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is Required"),
-  password: Yup.string().min(6).required("Password is Required"),
+  password: Yup.string()
+    .min(6, "Password at least 6 character ")
+    .required("Password is Required"),
 });
 
 const forgotPassword = Yup.object().shape({

@@ -3,15 +3,16 @@ import { axiosConfig } from "../axiosConfig";
 export const register = async (data) => {
   return await axiosConfig({
     method: "post",
-    url: "/user/dang-ki",
+    url: "/user/register",
     data,
   });
 };
 
 export const login = async (data) => {
+  console.log(data);
   return await axiosConfig({
     method: "post",
-    url: "/user/dang-nhap",
+    url: "/user/login",
     data,
   });
 };
