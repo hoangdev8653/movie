@@ -25,7 +25,8 @@
     "sass": "^1.72.0",
     "slick-carousel": "^1.8.1",
     "toast": "^0.5.4",
-    "yup": "^1.4.0"
+    "yup": "^1.4.0",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

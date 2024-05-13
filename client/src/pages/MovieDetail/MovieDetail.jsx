@@ -1,12 +1,11 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import Ratting from "../../components/ratting";
 import { getAllMovieBySlug } from "../../apis/movie";
-import { Rate } from "antd";
 import { Tabs } from "antd";
-import DanhGia from "./DanhGia";
+import DanhGia from "./reviews/DanhGia";
 import LichChieu from "./LichChieu";
 import ThongTin from "./ThongTin";
 import Loader from "../../components/loader/loader";
@@ -83,7 +82,7 @@ function PhimDetail() {
                   <p>
                     {data[0].thoiLuong} - {data[0].theLoai}
                   </p>
-                  <button className="py-3 px-6 text-base mt-6 rounded mb-5 bg-red-500 hover:opacity-70">
+                  <button className="py-3 px-6 text-base mt-6 rounded mb-5 bg-red-500 hover:opacity-80">
                     Mua vé
                   </button>
                 </div>
@@ -99,11 +98,7 @@ function PhimDetail() {
                       </p>
                     </div>
                   </div>
-                  <Rate
-                    className="text-green-500 text-xl inline-flex"
-                    allowHalf
-                    defaultValue={5}
-                  />
+                  <Ratting disabled={true} rating={5} />
                 </div>
               </div>
             </div>

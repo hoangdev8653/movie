@@ -44,10 +44,11 @@ function Menu() {
             Hệ thống rạp
           </li>
         </a>
-
-        <li onClick={goTinTuc} className="hover:text-red-500 cursor-pointer">
-          Tin Tức
-        </li>
+        <a href="/news">
+          <li onClick={goTinTuc} className="hover:text-red-500 cursor-pointer">
+            Tin Tức
+          </li>
+        </a>
         <a href="/khuyen-mai-su-kien">
           <li onClick={goUngDung} className="hover:text-red-500 cursor-pointer">
             Khuyến mãi/Sự kiện

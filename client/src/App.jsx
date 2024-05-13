@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { PATH } from "./utils/path";
 import Home from "./pages/Home/Home";
 import MovieDetail from "./pages/MovieDetail/MovieDetail";
+import News from "./pages/news/News";
 import HeThongRap from "./pages/HeThongRap/HeThongRap";
 import EventAndSale from "./pages/EventAndSale/EventAndSale";
 import LichChieu from "./pages/LichChieu/LichChieu";
@@ -19,6 +20,7 @@ function App() {
       <Route path={PATH.LAYOUT} element={<Layout />}>
         <Route path={PATH.HOME} index element={<Home />} />
         <Route path={PATH.MOVIE} element={<MovieDetail />} />
+        <Route path={PATH.TINTUC} element={<News />} />
         <Route path={PATH.HETHONGRAP} element={<HeThongRap />} />
         <Route path={PATH.RAP} element={<Rap />} />
         <Route path={PATH.EVENTANDSALE} element={<EventAndSale />} />

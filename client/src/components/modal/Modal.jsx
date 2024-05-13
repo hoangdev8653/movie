@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "./Modal.module.scss";
 import { FaFacebookF, FaPinterest, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";

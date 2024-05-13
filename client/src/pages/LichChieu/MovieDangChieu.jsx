@@ -22,7 +22,7 @@ function movieDangChieu({ movieDangChieu }) {
                     className="px-[12px] pb-[30px] focus:border-none"
                   >
                     <img
-                      className="rounded-lg focus:border-none"
+                      className="rounded-lg focus:border-none w-[240px] h-[300px]"
                       src={item.hinhAnh}
                       alt={item._id}
                     />

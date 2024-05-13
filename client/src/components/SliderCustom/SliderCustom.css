@@ -1,4 +1,6 @@
-
+.slick-dots {
+  bottom: -30px;
+}
 .slick-dots li button {
   background-color: white; 
   border-radius: 8px;  

@@ -29,11 +29,14 @@ const getSuatChieuById = async (idSuatChieu) => {
 
 const getSuatChieuByMovie = async (id) => {
   try {
-    const suatChieu = await SuatChieu.findOne({ "movieId._id": id })
-      .populate("movieId", "tenPhim ngayKhoiChieu dangChieu sapChieu hinhAnh")
+    const suatChieu = await SuatChieu.find()
+      .populate("movieId", "tenPhim  hinhAnh")
       .populate({ path: "suatChieus", select: "gioChieu" })
       .populate("rapId");
-    return suatChieu;
+    const movie = suatChieu.filter((item) => {
+      return item.movieId._id == id;
+    });
+    return movie;
   } catch (error) {
     console.log(error);
     throw error;
