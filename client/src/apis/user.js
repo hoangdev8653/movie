@@ -9,7 +9,6 @@ export const register = async (data) => {
 };
 
 export const login = async (data) => {
-  console.log(data);
   return await axiosConfig({
     method: "post",
     url: "/user/login",

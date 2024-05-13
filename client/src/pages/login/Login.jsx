@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import styles from "./Login.module.scss";
-import LogoLoader from "../../components/loader/loader";
 import { useNavigate, Link } from "react-router-dom";
 import { userValidate } from "../../validations/user";
 import { useFormik } from "formik";
-import { login } from "../../apis/user";
 import { toast } from "react-toastify";
+import { userStore } from "../../store/userStore";
 function Login() {
   const navigate = useNavigate();
+  const { login } = userStore();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -17,19 +17,15 @@ function Login() {
     validationSchema: userValidate.login,
     onSubmit: async (values) => {
       try {
-        const response = await login(values);
-        console.log(response);
-        if (response.status === 500) {
-          toast.error("Mật khẩu không đúng");
-        } else if (response?.data.status === 200) {
-          console.log("thành công");
-          toast.success("Đăng nhập thành công");
-          setTimeout(() => {
-            navigate("/");
-          }, 3000);
-        }
+        await login(values);
+        toast.success("Đăng nhập thành công");
+        // setTimeout(() => {
+        //   navigate("/");
+        // }, 3000);
       } catch (error) {
-        console.log(error.message, "Can't Login");
+        if (error.response.status === 500) {
+          toast.error("Mật khẩu không đúng");
+        }
       }
     },
   });

@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Register.module.scss";
-import LogoLoader from "../../components/loader/loader";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { userValidate } from "../../validations/user";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
-import { register } from "../../apis/user";
+import { userStore } from "../../store/userStore";
 
 function Register() {
   const navigate = useNavigate();
+  const { register } = userStore();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -21,19 +21,15 @@ function Register() {
     validationSchema: userValidate.register,
     onSubmit: async (values) => {
       try {
-        const response = await register(values);
-        console.log(response);
-        if (response.status === 500) {
-          toast.error("Mật khẩu không đúng");
-        } else if (response?.data.status === 200) {
-          console.log("thành công");
-          toast.success("Đăng nhập thành công");
-          setTimeout(() => {
-            navigate("/");
-          }, 3000);
-        }
+        await register(values);
+        toast.success("Đăng kí thành công");
+        setTimeout(() => {
+          navigate("/login");
+        }, 3000);
       } catch (error) {
-        console.log(error.message, "Can't Login");
+        if (error.response.status === 500) {
+          toast.error("Đăng kí không thành công ");
+        }
       }
     },
   });
