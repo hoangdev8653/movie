@@ -18,8 +18,7 @@ const getAllGioChieu = async (req, res, next) => {
 const getGioChieuById = async (req, res, next) => {
   try {
     const id = req.query.id;
-    const idGhe = req.query.idGhe;
-    const gioChieu = await gioChieuService.getGioChieuById(id, idGhe);
+    const gioChieu = await gioChieuService.getGioChieuById(id);
     return res
       .status(StatusCodes.OK)
       .json({ status: 200, message: "Xử lý thành công", content: gioChieu });

@@ -1,20 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import SliderCustom from "../../../components/SliderCustom/SliderCustom";
 import "./Banner.css";
-import { getAllBanner } from "../../../apis/movie.js";
+import { movieStore } from "../../../store/movieStore.js";
 function Banner() {
-  const [data, setData] = useState([]);
-
+  const { getAllBanner, data, loading } = movieStore();
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getAllBanner();
-        setData(response.data.content);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
+    getAllBanner();
   }, []);
   return (
     <div className="w-full overflow-x-hidden overflow-y-hidden ">

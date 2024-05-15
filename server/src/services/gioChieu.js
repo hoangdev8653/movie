@@ -11,16 +11,13 @@ const getAllGioChieu = async () => {
   }
 };
 
-const getGioChieuById = async (id, idGhe) => {
+const getGioChieuById = async (id) => {
   try {
     const gioChieu = await GioChieu.findById(id);
     if (!gioChieu) {
       throw createHttpError.NotFound("Gio Chieu Not Found");
     }
-    const dsGhe = gioChieu.danhSachGhe.find(
-      (ghe) => ghe._id.toString() === idGhe
-    );
-    return await dsGhe;
+    return await gioChieu;
   } catch (error) {
     console.log(error);
     throw error;

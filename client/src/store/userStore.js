@@ -3,6 +3,7 @@ import { login, register } from "../apis/user";
 import { setLocalStorage } from "../utils/localStorage";
 export const userStore = create((set) => ({
   user: null,
+  error: false,
   login: async (data) => {
     try {
       const response = await login(data);
