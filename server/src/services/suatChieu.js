@@ -5,7 +5,6 @@ const getAllSuatChieu = async () => {
   try {
     const suatChieu = await SuatChieu.find()
       .populate("movieId", "tenPhim ngayKhoiChieu dangChieu sapChieu hinhAnh")
-      .populate({ path: "suatChieus", select: "gioChieu" })
       .populate("rapId");
     return suatChieu;
   } catch (error) {
@@ -18,7 +17,6 @@ const getSuatChieuById = async (idSuatChieu) => {
   try {
     let suatChieus = await SuatChieu.findById(idSuatChieu)
       .populate("movieId", "tenPhim ngayKhoiChieu dangChieu sapChieu hinhAnh")
-      .populate({ path: "suatChieus", select: "gioChieu" })
       .populate("rapId");
     return suatChieus;
   } catch (error) {
@@ -31,7 +29,6 @@ const getSuatChieuByMovie = async (id) => {
   try {
     const suatChieu = await SuatChieu.find()
       .populate("movieId", "tenPhim  hinhAnh")
-      .populate({ path: "suatChieus", select: "gioChieu" })
       .populate("rapId");
     const movie = suatChieu.filter((item) => {
       return item.movieId._id == id;
@@ -43,19 +40,12 @@ const getSuatChieuByMovie = async (id) => {
   }
 };
 
-const createSuatChieu = async ({
-  ngaychieu,
-  suatChieus,
-  movieId,
-  giaVe,
-  rapId,
-}) => {
+const createSuatChieu = async ({ ngaychieu, movieId, rapId }) => {
   try {
     return await SuatChieu.create({
       ngaychieu,
-      suatChieus,
+
       movieId,
-      giaVe,
       rapId,
     });
   } catch (error) {

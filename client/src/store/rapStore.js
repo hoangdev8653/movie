@@ -6,9 +6,10 @@ import {
   getRapBySlug,
 } from "../apis/rap";
 export const rapStore = create((set) => ({
-  error: false,
+  error: null,
   data: [],
   loading: false,
+
   getAllRap: async () => {
     try {
       set({ loading: true });
@@ -40,8 +41,8 @@ export const rapStore = create((set) => ({
       set({ loading: true });
       const response = await getRapByHeThongRap(maHeThong);
       if (response.status === 200) {
-        set({ data: response.data.content });
         set({ loading: false });
+        set({ data: response.data.content });
       }
     } catch (error) {
       console.log(error);

@@ -3,38 +3,22 @@ import { useParams } from "react-router-dom";
 import { GrFormNextLink } from "react-icons/gr";
 import { FaFacebookF, FaPinterest, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { getRapByHeThongRap, getRapById } from "../../apis/rap";
+import { rapStore } from "../../store/rapStore";
 
 function RapDeatail() {
-  const [data, setData] = useState([]);
+  const { getRapByHeThongRap, data } = rapStore();
+  const [itemLength, setItemLength] = useState(0);
   const { mahethong } = useParams();
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getRapByHeThongRap(mahethong);
-      console.log(response);
-      setData(response.data.content);
+      await getRapByHeThongRap(mahethong);
     };
     fetchData();
   }, [mahethong]);
 
-  const handleChangeRap = (id, e) => {
-    e.preventDefault();
-    console.log(id);
-    const fetchApi = async () => {
-      try {
-        const response = await getRapById(id);
-        if (response.status === 200) {
-          console.log(response);
-          setData(response.data.content);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchApi();
+  const handleChangeRap = (index) => {
+    setItemLength(index);
   };
-  console.log(data.length);
-
   return (
     <>
       {data && data.length > 0 ? (
@@ -59,10 +43,10 @@ function RapDeatail() {
               <span className="mt-[4px]">
                 <GrFormNextLink />
               </span>
-              {data[0].tenRap}
+              {data[itemLength].tenRap}
             </p>
             <p className="font-bold text-white text-3xl text-center py-2">
-              Hệ Thống Rap
+              Hệ Thống Rạp
             </p>
             <div className="my-4 flex gap-4">
               <div
@@ -71,14 +55,14 @@ function RapDeatail() {
               >
                 <div className="px-4 my-4 text-white">
                   <h1 className="text-green-600 text-2xl font-bold">
-                    {data[0].tenRap}
+                    {data[itemLength].tenRap}
                   </h1>
                   <p className="text-xl font-bold text-white py-2 uppercase">
-                    {data[0].tenRap}
+                    {data[itemLength].tenRap}
                   </p>
                   <div className="py-2 ">
                     <span className="font-semibold">Địa chỉ : </span>
-                    <span>{data[0].diaChi}</span>
+                    <span>{data[itemLength].diaChi}</span>
                   </div>
                   <img width="815" src={data[0].hinhAnh} alt="image" />
                   <p className="text-lg font-bold my-2">Các quy định giá vé</p>
@@ -147,20 +131,19 @@ function RapDeatail() {
                     Địa điểm khác
                   </p>
                   {data.map((item, index) => (
-                    <a
+                    <div
+                      onClick={() => handleChangeRap(index)}
                       key={index}
-                      href={`/rap-phim/${item.slug}`}
-                      className="flex my-4 gap-2"
+                      className="flex my-4 gap-2 cursor-pointer"
                     >
                       <img
-                        onClick={() => handleChangeRap(item._id, e)}
                         className="rounded w-[30px] h-[30px]"
                         src={item.heThongRapId.logo}
                       />
-                      <span className="  text-lg hover:text-green-600">
+                      <span className="text-lg hover:text-green-600">
                         {item.tenRap}
                       </span>
-                    </a>
+                    </div>
                   ))}
                 </div>
               </div>

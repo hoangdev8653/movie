@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
 import Comment from "./comment";
 import Ratting from "../../../components/ratting";
-function DanhGia() {
+import { getLocalStorage } from "../../../utils/localStorage";
+
+function DanhGia({ data }) {
   const [isShowModal, setIsShowModal] = useState(false);
-  const [starValue, setStarValue] = useState(5);
-  const [userLogin, setUserLogin] = useState(false);
+  const [starValue, setStarValue] = useState(0);
+  const user = getLocalStorage("user");
   const modalRef = useRef();
   const handleStarChange = (value) => {
     setStarValue(value);
@@ -35,9 +37,13 @@ function DanhGia() {
     };
   }, [isShowModal]);
 
+  useEffect(() => {
+    // console.log("Star value changed:", starValue);
+  }, [starValue]);
+
   return (
     <div className="mt-4 w-[870px] ml-[25%]">
-      {userLogin ? (
+      {user ? (
         <>
           <div ref={modalRef} onClick={handleShowModal} className="mb-4">
             <div className="w-full cursor-pointer m-auto relative max-w-xl">
@@ -60,7 +66,13 @@ function DanhGia() {
                 style={{ transform: " translateY(-50%)" }}
                 className="top-1/2 m-auto flex absolute right-[3%]"
               >
-                <Ratting defaultValue={0} rating={5} disabled={true} />
+                <Ratting
+                  defaultValue={5}
+                  rating={5}
+                  disabled={true}
+                  onRateChange={handleStarChange}
+                  allowHalf={true}
+                />
               </span>
             </div>
           </div>
@@ -189,7 +201,7 @@ function DanhGia() {
           ) : null}
         </>
       )}
-      <Comment />
+      <Comment data={data[0]?._id} />
     </div>
   );
 }

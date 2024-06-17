@@ -3,15 +3,15 @@ import { useParams } from "react-router-dom";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import Ratting from "../../components/ratting";
-import { getAllMovieBySlug } from "../../apis/movie";
 import { Tabs } from "antd";
 import DanhGia from "./reviews/DanhGia";
 import LichChieu from "./LichChieu";
 import ThongTin from "./ThongTin";
 import Loader from "../../components/loader/loader";
+import { movieStore } from "../../store/movieStore";
 
 function PhimDetail() {
-  const [data, setData] = useState([]);
+  const { data, getAllMovieBySlug } = movieStore();
   const { slug } = useParams();
   const onChange = (key) => {};
   const items = [
@@ -35,12 +35,7 @@ function PhimDetail() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getAllMovieBySlug(slug);
-        if (response.status === 200) {
-          setData(response.data.content);
-        } else {
-          console.log("Can't Call api");
-        }
+        await getAllMovieBySlug(slug);
       } catch (error) {
         console.log(error.message);
       }

@@ -5,7 +5,7 @@ function Rating({ rating, disabled, onRateChange, allowHalf, defaultValue }) {
   };
 
   return (
-    <div className="">
+    <div>
       <Rate
         defaultValue={defaultValue}
         value={rating}

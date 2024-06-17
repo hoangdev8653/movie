@@ -10,10 +10,8 @@ function ModalCustom({ item, onClose }) {
   useEffect(() => {
     if (!overlay) {
       document.body.style.overflow = "hidden";
-      console.log("Thêm sự kiện overflow: hidden");
     } else {
       document.body.style.overflow = "auto";
-      console.log("Loại bỏ sự kiện overflow: hidden");
     }
     return () => {
       document.body.style.overflow = "auto";

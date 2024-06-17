@@ -22,13 +22,8 @@ function BackToTop() {
 
   return (
     <div
+      className="fixed bottom-[50px] top-[30px] cursor-pointer opacity-100 overflow-hidden"
       style={{
-        position: "fixed",
-        bottom: "50px",
-        right: "30px",
-        cursor: "pointer",
-        transition: "opacity 0.2s linear 0s, visibility",
-        opacity: "1",
         visibility: "visible",
         display: visible ? "inline" : "none",
       }}
@@ -36,15 +31,14 @@ function BackToTop() {
     >
       <img
         style={{
-          right: "10px",
+          right: "24px",
           width: "50px",
           bottom: "30px",
           zIndex: "5000",
-          position: "fixed",
           transform: "rotate(180deg)",
           transitionTimingFunction: "linear",
         }}
-        className="h-12 w-12 bg-transparent"
+        className="h-12 w-12 bg-transparent fixed"
         src={BackTop}
         alt="back-to-top"
       />

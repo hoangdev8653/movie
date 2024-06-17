@@ -4,6 +4,7 @@ import { reviewController } from "../../controllers/review.js";
 const router = express.Router();
 
 router.route("/").get(reviewController.getAllReviewByMovie);
+router.route("/movie").get(reviewController.getReviewByMovie);
 router.route("/create").post(verifyAccessToken, reviewController.createReview);
 router.route("/delete").delete(reviewController.deleteReview);
 

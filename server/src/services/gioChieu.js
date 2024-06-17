@@ -3,7 +3,7 @@ import createHttpError from "http-errors";
 
 const getAllGioChieu = async () => {
   try {
-    const gioChieu = await GioChieu.find();
+    const gioChieu = await GioChieu.find().populate("suatChieuId");
     return gioChieu;
   } catch (error) {
     console.log(error);
@@ -13,7 +13,13 @@ const getAllGioChieu = async () => {
 
 const getGioChieuById = async (id) => {
   try {
-    const gioChieu = await GioChieu.findById(id);
+    const gioChieu = await GioChieu.findById(id).populate({
+      path: "suatChieuId",
+      populate: [
+        { path: "movieId", select: "tenPhim hinhAnh" },
+        { path: "rapId", select: "tenRap hinhAnh" },
+      ],
+    });
     if (!gioChieu) {
       throw createHttpError.NotFound("Gio Chieu Not Found");
     }
@@ -23,20 +29,63 @@ const getGioChieuById = async (id) => {
     throw error;
   }
 };
-
-const createGioChieu = async ({ gioChieu, danhSachGhe }) => {
+const getGiochieuByMovieId = async (id) => {
   try {
-    const newGioChieu = new GioChieu({
-      gioChieu,
-      danhSachGhe: [],
-    });
-    for (let i = 1; i <= 50; i++) {
-      newGioChieu.danhSachGhe.push({
-        soGhe: `Ghế ${i}`,
-        trangThai: "Trong",
+    console.log(id);
+    const gioChieuList = await GioChieu.find({
+      "suatChieuId._id": id,
+    }).populate("suatChieuId");
+    console.log(gioChieuList);
+    return 1;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+// const getGiochieuByMovieId = async (id) => {
+//   try {
+//     console.log("Searching for movieId:", id);
+//     const gioChieuList = await GioChieu.find({
+//       "suatChieuId.movieId._id": id,
+//     }).populate({
+//       path: "suatChieuId",
+//       populate: [
+//         { path: "movieId", select: "tenPhim hinhAnh" },
+//         { path: "rapId", select: "tenRap hinhAnh" },
+//       ],
+//     });
+//     console.log("Result:", gioChieuList);
+//     if (!gioChieuList.length) {
+//       console.log("No Gio Chieu found for movieId:", id);
+//       throw createHttpError.NotFound("Gio Chieu Not Found");
+//     }
+//     return gioChieuList;
+//   } catch (error) {
+//     console.error("Error fetching Gio Chieu by Movie ID:", error);
+//     throw error;
+//   }
+// };
+
+const createGioChieu = async ({ gioChieu, danhSachGhe, suatChieuId }) => {
+  try {
+    const existingGioChieu = await GioChieu.findOne({ gioChieu, suatChieuId });
+    if (existingGioChieu) {
+      throw new Error("Gio Chieu is already");
+    } else {
+      const newGioChieu = new GioChieu({
+        gioChieu,
+        danhSachGhe: [],
+        suatChieuId,
       });
+      for (let i = 1; i <= 50; i++) {
+        newGioChieu.danhSachGhe.push({
+          soGhe: `${i}`,
+          trangThai: "Trong",
+        });
+      }
+      return await newGioChieu.save();
     }
-    return await newGioChieu.save();
   } catch (error) {
     console.log(error);
     throw error;
@@ -76,6 +125,7 @@ const deleteGioChieu = async (id) => {
 export const gioChieuService = {
   getAllGioChieu,
   getGioChieuById,
+  getGiochieuByMovieId,
   updateStatusGhe,
   createGioChieu,
   deleteGioChieu,

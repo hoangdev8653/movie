@@ -3,7 +3,20 @@ import Review from "../models/review.js";
 
 const getAllReviewByMovie = async () => {
   try {
-    return await Review.find();
+    return await Review.find().populate("movieId").populate("userId");
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+const getReviewByMovie = async (id) => {
+  try {
+    const movie = await Review.find({ movieId: id }).populate(
+      "userId",
+      "username avarta"
+    );
+    return movie;
   } catch (error) {
     console.log(error);
     throw error;
@@ -33,6 +46,7 @@ const deleteReview = async (id) => {
 
 export const reviewService = {
   getAllReviewByMovie,
+  getReviewByMovie,
   createReview,
   deleteReview,
 };

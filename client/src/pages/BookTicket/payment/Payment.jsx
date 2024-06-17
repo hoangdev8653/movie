@@ -5,14 +5,16 @@ import { formatPrice } from "../../../utils/forrmatPriceVn";
 function payment({ arrayGhe }) {
   const [datVe, setDatVe] = useState(false);
   const [price, setPrice] = useState(0);
-  const [radio, setRadio] = useState("");
+  const [radio, setRadio] = useState(null);
   const handleClickRadio = (e) => {
-    console.log("14243");
     console.log(e.target.value);
     setRadio(e.target.value);
   };
   useEffect(() => {
     setPrice(90000 * arrayGhe.length);
+    if (arrayGhe.length === 0) {
+      setRadio(null);
+    }
   }, [arrayGhe]);
   return (
     <div className={styles.payment}>
@@ -80,13 +82,13 @@ function payment({ arrayGhe }) {
                       type="radio"
                       id="method"
                       name="method"
-                      value="zaloPay"
+                      value="ZALOPAY"
                       // checked={radio === "zaloPay"}
                     />
                     <img
                       className="max-w-[40px] mx-[15px] rounded"
                       src="https://movie-booking-project.vercel.app/img/bookticket/zalo.jpg"
-                      alt="zaloPay"
+                      alt="zalopay"
                     />
                     <p className=" my-auto">Thanh toán qua ZaloPay</p>
                   </div>
@@ -96,6 +98,7 @@ function payment({ arrayGhe }) {
                       type="radio"
                       id="method"
                       name="method"
+                      value="VISA"
                     />
                     <img
                       className="max-w-[40px] mx-[15px] rounded"
@@ -110,7 +113,7 @@ function payment({ arrayGhe }) {
                       id="method"
                       type="radio"
                       name="method"
-                      value="atm"
+                      value="ATM"
                     />
                     <img
                       className="max-w-[40px] mx-[15px] rounded"
@@ -125,6 +128,7 @@ function payment({ arrayGhe }) {
                       id="method"
                       type="radio"
                       name="method"
+                      value="PAYYOO"
                     />
                     <img
                       className="max-w-[40px] mx-[15px] rounded"
@@ -162,7 +166,12 @@ function payment({ arrayGhe }) {
 
       <div className="fixed right-0  text-center bottom-0 w-[30%]">
         <div
-          style={{ backgroundColor: "rgb(175, 175, 175)" }}
+          onClick={() => setDatVe(true)}
+          style={
+            radio !== null && arrayGhe.length > 0
+              ? { backgroundColor: "greenyellow" }
+              : { backgroundColor: "rgb(175, 175, 175)" }
+          }
           className=" text-white py-4 cursor-pointer text-2xl"
         >
           Đặt vé

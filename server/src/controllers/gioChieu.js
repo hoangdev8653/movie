@@ -1,4 +1,4 @@
-import StatusCodes from "http-status-codes";
+import { StatusCodes } from "http-status-codes";
 import { gioChieuService } from "../services/gioChieu.js";
 
 const getAllGioChieu = async (req, res, next) => {
@@ -30,10 +30,29 @@ const getGioChieuById = async (req, res, next) => {
   }
 };
 
+const getGioChieuByMovieId = async (req, res, next) => {
+  try {
+    const movieId = req.query.movieId;
+    const gioChieu = await gioChieuService.getGiochieuByMovieId(movieId);
+    return res
+      .status(StatusCodes.OK)
+      .json({ status: 200, message: "Xử lý thành công", content: gioChieu });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ status: 500, message: "Server Error" });
+  }
+};
+
 const createGioChieu = async (req, res, next) => {
   try {
-    const { gioChieu, danhSachGhe } = req.body;
-    const gc = await gioChieuService.createGioChieu({ gioChieu, danhSachGhe });
+    const { gioChieu, danhSachGhe, suatChieuId } = req.body;
+    const gc = await gioChieuService.createGioChieu({
+      gioChieu,
+      danhSachGhe,
+      suatChieuId,
+    });
     return res
       .status(StatusCodes.CREATED)
       .json({ status: 201, message: "Xử lý thành công", content: gc });
@@ -81,6 +100,7 @@ const deleteGioChieu = async (req, res, next) => {
 
 export const gioChieuController = {
   getAllGioChieu,
+  getGioChieuByMovieId,
   getGioChieuById,
   updateStatusGhe,
   createGioChieu,

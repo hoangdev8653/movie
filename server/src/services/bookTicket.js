@@ -1,54 +1,56 @@
 import BookTicKet from "../models/bookTicket.js";
-import Movie from "../models/movie.js";
 import createHttpError from "http-errors";
+import GioChieu from "../models/giochieu.js";
 
-// const getBookTicketByUser = async (id) => {
-//   try {
-//     const ticketUser = await BookTicKet.find()
-//       .populate("userId", "email username avarta")
-//       .populate("suatChieuId");
-//     return ticketUser;
-//   } catch (error) {
-//     console.log(error);
-//     throw createHttpError(error);
-//   }
-// };
 const getBookTicketByUser = async (userId) => {
   try {
-    const ticketUser = await BookTicKet.find()
+    const ticketUser = await BookTicKet.find({ userId })
+      .populate("userId", "username avarta")
       .populate({
-        path: "suatChieuId",
+        path: "gioChieuId",
+        select: "gioChieu",
         populate: {
-          path: "suatChieus",
-          select: "gioChieu",
+          path: "suatChieuId",
+          populate: [
+            {
+              path: "movieId",
+              select: "tenPhim hinhAnh",
+            },
+            {
+              path: "rapId",
+              select: "tenRap hinhAnh",
+            },
+          ],
         },
-        populate: {
-          path: "movieId",
-          select: "tenPhim hinhAnh rapId",
-        },
-      })
-      .populate("userId", "email username avarta");
-    const a = ticketUser.map((item) => {
-      return item.suatChieuId.movieId;
-    });
-    const rap = await Movie.findById(a.rapId).populate("rapId");
-
-    // console.log(rap);
+      });
     return ticketUser;
   } catch (error) {
     console.log(error);
     throw createHttpError(error);
   }
 };
-
-const createBookTicket = async (id, { suatChieuId, danhSachGhe }) => {
+const createBookTicket = async (
+  id,
+  { gioChieuId, danhSachGhe, giaVe, tongTien }
+) => {
   try {
+    const gioChieu = await GioChieu.findById(gioChieuId);
+    for (const ghe of danhSachGhe) {
+      const seat = gioChieu.danhSachGhe.find((seat) => seat.soGhe === ghe);
+      if (seat) {
+        seat.trangThai = "DaDat";
+      }
+      await gioChieu.save();
+    }
+    const tongTien = danhSachGhe.length * parseInt(giaVe);
     const ticket = await BookTicKet.create({
       userId: id,
-      suatChieuId,
+      gioChieuId,
       danhSachGhe,
+      giaVe,
+      tongTien: tongTien,
     });
-    return ticket;
+    return ticket.save();
   } catch (error) {
     console.log(error);
     throw createHttpError(error);

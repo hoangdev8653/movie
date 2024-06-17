@@ -13,7 +13,10 @@ import Profile from "./pages/Profile/Profile";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import BookTicket from "./pages/BookTicket/BookTicKet";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound/NotFound";
+
 function App() {
   return (
     <Routes>
@@ -30,6 +33,8 @@ function App() {
       <Route path={PATH.DATVE} element={<BookTicket />} />
       <Route path={PATH.LOGIN} element={<Login />} />
       <Route path={PATH.REGISTER} element={<Register />} />
+      <Route path={PATH.FORGOT_PASSWORD} element={<ForgotPassword />} />
+      <Route path={PATH.RESET_PASSWORD} element={<ResetPassword />} />
       <Route path={PATH.NOTFOUND} element={<NotFound />} />
     </Routes>
   );

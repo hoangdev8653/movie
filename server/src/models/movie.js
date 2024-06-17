@@ -45,6 +45,10 @@ const movie = mongoose.Schema({
   slug: {
     type: String,
   },
+  rapId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Rap",
+  },
 });
 
 const Movie = mongoose.model("Movie", movie);

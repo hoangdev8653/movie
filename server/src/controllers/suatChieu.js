@@ -51,12 +51,10 @@ const getSuatChieuByMovie = async (req, res, next) => {
 
 const createSuatChieu = async (req, res, next) => {
   try {
-    const { ngaychieu, suatChieus, movieId, giaVe, rapId } = req.body;
+    const { ngaychieu, movieId, rapId } = req.body;
     const suatChieu = await suatChieuService.createSuatChieu({
       ngaychieu,
-      suatChieus,
       movieId,
-      giaVe,
       rapId,
     });
     return res

@@ -8,11 +8,10 @@ export const createReview = async (data) => {
   });
 };
 
-export const getReviewByMovie = async (data) => {
+export const getReviewByMovie = async (id) => {
   return axiosConfig({
     method: "get",
-    url: "/review/getReviewByMovie",
-    data,
+    url: `/review/movie?id=${id}`,
   });
 };
 

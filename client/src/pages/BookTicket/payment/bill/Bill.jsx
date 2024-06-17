@@ -2,6 +2,8 @@ import React from "react";
 import imgDeafaut from "../../../../assets/imgDeafaut.jpg";
 import { Link } from "react-router-dom";
 import styles from "./Bill.module.scss";
+import { IoMdClose } from "react-icons/io";
+
 function Bill() {
   return (
     <div className="">
@@ -89,6 +91,12 @@ function Bill() {
               <button className={styles.bt}>Quay về trang chủ</button>
             </Link>
           </div>
+        </div>
+        <div
+          onClick={() => window.location.reload()}
+          className="absolute top-0 z-50 right-[-20px]"
+        >
+          <IoMdClose className="text-5xl rounded-full border-solid border-[2px] border-black cursor-pointer hover:opacity-60" />
         </div>
       </div>
       <div>

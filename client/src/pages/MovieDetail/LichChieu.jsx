@@ -19,49 +19,55 @@ function LichChieu({ data }) {
     };
     fetchData();
   }, [movieId]);
-
   return (
     <div
       id="lichchieuphim"
       className="flex bg-white text-black rounded-xl w-[822px] ml-[25%] pb-16"
     >
       <Tabs tabPosition="left">
-        {value.map((item, index) => (
-          <TabPane
-            tab={
-              <div className="flex gap-2 mt-6 border-solid border-[1p">
-                <img
-                  className="w-[40px] h-[40px] rounded-full mx-1"
-                  src={item.rapId.hinhAnh}
-                  alt={item.slug}
-                />
-                <span className="text-base font-normal">
-                  {item.rapId.tenRap}
-                </span>
-              </div>
-            }
-            key={index}
-            // tabStyles={{ color: "red" }}
-          >
-            <div className="text-red-500 font-medium overflow-x-auto px-2 py-2 my-2">
-              {item.ngaychieu}
-            </div>
-            {item.suatChieus.map((it, idx) => (
-              <a href={`/datve/${it._id}`}>
-                <button
-                  style={{
-                    background: "rgb(232 229 229)",
-                    color: "#9b9b9b",
-                  }}
-                  key={idx}
-                  className="px-4 py-[6px] mx-2 text-sm rounded-md hover:opacity-80"
-                >
-                  {it.gioChieu}
-                </button>
-              </a>
+        {value && value.length > 0 ? (
+          <>
+            {value?.map((item, index) => (
+              <TabPane
+                tab={
+                  <div className="flex gap-2 mt-6 border-solid border-[1p">
+                    <img
+                      className="w-[40px] h-[40px] rounded-full mx-1"
+                      src={item.rapId.hinhAnh}
+                      alt={item.slug}
+                    />
+                    <span className="text-base font-normal">
+                      {item.rapId.tenRap}
+                    </span>
+                  </div>
+                }
+                key={index}
+              >
+                <div className="text-red-500 font-medium overflow-x-auto px-2 py-2 my-2">
+                  {item?.ngaychieu}
+                </div>
+                {/* {item.suatChieus.map((it, idx) => (
+                  <a href={`/datve/${it._id}`}>
+                    <button
+                      style={{
+                        background: "rgb(232 229 229)",
+                        color: "#9b9b9b",
+                      }}
+                      key={idx}
+                      className="px-4 py-[6px] mx-2 text-sm rounded-md hover:opacity-80"
+                    >
+                      {it.gioChieu}
+                    </button>
+                  </a>
+                ))} */}
+              </TabPane>
             ))}
-          </TabPane>
-        ))}
+          </>
+        ) : (
+          <div>
+            <p>Không có lịch chiếu nào</p>
+          </div>
+        )}
       </Tabs>
     </div>
   );

@@ -6,9 +6,12 @@ import { userValidate } from "../../validations/user";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import { userStore } from "../../store/userStore";
+import { CgSpinner } from "react-icons/cg";
+
 function Login() {
   const navigate = useNavigate();
-  const { login } = userStore();
+  const { login, isLoading } = userStore();
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -17,15 +20,16 @@ function Login() {
     validationSchema: userValidate.login,
     onSubmit: async (values) => {
       try {
-        await login(values);
-        toast.success("Đăng nhập thành công");
-        // setTimeout(() => {
-        //   navigate("/");
-        // }, 3000);
-      } catch (error) {
-        if (error.response.status === 500) {
-          toast.error("Mật khẩu không đúng");
+        const error = await login(values);
+        if (error === null) {
+          setTimeout(() => {
+            navigate("/");
+          }, 3000);
+        } else {
+          return;
         }
+      } catch (error) {
+        console.log("Đăng nhập không thành công:", error);
       }
     },
   });
@@ -49,7 +53,7 @@ function Login() {
             className="max-w-full relative w-full mr-3 ml-3"
           >
             <div className="mb-4 mt-4 ">
-              <label className="ml-4">Tài khoản</label>
+              <label className="">Tài khoản</label>
               <input
                 name="email"
                 type="email"
@@ -60,12 +64,12 @@ function Login() {
               />
             </div>
             {formik.touched.email && formik.errors.email && (
-              <div className="text-red-500 mb-2 text-center">
+              <div className="text-red-500  text-center">
                 {formik.errors.email}
               </div>
             )}
-            <div className="mb-4 mt-4  ">
-              <label className="ml-4">Mật khẩu</label>
+            <div className="mb-4 mt-4">
+              <label>Mật khẩu</label>
               <input
                 name="password"
                 id="password"
@@ -77,24 +81,31 @@ function Login() {
               />
             </div>
             {formik.touched.password && formik.errors.password && (
-              <div className="text-red-500 mb-2 text-center">
+              <div className="text-red-500  text-center">
                 {formik.errors.password}
               </div>
             )}
             <span className="text-green-500  my-4 cursor-pointer ml-4">
               * Đăng ký
             </span>
-            <div className="text-center p-2">
+            <div className="text-center p-2 relative hover:opacity-80">
               <button className={styles.buttonDN} type="submit">
                 Đăng Nhập
               </button>
+              {isLoading ? (
+                <>
+                  <CgSpinner className="absolute text-3xl top-4 right-40 animate-spin" />
+                </>
+              ) : (
+                <></>
+              )}
             </div>
           </form>
         </div>
         <Link to="/">
           <button className={`${styles.btnclose} hover:opacity-70`}>
-            <span className="w-full flex ">
-              <AiOutlineClose className="text-white " />
+            <span className="w-full flex">
+              <AiOutlineClose className="text-white" />
             </span>
           </button>
         </Link>

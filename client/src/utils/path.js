@@ -11,5 +11,8 @@ export const PATH = {
   EVENTANDSALE: "/khuyen-mai-su-kien",
   LICHCHIEU: "/lich-chieu/",
   RAP: "/rap-phim/:mahethong",
+  FORGOT_PASSWORD: "/forgot-password",
+  RESET_PASSWORD: "/reset-password",
+
   NOTFOUND: "*",
 };

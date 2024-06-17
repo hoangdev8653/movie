@@ -5,15 +5,18 @@ const bookTicket = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
-  suatChieuId: {
+  gioChieuId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "suatChieu",
+    ref: "GioChieu",
   },
   danhSachGhe: {
     type: Array,
     default: [],
   },
-  totalPrice: {
+  giaVe: {
+    type: String,
+  },
+  tongTien: {
     type: String,
     default: 0,
   },

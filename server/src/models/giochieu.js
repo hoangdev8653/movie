@@ -16,6 +16,10 @@ const gioChieu = mongoose.Schema({
       },
     },
   ],
+  suatChieuId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "suatChieu",
+  },
 });
 
 const GioChieu = mongoose.model("GioChieu", gioChieu);

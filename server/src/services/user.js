@@ -166,7 +166,7 @@ const refreshToken = async ({ refreshToken }) => {
     const newAccessToken = SignAccessToken(userId);
     const newRefreshtoken = SignRefreshToken(userId);
     setKey(`refreshToken_${userId}`, newRefreshtoken);
-    return await { newAccessToken, newRefreshtoken };
+    return { newAccessToken, newRefreshtoken };
   } catch (error) {
     console.log(error);
     throw error;
