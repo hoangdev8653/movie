@@ -5,6 +5,32 @@ import Button from "../../components/Button";
 import { Link } from "react-router-dom";
 
 function movieSapChieu({ movieSapChieu }) {
+  const responsiveSettings = [
+    {
+      breakpoint: 900,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        initialSlide: 2,
+      },
+    },
+    {
+      breakpoint: 720,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+      },
+    },
+    {
+      breakpoint: 493,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true,
+      },
+    },
+  ];
   return (
     <>
       <div
@@ -13,7 +39,12 @@ function movieSapChieu({ movieSapChieu }) {
       >
         <p className="text-white font-bold text-2xl mb-2">Phim sắp chiếu</p>
         <div className="w-full">
-          <SliderCustom dots={true} showSlider={4} showSliderScroll={1}>
+          <SliderCustom
+            dots={true}
+            showSlider={4}
+            showSliderScroll={1}
+            responsiveSettings={responsiveSettings}
+          >
             {movieSapChieu &&
               movieSapChieu.map((item, index) => (
                 <Link to={`/phim/${item.slug}`}>

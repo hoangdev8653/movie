@@ -22,12 +22,44 @@ function Event() {
     fetchData();
   }, []);
 
+  const responsiveSettings = [
+    {
+      breakpoint: 900,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        initialSlide: 2,
+      },
+    },
+    {
+      breakpoint: 720,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+      },
+    },
+    {
+      breakpoint: 493,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true,
+      },
+    },
+  ];
+
   return (
     <div>
       <div id="sale" className="max-w-[1050px] mx-auto text-white">
         <p className="font-bold text-2xl py-4 text-center">Khuyến mãi</p>
         <div className="w-full">
-          <SliderCustom dots={true} showSlider={3} showSliderScroll={1}>
+          <SliderCustom
+            dots={true}
+            showSlider={3}
+            showSliderScroll={1}
+            responsiveSettings={responsiveSettings}
+          >
             {data.length > 0 &&
               data.map((item, index) => (
                 <div key={index}>

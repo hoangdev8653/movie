@@ -3,10 +3,8 @@ import styles from "./HeThongRap.module.scss";
 import { AiOutlineLike } from "react-icons/ai";
 import { CiShare2 } from "react-icons/ci";
 import { getAllHeThongRap } from "../../apis/heThongRap";
-import { getRapByHeThongRap } from "../../apis/rap";
 function HeThongRap() {
   const [data, setData] = useState([]);
-  const [maHeThongRap, setMaHeThongRap] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,29 +18,19 @@ function HeThongRap() {
     fetchData();
   }, []);
 
-  const handleHeThongRap = async (mahethong) => {
-    const response = await getAllHeThongRap(maHeThongRap);
-    console.log(response);
-    if (response.status === 200) {
-      setMaHeThongRap(response.data.content);
-    }
-  };
-
-  console.log(data);
-
   return (
     <div style={{ background: "#1a1d29" }} className="w-full">
       <div className="max-w-[1080px] text-center mx-auto">
         <p className="font-semibold text-2xl text-white pt-4">Hệ thống rạp</p>
-        <div className="grid grid-cols-3 text-white text-center justify-center">
+        <div
+          className={`${styles.layout} text-white text-center justify-center`}
+        >
           {data.length > 0 &&
             data.map((item, index) => (
               <div key={index} className=" my-8 ">
                 <a href={`/rap-phim/${item.maHeThongRap}`}>
                   <img
-                    className="text-center mx-auto cursor-pointer"
-                    width="243"
-                    height="330"
+                    className="text-center mx-auto cursor-pointer w-[243px] h-[243px] object-cover border-solid border-[0.5px] rounded-full border-gray-600"
                     src={item.logo}
                     alt={item.maHeThongRap}
                   />

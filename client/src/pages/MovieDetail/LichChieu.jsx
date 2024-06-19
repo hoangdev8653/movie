@@ -22,7 +22,7 @@ function LichChieu({ data }) {
   return (
     <div
       id="lichchieuphim"
-      className="flex bg-white text-black rounded-xl w-[822px] ml-[25%] pb-16"
+      className="flex bg-white text-black rounded-xl w-[90%] mx-auto max-w-[600px] pb-16 "
     >
       <Tabs tabPosition="left">
         {value && value.length > 0 ? (
@@ -64,8 +64,10 @@ function LichChieu({ data }) {
             ))}
           </>
         ) : (
-          <div>
-            <p>Không có lịch chiếu nào</p>
+          <div className="flex bg-white text-black rounded-xl w-[90%] mx-auto max-w-[600px] items-center justify-center text-center ">
+            <p className="text-center mx-auto items-center justify-center">
+              Không có lịch chiếu nào
+            </p>
           </div>
         )}
       </Tabs>

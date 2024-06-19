@@ -1,5 +1,6 @@
 .menu {
     display: block;
+    // margin-left: 200px;
 }
 .menu_mobile {
     display: none;
@@ -12,9 +13,10 @@
     }
 }
 
-@media only screen and (max-width : 755px) {
+@media only screen and (max-width : 815px) {
     .menu {
         display: none;
+        overflow-x: hidden;
     }
     .menu_mobile {
         position: absolute;

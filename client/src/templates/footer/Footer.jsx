@@ -167,11 +167,11 @@ function Footer() {
         </div>
         <div className={styles.infoCompany}>
           <img
-            className="w-15 h-10 rounded-lg"
+            className="w-15 h-10 rounded-lg mx-auto"
             src="https://movie-booking-project.vercel.app/img/logo-connect/zion-logo.jpg"
             alt="ion"
           />
-          <div className="text-white">
+          <div className="text-white mx-auto">
             <p>
               TIX - SẢN PHẨM CỦA CÔNG TY CỔ PHẦN ZIONĐịa chỉ: Z06 Đường số 13,
               Phường Tân Thuận Đông, Quận 7, Tp. Hồ Chí Minh, Việt Nam.Giấy
@@ -179,10 +179,10 @@ function Footer() {
               thứ 30, ngày 22 tháng 01 năm 2020 do Sở kế hoạch và đầu tư Thành
               phố Hồ Chí Minh cấp.Số Điện Thoại (Hotline): 1900 545 436
             </p>
-            <p>Email: support@tix.vn</p>
+            <span>Email: support@tix.vn</span>
           </div>
           <img
-            className="w-28 h-16"
+            className="w-28 h-16 mx-auto"
             src="https://movie-booking-project.vercel.app/img/media/certificate.png"
             alt="✅"
           />

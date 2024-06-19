@@ -1,18 +1,18 @@
 .footer {
-   
     background-color: #222;
-  
 }
 .content {
     font-size: 12px;
     max-width: 940px;
     margin: 0 auto;
     color: #949494;
+    justify-content: space-between;
 }
 .copyRight {
-    justify-content: space-between;
     display: flex;
     padding: 20px 0;
+    gap: 8px;
+    justify-content: space-around;
 }
 .info_section {
     max-width: 30%;
@@ -24,7 +24,6 @@
         }
     }
 }
-
 .partner {
     max-width: 30%;
 }
@@ -34,8 +33,32 @@
     gap: 4px;
 }
 .infoCompany {
+    justify-content:space-around;
     padding-bottom: 20px;
     display: flex;
-    gap: 8px;
-    
+    gap: 8px; 
+    margin: 0 8px;
+}
+
+@media only screen and (max-width : 755px) {
+    .info_section {
+        display: none;   
+    }
+    .copyRight {
+        justify-content: center;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+    }
+    .partner {
+        display: none;
+    }
+    .infoCompany {
+        margin: 4px;
+        display: block;
+        text-align: center;
+        p {
+            padding: 8px 0;
+        }
+    }
 }

@@ -26,7 +26,7 @@ function Comment(props) {
       {data && data.length > 0 ? (
         <>
           {data.map((item, index) => (
-            <div className="text-black w-full m-auto bg-white max-h-[250px] border-[1px] border-solid mb-[15px] rounded max-w-[580px] pt-2 py-3 px-5 ">
+            <div className="text-black  m-auto bg-white max-h-[250px] border-[1px] border-solid mb-[15px] rounded w-[90%] pt-2 py-3 px-5 max-w-[580px]">
               <div className="my-2" key={index}>
                 <div className="flex justify-between">
                   <div>
@@ -60,17 +60,17 @@ function Comment(props) {
               </div>
             </div>
           ))}
+          <div className="max-w-[100px] m-auto">
+            <ShowMore data={data} />
+          </div>
         </>
       ) : (
-        <div className="justify-center mx-auto text-center">
-          <p className="font-semibold">
+        <div className="text-black  m-auto bg-white max-h-[250px] border-[1px] border-solid mb-[15px] rounded w-[90%] pt-2 py-3 px-5 max-w-[580px]">
+          <p className="font-semibold mx-auto text-center">
             Hãy là người đánh giá bộ phim đầu tiên
           </p>
         </div>
       )}
-      <div className="max-w-[100px] m-auto">
-        <ShowMore data={data} />
-      </div>
     </div>
   );
 }

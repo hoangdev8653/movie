@@ -4,11 +4,15 @@ import { GrFormNextLink } from "react-icons/gr";
 import { FaFacebookF, FaPinterest, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { rapStore } from "../../store/rapStore";
+import styles from "./RapDetail.module.scss";
 
-function RapDeatail() {
+function RapDetail() {
   const { getRapByHeThongRap, data } = rapStore();
   const [itemLength, setItemLength] = useState(0);
+  const [active, setActive] = useState(false);
+  const [selectedRap, setSelectedRap] = useState(null); // Thêm state để lưu chỉ mục của rạp được chọn
   const { mahethong } = useParams();
+
   useEffect(() => {
     const fetchData = async () => {
       await getRapByHeThongRap(mahethong);
@@ -18,7 +22,10 @@ function RapDeatail() {
 
   const handleChangeRap = (index) => {
     setItemLength(index);
+    setSelectedRap(index); // Cập nhật chỉ mục của rạp được chọn
+    setActive(true);
   };
+
   return (
     <>
       {data && data.length > 0 ? (
@@ -27,7 +34,7 @@ function RapDeatail() {
             background: "rgb(26, 29, 41)",
             borderTop: "3px solid #454D6A",
           }}
-          className="w-full "
+          className="w-full"
         >
           <div className="max-w-[1300px] mx-auto justify-between py-8">
             <p className="text-white text-center flex justify-center pt-4">
@@ -48,10 +55,10 @@ function RapDeatail() {
             <p className="font-bold text-white text-3xl text-center py-2">
               Hệ Thống Rạp
             </p>
-            <div className="my-4 flex gap-4">
+            <div className={styles.content}>
               <div
                 style={{ borderColor: "#454D6A" }}
-                className=" w-[65%] h-auto border-solid border-[1px] rounded"
+                className={styles.infoRap}
               >
                 <div className="px-4 my-4 text-white">
                   <h1 className="text-green-600 text-2xl font-bold">
@@ -125,7 +132,7 @@ function RapDeatail() {
                   </div>
                 </div>
               </div>
-              <div className="flex-1 text-white ">
+              <div className="flex-1 text-white">
                 <div className="px-4 py-4 border-[1px] border-solid border-green-400 rounded">
                   <p className="font-semibold text-xl text-center">
                     Địa điểm khác
@@ -140,7 +147,11 @@ function RapDeatail() {
                         className="rounded w-[30px] h-[30px]"
                         src={item.heThongRapId.logo}
                       />
-                      <span className="text-lg hover:text-green-600">
+                      <span
+                        className={`text-lg ${
+                          selectedRap === index ? "text-green-600" : ""
+                        } hover:text-green-600 active:text-green-500`}
+                      >
                         {item.tenRap}
                       </span>
                     </div>
@@ -159,4 +170,4 @@ function RapDeatail() {
   );
 }
 
-export default RapDeatail;
+export default RapDetail;

@@ -20,10 +20,10 @@ function ModalCustom({ item, onClose }) {
 
   return (
     <div className=" relative ">
-      <div className={`${styles.bg} z-50 flex px-4 py-10`}>
+      <div className={styles.bg}>
         <div className="mx-4 ">
           <img
-            className="rounded-lg w-[800px] h-auto"
+            className="rounded-lg h-auto"
             src={item.hinhAnh}
             alt={item._id}
           />

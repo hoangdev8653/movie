@@ -10,6 +10,8 @@ function SliderCustom({
   showSlider,
   showSliderScroll,
   responsiveSettings,
+  nextArrow: SampleNextArrow,
+  prevArrow: SamplePrevArrow,
 }) {
   let settings = {
     dots: dots,
@@ -19,7 +21,11 @@ function SliderCustom({
     slidesToScroll: showSliderScroll,
     responsive: responsiveSettings,
   };
-  return <Slider {...settings}>{children}</Slider>;
+  return (
+    <div className="overflow-hidden">
+      <Slider {...settings}>{children}</Slider>
+    </div>
+  );
 }
 
 export default SliderCustom;

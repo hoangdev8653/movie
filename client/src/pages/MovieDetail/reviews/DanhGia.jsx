@@ -37,16 +37,14 @@ function DanhGia({ data }) {
     };
   }, [isShowModal]);
 
-  useEffect(() => {
-    // console.log("Star value changed:", starValue);
-  }, [starValue]);
+  useEffect(() => {}, [starValue]);
 
   return (
-    <div className="mt-4 w-[870px] ml-[25%]">
+    <div className="mt-4 max-w-[870px] mx-auto">
       {user ? (
         <>
           <div ref={modalRef} onClick={handleShowModal} className="mb-4">
-            <div className="w-full cursor-pointer m-auto relative max-w-xl">
+            <div className="w-[90%] cursor-pointer m-auto relative max-w-[580px]">
               <span className="absolute left-[3%] top-[20%]">
                 <img
                   className="w-9 h-9 rounded-3xl"
@@ -58,7 +56,7 @@ function DanhGia({ data }) {
                 style={{
                   padding: "10px 10px 10px 60px",
                 }}
-                className="text-gray-700 w-full cursor-pointer bg-white border-[1px] border-solid rounded text-sm h-[60px] outline-none"
+                className="text-gray-700 cursor-pointer bg-white border-[1px] border-solid rounded text-sm h-[60px] outline-none max-w-[580px] w-full"
                 type="text"
                 placeholder="Bạn nghĩ gì về bộ phim này?"
               />
@@ -78,9 +76,9 @@ function DanhGia({ data }) {
           </div>
           {isShowModal ? (
             <>
-              <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none ml-14 top-[-50px] ">
+              <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none mx-auto top-[-50px] ">
                 <div className="relative w-auto my-6 mx-auto max-w-3xl">
-                  <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                  <div className="border-0 rounded-lg shadow-lg relative flex flex-col  bg-white outline-none focus:outline-none max-w-[90%] w-[560px] mx-auto py-8">
                     <div className=" m-auto p-2 text-3xl text-green-400">
                       {starValue}
                     </div>
@@ -94,10 +92,9 @@ function DanhGia({ data }) {
                     <div className="flex items-center justify-center  border-solid border-slate-200 rounded-t">
                       <Ratting onRateChange={handleStarChange} />
                     </div>
-                    <div className="p-4" style={{ width: 730 }}>
+                    <div className="p-4 text-center">
                       <input
-                        placeholder="Nói cho mọi người biết bạn nghĩ gì về bộ phim này...."
-                        className=" border-solid border-2 border-gray w-5/6 ml-16 p-6 text-base focus:border-red-300 rounded"
+                        className=" border-solid border-2 border-gray mx-auto p-4 text-base focus:border-red-300 rounded w-11/12"
                         type="text"
                       />
                     </div>
