@@ -1,0 +1,20 @@
+.content {
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.forYou {
+    display: block;
+    max-width: 25%;
+}
+
+@media only screen and (max-width : 786px) {
+    .content {
+        display: block;
+    }
+    .forYou {
+        // display: flex;
+        width: 100%;
+        max-width: 100%;
+    }
+}

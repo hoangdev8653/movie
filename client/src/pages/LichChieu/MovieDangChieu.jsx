@@ -50,7 +50,7 @@ function movieDangChieu({ movieDangChieu }) {
                   <a className=" focus:border-none" href={`/phim/${item.slug}`}>
                     <div key={index}>
                       <img
-                        className="rounded-lg focus:border-none w-[240px] h-[300px]"
+                        className="rounded-lg focus:border-none w-[240px] h-[300px] mx-auto"
                         src={item.hinhAnh}
                         alt={item._id}
                       />

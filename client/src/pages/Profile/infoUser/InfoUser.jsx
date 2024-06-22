@@ -2,8 +2,8 @@ import React from "react";
 import styles from "./InfoUser.module.scss";
 function InfoUser() {
   return (
-    <div className="mt-8 text-base px-4 w-full">
-      <form style={{ width: "500px" }}>
+    <div className="mb-4 text-base px-4 w-full">
+      <form>
         <div className="mb-4">
           <label className="font-semibold ml-4">Email</label>
           <input

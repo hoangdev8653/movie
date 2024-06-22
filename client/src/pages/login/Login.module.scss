@@ -1,6 +1,6 @@
-.backGround {
+.bg {
     width: 100vw;
-    height: 100vw;
+    height: 100vh;
     display: flex;
     align-items: center;
     background-size: contain;
@@ -12,7 +12,6 @@
     overflow-x: hidden;
   }
   .login {
-    height: fit-content;
     z-index: 100;
     position: relative;
     border-radius: 6px;
@@ -46,6 +45,7 @@
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    margin: 4px 0;
   }
   input {
     overflow: visible;
@@ -104,4 +104,19 @@
     border-radius: 16px;
     height: 30px;
   }
+
+@media only screen and (max-width :700px ) {
+  .login {
+    max-width: 100%;
+    width: 100%;
+    height: 100vh ;
+  }
+  .btnclose {
+    border-radius: 0;
+    border: none;
+    top: 16px;
+    right: 16px;
+  }
+}
+
   

@@ -28,8 +28,8 @@ function App() {
         <Route path={PATH.RAP} element={<Rap />} />
         <Route path={PATH.EVENTANDSALE} element={<EventAndSale />} />
         <Route path={PATH.LICHCHIEU} element={<LichChieu />} />
+        <Route path={PATH.PROFILE} element={<Profile />} />
       </Route>
-      <Route path={PATH.PROFILE} element={<Profile />} />
       <Route path={PATH.DATVE} element={<BookTicket />} />
       <Route path={PATH.LOGIN} element={<Login />} />
       <Route path={PATH.REGISTER} element={<Register />} />

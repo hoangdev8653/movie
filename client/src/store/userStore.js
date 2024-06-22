@@ -42,7 +42,7 @@ export const userStore = create((set) => ({
         clearLocalStorage();
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
       set({ error: error.message });
     }
   },
