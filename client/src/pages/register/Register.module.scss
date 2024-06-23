@@ -1,6 +1,6 @@
 .backGround {
     width: 100vw;
-    height: 100vw;
+    height: 100vh;
     display: flex;
     align-items: center;
     background-size: contain;
@@ -9,10 +9,12 @@
     background-position: center;
     max-height: 100vh;
     padding-bottom: 2px;
+    overflow-x: hidden;
+
   }
   .register {
-    width: 600px;
-    height: fit-content;
+    // width: 600px;
+    // height: fit-content;
     z-index: 100;
     position: relative;
     border-radius: 6px;
@@ -46,6 +48,7 @@
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    margin: 4px 0;
   }
   input {
     overflow: visible;
@@ -66,10 +69,11 @@
     line-height: 1.5;
     border-radius: 0.25rem;
     cursor: pointer;
+    margin-top: 4px;
   }
   .btnclose {
-    top: 0;
-    right: 0;
+    top: 2px;
+    right: 2px;
     border: 2px solid white;
     position: absolute;
     transform: translate(50%, -50%);
@@ -99,4 +103,16 @@
     background-color: #f8d7da;
     border-color: #f5c6cb;
   }
-  
+  @media only screen and (max-width :700px ) {
+    .register {
+      max-width: 100%;
+      width: 100%;
+      height: 100vh ;
+    }
+    .btnclose {
+      border-radius: 0;
+      border: none;
+      top: 16px;
+      right: 16px;
+    }
+  }

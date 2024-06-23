@@ -1,0 +1,42 @@
+.bg {
+    width: 100%;
+    object-fit: cover;
+    --tw-blur: blur(12px);
+    filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+    max-height: 830px;
+    height: auto;
+}
+.a {
+    display: none;
+}
+.content {
+    position: absolute;
+    top: 80px;
+    display: flex;
+    margin: 8px;
+}
+.content_mobile {
+    display: none;
+}
+
+@media only screen and (max-width: 860px) {
+    .bg {
+        filter: blur(0);
+        max-height: 300px; 
+        width: 100%;
+        width: 100%;
+        height: auto; 
+        object-fit: cover;
+    }
+    
+    .content {
+        display: none;
+    }
+    .content_mobile {
+        position: absolute;
+        display: block;
+        bottom: 0;
+        width: 100%;
+        background: #0a2029
+    }
+}

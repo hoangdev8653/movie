@@ -3,43 +3,35 @@ import { useParams } from "react-router-dom";
 import imgageDeafaut from "../../assets/imgDeafaut.jpg";
 import Payment from "./payment/Payment";
 import "./BookTicket.css";
-import ShowMessage from "./ShowMesssage";
-function BookTicKet() {
-  const { id } = useParams;
-  const [arrayGhe, setArrayGhe] = useState([]);
-  const [showMessage, setShowMessage] = useState(false);
-  const [expiredTime, setExpiredTime] = useState(0);
-  useEffect(() => {
-    if (expiredTime > 0) {
-      setTimeout(() => {
-        setExpiredTime(expiredTime - 1);
-      }, 1000);
-      return clearTimeout(() => {});
-    } else {
-      setShowMessage(false);
-      return;
-    }
-  }, [expiredTime]);
+import { suatChieuStore } from "../../store/suatChieuStore";
+import ExpiredTime from "./ExpiredTime";
 
-  let Ghe = [];
-  for (let i = 1; i < 101; i++) {
-    Ghe.push({
-      stt: `${i}`,
-    });
-  }
-  function handleAddClass(index) {
+function BookTicKet() {
+  const { id } = useParams();
+  const [arrayGhe, setArrayGhe] = useState([]);
+  const { data, getGioChieuById } = suatChieuStore();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await getGioChieuById(id);
+    };
+    fetchData();
+  }, [id]);
+
+  function handleAddClass(soGhe) {
+    console.log(soGhe);
     setArrayGhe((prevArrayGhe) => {
       const newArrayGhe = [...prevArrayGhe];
-      const selectedIndex = newArrayGhe.indexOf(index);
-      if (selectedIndex !== -1) {
-        newArrayGhe.splice(selectedIndex, 1);
+      const selectedsoGhe = newArrayGhe.indexOf(soGhe);
+      if (selectedsoGhe !== -1) {
+        newArrayGhe.splice(selectedsoGhe, 1);
       } else {
-        newArrayGhe.push(index);
+        newArrayGhe.push(soGhe);
       }
       return newArrayGhe;
     });
 
-    const ghe = document.querySelectorAll(".status")[index];
+    const ghe = document.querySelectorAll(".status")[soGhe - 1];
     if (ghe.classList.contains("gheDangChon")) {
       ghe.classList.remove("gheDangChon");
     } else {
@@ -49,7 +41,6 @@ function BookTicKet() {
   return (
     <div className="datve w-full bg-white flex ">
       <div className="w-[70%]">
-        {/* <Chair /> */}
         <div className="w-full">
           <div style={{ boxShadow: " 0 0 15px rgb(0 0 0 / 30%)" }}>
             <div className="ml-32 px-[10px] pt-[10px] pb-[20px] flex justify-between">
@@ -105,7 +96,7 @@ function BookTicKet() {
                     </svg>
                   </span>
                   <p style={{ left: "-36px" }} className="absolute top-14">
-                    KẾT QUẢ ĐẶT VÉ{" "}
+                    KẾT QUẢ ĐẶT VÉ
                   </p>
                 </li>
               </ol>
@@ -124,8 +115,7 @@ function BookTicKet() {
           <div className="chair flex mt-4">
             <div
               style={{
-                backgroundImage:
-                  "url(http://movie0706.cybersoft.edu.vn/hinhanh/john-wick-iiisssssssssxxxssssssssssssssssssss_gp09.jpg)",
+                backgroundImage: `url(${data?.suatChieuId?.movieId?.hinhAnh})`,
               }}
               className="top-[100px] left-0 w-[7.5%] h-full fixed object-cover bg-no-repeat mt-[20px] bg-cover"
             >
@@ -136,25 +126,20 @@ function BookTicKet() {
                 <div className="flex">
                   <img
                     className="w-[50px] h-[50px] rounded-full"
-                    src="https://movie-booking-project.vercel.app/img/logo-theater/bhd.png"
-                    alt="he-thong-rap"
+                    src={data?.suatChieuId?.rapId?.hinhAnh}
+                    alt={data?.suatChieuId?.rapId?._id}
                   />
                   <div className="ml-3">
                     <p className="text-green-400 font-bold">
-                      BDH Star Cineplex{" "}
-                      <span className="text-black">- 3/2</span>
+                      {data?.suatChieuId?.rapId?.tenRap}
                     </p>
                     <p className="text-sm text-gray-600">
-                      Thứ sáu - 03:10 - Rạp 2
+                      {data?.suatChieuId?.ngaychieu}
                     </p>
                   </div>
                 </div>
-                <div>
-                  <p className="text-gray-300 text-sm">Thời Gian Giữ ghế</p>
-                  <p className="text-red-400 font-semibold text-4xl text-center">
-                    {expiredTime}
-                  </p>
-                </div>
+
+                <ExpiredTime />
               </div>
               <div className="overflow-x-auto overflow-y-hidden">
                 <div className="min-w-[600px]">
@@ -165,11 +150,16 @@ function BookTicKet() {
                     />
                   </div>
                   <div className="ghe">
-                    {Ghe.map((item, index) => (
+                    {data?.danhSachGhe?.map((item, index) => (
                       <div key={index} className="py-0 px-[10%]">
-                        <div
-                          onClick={() => handleAddClass(index)}
-                          className="status gheThuong cursor-pointer relative inline-block"
+                        <button
+                          disabled={item.trangThai === "DaDat" ? true : false}
+                          onClick={() => handleAddClass(item.soGhe)}
+                          className={`${
+                            item.trangThai === "Trong"
+                              ? "gheThuong cursor-pointer"
+                              : "gheDaChon "
+                          }    status relative inline-block`}
                         >
                           <svg
                             className="MuiSvgIcon-root jss1144"
@@ -181,13 +171,13 @@ function BookTicKet() {
                           >
                             <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H4c-.55 0-1-.45-1-1v-1c0-.55.45-1 1-1h16c.55 0 1 .45 1 1v1c0 .55-.45 1-1 1z"></path>
                           </svg>
-                        </div>
+                        </button>
                       </div>
                     ))}
                   </div>
                   <div className="flex justify-between mt-2 mb-8 mx-20">
                     <div>
-                      <div className="gheThuong cursor-pointer relative inline-block ml-8 ">
+                      <div className="gheThuong relative inline-block ml-8 ">
                         <svg
                           className="MuiSvgIcon-root jss1144"
                           focusable="false"
@@ -202,7 +192,7 @@ function BookTicKet() {
                       <p>Ghế Thường</p>
                     </div>
                     <div>
-                      <div className="gheDangChon cursor-pointer relative inline-block ml-8 ">
+                      <div className="gheDangChon  relative inline-block ml-8 ">
                         <svg
                           className="MuiSvgIcon-root jss1144"
                           focusable="false"
@@ -217,7 +207,7 @@ function BookTicKet() {
                       <p>Ghế Đang Chọn</p>
                     </div>
                     <div className="relative">
-                      <div className="gheDaChon cursor-pointer inline-block ml-6  ">
+                      <div className="gheDaChon  inline-block ml-6  ">
                         <svg
                           className="svg_color"
                           focusable="false"
@@ -229,24 +219,17 @@ function BookTicKet() {
                         </svg>
                       </div>
                       <p>Ghế Đã Mua</p>
-                      <div className="close">X</div>
+                      {/* <div className="close">X</div> */}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          {showMessage ? (
-            <>
-              <ShowMessage />
-            </>
-          ) : (
-            <></>
-          )}
         </div>
       </div>
       <div className="w-[30%]">
-        <Payment arrayGhe={arrayGhe} />
+        <Payment data={data} arrayGhe={arrayGhe} />
       </div>
     </div>
   );

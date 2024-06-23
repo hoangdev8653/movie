@@ -9,6 +9,7 @@ import LichChieu from "./LichChieu";
 import ThongTin from "./reviews/thongTin/ThongTin";
 import Loader from "../../components/loader/loader";
 import { movieStore } from "../../store/movieStore";
+import styles from "./MovieDetail.module.scss";
 
 function PhimDetail() {
   const { data, getAllMovieBySlug } = movieStore();
@@ -54,15 +55,15 @@ function PhimDetail() {
           >
             <div className="relative">
               <img
-                className="w-full object-cover blur-md h-[830px] "
+                className={styles.bg}
                 src={data[0].hinhAnh}
                 alt={data[0].slug}
               />
               <div className="flex justify-center ">
-                <div className="absolute top-20 flex mx-2	">
+                <div className={styles.content}>
                   <div className="w-56 h-80 mr-2 relative">
                     <img
-                      className="w-full h-full anhPhim"
+                      className="w-full h-full"
                       src={data[0].hinhAnh}
                       alt={data[0].slug}
                     />
@@ -74,7 +75,6 @@ function PhimDetail() {
                       </div>
                       <span>{data[0].tenPhim}</span>
                     </div>
-
                     <p>
                       {data[0].thoiLuong} - {data[0].theLoai}
                     </p>
@@ -98,6 +98,20 @@ function PhimDetail() {
                     </div>
                     <Ratting disabled={true} rating={5} />
                   </div>
+                </div>
+              </div>
+              <div className={styles.content_mobile}>
+                <div className="text-red-50 mx-4 ">
+                  <div className="flex my-2">
+                    <div className="bg-red-500 mr-2 rounded">
+                      <span className="px-1">C18</span>
+                    </div>
+                    <span>{data[0].tenPhim}</span>
+                  </div>
+                  <p>
+                    {data[0].thoiLuong} - {data[0].theLoai}
+                  </p>
+                  <p className="my-1">{data[0].ngayKhoiChieu}</p>
                 </div>
               </div>
             </div>

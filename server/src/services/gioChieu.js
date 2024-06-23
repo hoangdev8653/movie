@@ -3,7 +3,13 @@ import createHttpError from "http-errors";
 
 const getAllGioChieu = async () => {
   try {
-    const gioChieu = await GioChieu.find().populate("suatChieuId");
+    const gioChieu = await GioChieu.find().populate({
+      path: "suatChieuId",
+      populate: [
+        { path: "movieId", select: "tenPhim hinhAnh" },
+        { path: "rapId", select: "tenRap hinhAnh" },
+      ],
+    });
     return gioChieu;
   } catch (error) {
     console.log(error);
@@ -20,6 +26,7 @@ const getGioChieuById = async (id) => {
         { path: "rapId", select: "tenRap hinhAnh" },
       ],
     });
+    console.log(gioChieu);
     if (!gioChieu) {
       throw createHttpError.NotFound("Gio Chieu Not Found");
     }
@@ -32,40 +39,22 @@ const getGioChieuById = async (id) => {
 const getGiochieuByMovieId = async (id) => {
   try {
     console.log(id);
-    const gioChieuList = await GioChieu.find({
-      "suatChieuId._id": id,
-    }).populate("suatChieuId");
-    console.log(gioChieuList);
-    return 1;
+    const gioChieuList = await GioChieu.find().populate({
+      path: "suatChieuId",
+      populate: [
+        { path: "movieId", select: "tenPhim hinhAnh" },
+        { path: "rapId", select: "tenRap hinhAnh" },
+      ],
+    });
+    const filteredGioChieuList = await gioChieuList.filter(
+      (item) => item.suatChieuId.movieId._id.toString() === id.toString()
+    );
+    return filteredGioChieuList;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw error;
   }
 };
-
-// const getGiochieuByMovieId = async (id) => {
-//   try {
-//     console.log("Searching for movieId:", id);
-//     const gioChieuList = await GioChieu.find({
-//       "suatChieuId.movieId._id": id,
-//     }).populate({
-//       path: "suatChieuId",
-//       populate: [
-//         { path: "movieId", select: "tenPhim hinhAnh" },
-//         { path: "rapId", select: "tenRap hinhAnh" },
-//       ],
-//     });
-//     console.log("Result:", gioChieuList);
-//     if (!gioChieuList.length) {
-//       console.log("No Gio Chieu found for movieId:", id);
-//       throw createHttpError.NotFound("Gio Chieu Not Found");
-//     }
-//     return gioChieuList;
-//   } catch (error) {
-//     console.error("Error fetching Gio Chieu by Movie ID:", error);
-//     throw error;
-//   }
-// };
 
 const createGioChieu = async ({ gioChieu, danhSachGhe, suatChieuId }) => {
   try {

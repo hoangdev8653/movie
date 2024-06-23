@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import styles from "./Payment.module.scss";
 import Bill from "./bill/Bill";
 import { formatPrice } from "../../../utils/forrmatPriceVn";
-function payment({ arrayGhe }) {
+function payment({ data, arrayGhe }) {
+  console.log(data);
   const [datVe, setDatVe] = useState(false);
   const [price, setPrice] = useState(0);
   const [radio, setRadio] = useState(null);
@@ -25,9 +26,11 @@ function payment({ arrayGhe }) {
       </div>
       <div className="my-3 border-b-[1px] border-t-[1px] border-gray-200">
         <div className="my-2 ">
-          <p className="font-semibold text-black">Join Wick </p>
-          <p className="font-medium">BHD Star Cineplex - 3/2 </p>
-          <p className="font-medium">Thứ Tư 23/09/2020 - 11:09 - Rạp 2 </p>
+          <p className="font-semibold text-black">
+            {data?.suatChieuId?.movieId?.tenPhim}
+          </p>
+          <p className="font-medium"> {data?.suatChieuId?.rapId?.tenRap}</p>
+          <p className="font-medium"> {data?.suatChieuId?.ngaychieu}</p>
         </div>
       </div>
       <div className="my-3 border-b-[1px]  border-gray-200">

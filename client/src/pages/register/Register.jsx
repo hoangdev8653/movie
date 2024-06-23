@@ -52,9 +52,7 @@ function Register() {
             className="max-w-full relative w-full mr-3 ml-3 overflow-hidden"
           >
             <div className="mb-1 mt-1">
-              <label className="ml-4" htmlFor="taikhoan">
-                Tài khoản
-              </label>
+              <label htmlFor="taikhoan">Tài khoản</label>
               <input
                 id="email"
                 name="email"
@@ -71,9 +69,7 @@ function Register() {
               </div>
             )}
             <div className="mb-1 mt-1">
-              <label className="ml-4" htmlFor="matkhau">
-                Mật khẩu
-              </label>
+              <label htmlFor="matkhau">Mật khẩu</label>
               <input
                 id="password"
                 name="password"
@@ -90,9 +86,7 @@ function Register() {
               </div>
             )}
             <div className="mb-1 mt-1">
-              <label className="ml-4" htmlFor="hoten">
-                Họ và Tên
-              </label>
+              <label htmlFor="hoten">Họ và Tên</label>
               <input
                 id="username"
                 name="username"
@@ -109,9 +103,7 @@ function Register() {
               </div>
             )}
             <div className="mb-1 mt-1">
-              <label className="ml-4" htmlFor="email">
-                Adress
-              </label>
+              <label htmlFor="email">Địa chỉ</label>
               <input
                 id="address"
                 name="address"
@@ -128,9 +120,7 @@ function Register() {
               </div>
             )}
             <div className="mb-1 mt-1">
-              <label className="ml-4" htmlFor="sdt">
-                Số điện thoại
-              </label>
+              <label htmlFor="sdt">Số điện thoại</label>
               <input
                 id="phone"
                 name="phone"
