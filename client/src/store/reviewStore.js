@@ -26,10 +26,12 @@ export const reviewStore = create((set) => ({
       set({ isLoading: true });
       const response = await createReview(data);
       if (response.status === 201) {
-        set((state) => {
-          isLoading: false;
-          data: state.data, response.data.content;
-        });
+        // set((state) => {
+        //   isLoading: false;
+        //   data: state.data, response.data.content;
+        // });
+        // window.reload();
+        console.log(response);
       }
     } catch (error) {
       console.log(error);

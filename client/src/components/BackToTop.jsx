@@ -1,6 +1,5 @@
 import { useState } from "react";
 import BackTop from "../assets/Logo-backTop.png";
-import { IoIosArrowUp } from "react-icons/io";
 
 function BackToTop() {
   const [visible, setVisible] = useState(false);
@@ -30,15 +29,7 @@ function BackToTop() {
       onClick={goToTop}
     >
       <img
-        style={{
-          right: "24px",
-          width: "50px",
-          bottom: "30px",
-          zIndex: "5000",
-          transform: "rotate(180deg)",
-          transitionTimingFunction: "linear",
-        }}
-        className="h-12 w-12 bg-transparent fixed"
+        className="h-12  bg-transparent fixed right-6 w-12 bottom-8 z-[5000] transform rotate-180 transition ease-linear"
         src={BackTop}
         alt="back-to-top"
       />

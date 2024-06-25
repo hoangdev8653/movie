@@ -15,6 +15,10 @@ const review = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
+  like: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const Review = mongoose.model("Review", review);

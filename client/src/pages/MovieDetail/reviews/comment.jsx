@@ -26,8 +26,11 @@ function Comment(props) {
       {data && data.length > 0 ? (
         <>
           {data.map((item, index) => (
-            <div className="text-black  m-auto bg-white max-h-[250px] border-[1px] border-solid mb-[15px] rounded w-[90%] pt-2 py-3 px-5 max-w-[580px]">
-              <div className="my-2" key={index}>
+            <div
+              key={index}
+              className="text-black  m-auto bg-white max-h-[250px] border-[1px] border-solid mb-[15px] rounded w-[90%] pt-2 py-3 px-5 max-w-[580px]"
+            >
+              <div className="my-2">
                 <div className="flex justify-between">
                   <div>
                     <span className="inline-block">

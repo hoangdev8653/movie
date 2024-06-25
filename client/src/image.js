@@ -26,6 +26,7 @@ import vcb from "../src/assets/vcb.jpg";
 import vib from "../src/assets/VIETTINBANK.png";
 import zalo from "../src/assets/zalo-logo.png";
 import zaloPay from "../src/assets/zalopay_icon.png";
+import Default_avatar_profile from "../src/assets/Default_avatar_profile.jpg";
 
 export {
   go,
@@ -56,4 +57,5 @@ export {
   vib,
   zalo,
   zaloPay,
+  Default_avatar_profile,
 };

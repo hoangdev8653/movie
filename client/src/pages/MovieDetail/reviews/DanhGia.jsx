@@ -5,12 +5,20 @@ import { IoMdClose } from "react-icons/io";
 import Comment from "./comment";
 import Ratting from "../../../components/ratting";
 import { getLocalStorage } from "../../../utils/localStorage";
+import { Default_avatar_profile } from "../../../image";
+import { reviewStore } from "../../../store/reviewStore";
+import LogoLoader from "../../../components/loader/loader";
 
 function DanhGia({ data }) {
+  const movieId = data[0]._id;
   const [isShowModal, setIsShowModal] = useState(false);
   const [starValue, setStarValue] = useState(0);
+  const [content, setContent] = useState("");
+  const { createReview, isLoading } = reviewStore();
+  const [canSubmit, setCanSubmit] = useState(false);
   const user = getLocalStorage("user");
   const modalRef = useRef();
+
   const handleStarChange = (value) => {
     setStarValue(value);
   };
@@ -37,7 +45,23 @@ function DanhGia({ data }) {
     };
   }, [isShowModal]);
 
-  useEffect(() => {}, [starValue]);
+  // useEffect(() => {}, [starValue]);
+
+  const handleChangeContent = (e) => {
+    const newValue = e.target.value;
+    setContent(newValue);
+    if (newValue.length > 5) {
+      setCanSubmit(true);
+    } else {
+      setCanSubmit(false);
+    }
+  };
+  console.log(starValue);
+
+  const handleSubmitReview = async (e) => {
+    e.preventDefault();
+    await createReview({ content, starValue, movieId });
+  };
 
   return (
     <div className="mt-4 max-w-[870px] mx-auto">
@@ -47,16 +71,15 @@ function DanhGia({ data }) {
             <div className="w-[90%] cursor-pointer m-auto relative max-w-[580px]">
               <span className="absolute left-[3%] top-[20%]">
                 <img
-                  className="w-9 h-9 rounded-3xl"
-                  src="	https://static-images.vnncdn.net/files/publish/2022/11/21/ronaldo-messi-349.jpg"
-                  alt="ảnh lỗi"
+                  className="w-10 h-10 rounded-3xl"
+                  src={user?.avarta ? user.avarta : Default_avatar_profile}
                 />
               </span>
               <input
                 style={{
                   padding: "10px 10px 10px 60px",
                 }}
-                className="text-gray-700 cursor-pointer bg-white border-[1px] border-solid rounded text-sm h-[60px] outline-none max-w-[580px] w-full"
+                className="text-black cursor-pointer border-[1px] border-solid rounded text-sm h-[60px] outline-none max-w-[580px] w-full"
                 type="text"
                 placeholder="Bạn nghĩ gì về bộ phim này?"
               />
@@ -78,7 +101,10 @@ function DanhGia({ data }) {
             <>
               <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none mx-auto top-[-50px] ">
                 <div className="relative w-auto my-6 mx-auto max-w-3xl">
-                  <div className="border-0 rounded-lg shadow-lg relative flex flex-col  bg-white outline-none focus:outline-none max-w-[90%] w-[560px] mx-auto py-8">
+                  <form
+                    onSubmit={handleSubmitReview}
+                    className="border-0 rounded-lg shadow-lg relative flex flex-col  bg-white outline-none focus:outline-none max-w-[90%] w-[560px] mx-auto py-8"
+                  >
                     <div className=" m-auto p-2 text-3xl text-green-400">
                       {starValue}
                     </div>
@@ -94,19 +120,33 @@ function DanhGia({ data }) {
                     </div>
                     <div className="p-4 text-center">
                       <input
-                        className=" border-solid border-2 border-gray mx-auto p-4 text-base focus:border-red-300 rounded w-11/12"
+                        value={content}
+                        onChange={(e) => handleChangeContent(e)}
+                        className="text-black border-solid border-2 border-gray mx-auto p-4 text-base focus:border-red-300 rounded w-11/12"
                         type="text"
                       />
                     </div>
                     <div className="flex items-center justify-center p-2 border-solid border-slate-200 rounded-b">
                       <button
-                        className=" bg-red-500 text-white active:bg-red-400 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                        type="button"
+                        disabled={!canSubmit}
+                        className={`text-white font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 ${
+                          canSubmit
+                            ? "bg-red-500 active:bg-red-400"
+                            : "bg-red-200"
+                        }`}
+                        type="submit"
                       >
                         Đăng
                       </button>
                     </div>
-                  </div>
+                    {isLoading ? (
+                      <>
+                        <LogoLoader />
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                  </form>
                 </div>
               </div>
               <div
