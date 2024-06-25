@@ -1,4 +1,26 @@
 import styles from "./Footer.module.scss";
+import {
+  cgv,
+  bhd,
+  galaxycine,
+  cinestar,
+  lotte,
+  megagas,
+  bt,
+  dongdacinema,
+  touch,
+  cnx,
+  startLight,
+  dcine,
+  zalo,
+  payoo,
+  vcb,
+  agribank,
+  vib,
+  ivb,
+  go,
+  laban,
+} from "../../image";
 
 function Footer() {
   return (
@@ -29,106 +51,70 @@ function Footer() {
           <div className={styles.partner}>
             <p className="text-white">Đối tác</p>
             <div className="grid grid-cols-5 ">
+              <img className="rounded-full w-8 h-8 m-1" src={cgv} alt="cgv" />
+              <img className="rounded-full w-8 h-8 m-1" src={bhd} alt="bhd" />
               <img
                 className="rounded-full w-8 h-8 m-1"
-                src="https://movie-booking-project.vercel.app/img/logo-connect/cgv.png"
-                alt="logo"
+                src={galaxycine}
+                alt="galaxycine"
               />
               <img
                 className="rounded-full w-8 h-8 m-1"
-                src="https://movie-booking-project.vercel.app/img/logo-connect/bhd.png"
-                alt="a"
+                src={cinestar}
+                alt="cinestar"
               />
               <img
                 className="rounded-full w-8 h-8 m-1"
-                src="https://movie-booking-project.vercel.app/img/logo-connect/bhd.png"
-                alt="a"
+                src={lotte}
+                alt="lotte"
               />
               <img
                 className="rounded-full w-8 h-8 m-1"
-                src="https://movie-booking-project.vercel.app/img/logo-connect/bhd.png"
-                alt="a"
+                src={megagas}
+                alt="megagas"
+              />
+              <img className="rounded-full w-8 h-8 m-1" src={bt} alt="betta" />
+              <img
+                className="rounded-full w-8 h-8 m-1"
+                src={dongdacinema}
+                alt="dong-da-cinema"
               />
               <img
                 className="rounded-full w-8 h-8 m-1"
-                src="https://movie-booking-project.vercel.app/img/logo-connect/bhd.png"
-                alt="a"
+                src={touch}
+                alt="touch"
+              />
+              <img className="rounded-full w-8 h-8 m-1" src={cnx} alt="cnx" />
+              <img
+                className="rounded-full w-8 h-8 m-1"
+                src={startLight}
+                alt="start-light"
               />
               <img
                 className="rounded-full w-8 h-8 m-1"
-                src="https://movie-booking-project.vercel.app/img/logo-connect/bhd.png"
-                alt="a"
+                src={dcine}
+                alt="dcine"
               />
+              <img className="rounded-full w-8 h-8 m-1" src={zalo} alt="zalo" />
               <img
                 className="rounded-full w-8 h-8 m-1"
-                src="https://movie-booking-project.vercel.app/img/logo-connect/bhd.png"
-                alt="a"
+                src={payoo}
+                alt="payoo"
               />
+              <img className="rounded-full w-8 h-8 m-1" src={vcb} alt="vcb" />
               <img
                 className="rounded-full w-8 h-8 m-1"
-                src="https://movie-booking-project.vercel.app/img/logo-connect/bhd.png"
-                alt="a"
+                src={agribank}
+                alt="agribank"
               />
+              <img className="rounded-full w-8 h-8 m-1" src={vib} alt="vib" />
+              <img className="rounded-full w-8 h-8 m-1" src={ivb} alt="ivb" />
+              <img className="rounded-full w-8 h-8 m-1" src={go} alt="go" />
               <img
+                title="laban"
                 className="rounded-full w-8 h-8 m-1"
-                src="https://movie-booking-project.vercel.app/img/logo-connect/bhd.png"
-                alt="a"
-              />
-              <img
-                className="rounded-full w-8 h-8 m-1"
-                src="https://movie-booking-project.vercel.app/img/logo-connect/bhd.png"
-                alt="a"
-              />
-              <img
-                className="rounded-full w-8 h-8 m-1"
-                src="https://movie-booking-project.vercel.app/img/logo-connect/bhd.png"
-                alt="a"
-              />
-              <img
-                className="rounded-full w-8 h-8 m-1"
-                src="https://movie-booking-project.vercel.app/img/logo-connect/bhd.png"
-                alt="a"
-              />
-              <img
-                className="rounded-full w-8 h-8 m-1"
-                src="https://movie-booking-project.vercel.app/img/logo-connect/bhd.png"
-                alt="a"
-              />
-              <img
-                className="rounded-full w-8 h-8 m-1"
-                src="https://movie-booking-project.vercel.app/img/logo-connect/bhd.png"
-                alt="a"
-              />
-              <img
-                className="rounded-full w-8 h-8 m-1"
-                src="https://movie-booking-project.vercel.app/img/logo-connect/bhd.png"
-                alt="a"
-              />
-              <img
-                className="rounded-full w-8 h-8 m-1"
-                src="https://movie-booking-project.vercel.app/img/logo-connect/bhd.png"
-                alt="a"
-              />
-              <img
-                className="rounded-full w-8 h-8 m-1"
-                src="https://movie-booking-project.vercel.app/img/logo-connect/bhd.png"
-                alt="a"
-              />
-              <img
-                className="rounded-full w-8 h-8 m-1"
-                src="https://movie-booking-project.vercel.app/img/logo-connect/bhd.png"
-                alt="a"
-              />
-              <img
-                className="rounded-full w-8 h-8 m-1"
-                src="https://movie-booking-project.vercel.app/img/logo-connect/bhd.png"
-                alt="a"
-              />
-              <img
-                title="abc"
-                className="rounded-full w-8 h-8 m-1"
-                src="https://movie-booking-project.vercel.app/img/logo-connect/bhd.png"
-                alt="a"
+                src={laban}
+                alt="laban"
               />
             </div>
           </div>

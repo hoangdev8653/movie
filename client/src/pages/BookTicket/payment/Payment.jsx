@@ -2,25 +2,29 @@ import React, { useEffect, useState } from "react";
 import styles from "./Payment.module.scss";
 import Bill from "./bill/Bill";
 import { formatPrice } from "../../../utils/forrmatPriceVn";
+import { getLocalStorage } from "../../../utils/localStorage";
+
 function payment({ data, arrayGhe }) {
-  console.log(data);
   const [datVe, setDatVe] = useState(false);
   const [price, setPrice] = useState(0);
   const [radio, setRadio] = useState(null);
+  const user = getLocalStorage("user");
+
   const handleClickRadio = (e) => {
-    console.log(e.target.value);
     setRadio(e.target.value);
   };
   useEffect(() => {
-    setPrice(90000 * arrayGhe.length);
     if (arrayGhe.length === 0) {
       setRadio(null);
+      setPrice(0);
+    } else {
+      setPrice(data?.suatChieuId?.giaVe * arrayGhe.length);
     }
   }, [arrayGhe]);
   return (
     <div className={styles.payment}>
       <div className="mx-auto my-4 text-center">
-        <p className="text-green-500 font-bold text-5xl">
+        <p className="text-green-500 font-semibold text-4xl">
           {formatPrice(price)}
         </p>
       </div>
@@ -29,8 +33,12 @@ function payment({ data, arrayGhe }) {
           <p className="font-semibold text-black">
             {data?.suatChieuId?.movieId?.tenPhim}
           </p>
-          <p className="font-medium"> {data?.suatChieuId?.rapId?.tenRap}</p>
-          <p className="font-medium"> {data?.suatChieuId?.ngaychieu}</p>
+          <p className="font-medium my-2">{data?.suatChieuId?.rapId?.tenRap}</p>
+          <p className="font-medium">
+            <span>{data?.gioChieu}</span>
+            <span> - </span>
+            <span>{data?.suatChieuId?.ngaychieu}</span>
+          </p>
         </div>
       </div>
       <div className="my-3 border-b-[1px]  border-gray-200">
@@ -44,13 +52,13 @@ function payment({ data, arrayGhe }) {
       <div className="my-3 border-b-[1px]  border-gray-200">
         <div className="my-2">
           <div className="text-gray-400 font-medium">Email</div>
-          <div className="text-black font-medium">hhoang1072003@gmail.com</div>
+          <div className="text-black font-medium">{user.email}</div>
         </div>
       </div>
       <div className="my-3 border-b-[1px]  border-gray-200">
         <div className="my-2">
           <div className="text-gray-400 font-medium">Phone</div>
-          <div className="text-black font-medium">0766640006</div>
+          <div className="text-black font-medium">{user.phone}</div>
         </div>
       </div>
       <div className="my-3 border-b-[1px]  border-gray-200">
@@ -172,7 +180,10 @@ function payment({ data, arrayGhe }) {
           onClick={() => setDatVe(true)}
           style={
             radio !== null && arrayGhe.length > 0
-              ? { backgroundColor: "greenyellow" }
+              ? {
+                  backgroundImage:
+                    " linear-gradient(223deg, rgb(180, 236, 81) 0px, rgb(66, 147, 33) 100%)",
+                }
               : { backgroundColor: "rgb(175, 175, 175)" }
           }
           className=" text-white py-4 cursor-pointer text-2xl"

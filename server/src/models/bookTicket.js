@@ -13,9 +13,6 @@ const bookTicket = mongoose.Schema({
     type: Array,
     default: [],
   },
-  giaVe: {
-    type: String,
-  },
   tongTien: {
     type: String,
     default: 0,

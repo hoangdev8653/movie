@@ -13,6 +13,9 @@ const suatChieu = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Rap",
   },
+  giaVe: {
+    type: String,
+  },
 });
 
 const SuatChieu = mongoose.model("suatChieu", suatChieu);

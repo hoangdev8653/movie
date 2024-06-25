@@ -7,7 +7,6 @@ router.route("/").get(suaChieuController.getAllSuatChieu);
 router.route("/getById").get(suaChieuController.getSuatChieuById);
 router.route("/getByMovieId").get(suaChieuController.getSuatChieuByMovie);
 router.route("/create").post(suaChieuController.createSuatChieu);
-router.route("/update").put(suaChieuController.updateStatusGhe);
 router.route("/delete").delete(suaChieuController.deleteSuatChieu);
 
 export default router;

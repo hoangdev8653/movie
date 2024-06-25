@@ -19,6 +19,22 @@
     display: none;
 }
 
+.custom_tabs.ant-tabs-tab {
+    color: #ff4500; /* Màu đỏ cam */
+  }
+  
+  .custom_tabs.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #ff4500; /* Màu đỏ cam khi tab đang hoạt động */
+  }
+  
+  .custom_tabs.ant-tabs-tab:hover {
+    color: #ff6347; /* Màu đỏ cam nhạt khi hover */
+  }
+  
+  .custom_tabs.ant-tabs-ink-bar {
+    background-color: #ff4500; /* Màu của thanh gạch dưới */
+  }
+
 @media only screen and (max-width: 860px) {
     .bg {
         filter: blur(0);

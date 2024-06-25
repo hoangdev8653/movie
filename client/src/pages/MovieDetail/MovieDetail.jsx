@@ -43,12 +43,19 @@ function PhimDetail() {
     };
     fetchData();
   }, []);
+
+  const handleBookTicket = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight - window.innerHeight,
+      behavior: "smooth",
+    });
+  };
   return (
     <div>
       {data && data.length > 0 ? (
         <>
           <div
-            className="pb-[50px]"
+            className="pb-[50px] "
             style={{
               backgroundColor: "rgb(10, 32, 41)",
             }}
@@ -80,7 +87,10 @@ function PhimDetail() {
                     </p>
                     <p>{data[0].ngayKhoiChieu}</p>
 
-                    <button className="py-3 px-6 text-base mt-2 rounded mb-5 bg-red-500 hover:opacity-80">
+                    <button
+                      onClick={handleBookTicket}
+                      className="py-3 px-6 text-base mt-2 rounded mb-5 bg-red-500 hover:opacity-80"
+                    >
                       Mua vé
                     </button>
                   </div>
@@ -117,7 +127,7 @@ function PhimDetail() {
             </div>
 
             <Tabs
-              className="justify-center item-center "
+              className="justify-center item-center text-white"
               defaultActiveKey="2"
               items={items}
               onChange={onChange}
