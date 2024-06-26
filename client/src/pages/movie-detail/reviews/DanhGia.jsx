@@ -3,18 +3,17 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
 import Comment from "./comment";
-import Ratting from "../../../components/ratting";
+import Ratting from "../../../components/Rating";
 import { getLocalStorage } from "../../../utils/localStorage";
 import { Default_avatar_profile } from "../../../image";
-import { reviewStore } from "../../../store/reviewStore";
-import LogoLoader from "../../../components/loader/loader";
+import { reviewStore } from "../../../store/Review";
 
 function DanhGia({ data }) {
   const movieId = data[0]._id;
   const [isShowModal, setIsShowModal] = useState(false);
   const [starValue, setStarValue] = useState(0);
   const [content, setContent] = useState("");
-  const { createReview, isLoading } = reviewStore();
+  const { createReview } = reviewStore();
   const [canSubmit, setCanSubmit] = useState(false);
   const user = getLocalStorage("user");
   const modalRef = useRef();
@@ -45,8 +44,6 @@ function DanhGia({ data }) {
     };
   }, [isShowModal]);
 
-  // useEffect(() => {}, [starValue]);
-
   const handleChangeContent = (e) => {
     const newValue = e.target.value;
     setContent(newValue);
@@ -56,11 +53,15 @@ function DanhGia({ data }) {
       setCanSubmit(false);
     }
   };
-  console.log(starValue);
 
   const handleSubmitReview = async (e) => {
     e.preventDefault();
-    await createReview({ content, starValue, movieId });
+    await createReview({ content, ratting: starValue, movieId });
+    setTimeout(() => {
+      setIsShowModal(false);
+      setStarValue(0);
+      setContent("");
+    }, 1500);
   };
 
   return (
@@ -139,13 +140,6 @@ function DanhGia({ data }) {
                         Đăng
                       </button>
                     </div>
-                    {isLoading ? (
-                      <>
-                        <LogoLoader />
-                      </>
-                    ) : (
-                      <></>
-                    )}
                   </form>
                 </div>
               </div>

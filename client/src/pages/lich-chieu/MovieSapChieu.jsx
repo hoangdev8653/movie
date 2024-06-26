@@ -1,6 +1,6 @@
 import React from "react";
 import { HiOutlineTicket } from "react-icons/hi";
-import SliderCustom from "../../components/SliderCustom/SliderCustom";
+import SliderCustom from "../../components/sliderCustom/SliderCustom";
 import Button from "../../components/Button";
 import { Link } from "react-router-dom";
 

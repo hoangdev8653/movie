@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { GrFormNextLink } from "react-icons/gr";
 import { FaFacebookF, FaPinterest, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { rapStore } from "../../store/rapStore";
+import { rapStore } from "../../store/Rap";
 import styles from "./RapDetail.module.scss";
 
 function RapDetail() {

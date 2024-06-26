@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Tabs } from "antd";
-import { suatChieuStore } from "../../store/suatChieuStore";
+import { suatChieuStore } from "../../store/SuatChieu";
 
 function LichChieu(props) {
   const { TabPane } = Tabs;

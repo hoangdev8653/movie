@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import SliderCustom from "../../components/SliderCustom/SliderCustom";
+import SliderCustom from "../../components/sliderCustom/SliderCustom";
 import { getAllNews } from "../../apis/news";
 import ModalCustom from "../../components/modal/Modal";
 function News() {

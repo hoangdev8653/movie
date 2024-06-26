@@ -1,21 +1,21 @@
 import { Route, Routes } from "react-router-dom";
 import { PATH } from "./utils/path";
-import Home from "./pages/Home/Home";
-import MovieDetail from "./pages/MovieDetail/MovieDetail";
+import Home from "./pages/home/Home";
+import MovieDetail from "./pages/movie-detail/MovieDetail";
 import News from "./pages/news/News";
-import HeThongRap from "./pages/HeThongRap/HeThongRap";
-import EventAndSale from "./pages/EventAndSale/EventAndSale";
-import LichChieu from "./pages/LichChieu/LichChieu";
-import Rap from "./pages/RapDeatail/RapDeatail";
+import HeThongRap from "./pages/he-thong-rap/HeThongRap";
+import EventAndSale from "./pages/event-sale/EventAndSale";
+import LichChieu from "./pages/lich-chieu/LichChieu";
+import Rap from "./pages/rap-detail/RapDeatail";
 import Layout from "./templates/Layout";
 
-import Profile from "./pages/Profile/Profile";
-import Login from "./pages/Login/Login";
-import Register from "./pages/Register/Register";
-import BookTicket from "./pages/BookTicket/BookTicKet";
+import Profile from "./pages/profile/Profile";
+import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
+import BookTicket from "./pages/book-ticket/BookTicKet";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
-import NotFound from "./pages/NotFound/NotFound";
+import NotFound from "./pages/not-found/NotFound";
 
 function App() {
   return (

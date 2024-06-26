@@ -2,7 +2,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { getLocalStorage } from "../../../utils/localStorage";
 import imgDeafault from "../../../assets/imgDeafaut.jpg";
-import { userStore } from "../../../store/userStore";
+import { userStore } from "../../../store/User";
 import styles from "./Avarta.module.scss";
 
 function Avarta() {

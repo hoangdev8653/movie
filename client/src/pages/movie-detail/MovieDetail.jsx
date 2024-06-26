@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import Ratting from "../../components/ratting";
+import Ratting from "../../components/Rating";
 import { Tabs } from "antd";
 import DanhGia from "./reviews/DanhGia";
 import LichChieu from "./LichChieu";
 import ThongTin from "./reviews/thongTin/ThongTin";
-import Loader from "../../components/loader/loader";
-import { movieStore } from "../../store/movieStore";
+import Loader from "../../components/loader/Loader";
+import { movieStore } from "../../store/Movie";
 import styles from "./MovieDetail.module.scss";
 
 function PhimDetail() {

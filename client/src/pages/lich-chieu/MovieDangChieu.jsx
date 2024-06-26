@@ -1,5 +1,5 @@
 import React from "react";
-import SliderCustom from "../../components/SliderCustom/SliderCustom";
+import SliderCustom from "../../components/sliderCustom/SliderCustom";
 import Button from "../../components/Button";
 import { HiOutlineTicket } from "react-icons/hi";
 

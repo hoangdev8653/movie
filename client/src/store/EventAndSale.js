@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { getAllEvent, getAllSale } from "../apis/eventAndSale";
-export const eventAndSaleStore = create((set) => ({
+export const EventAndSale = create((set) => ({
   error: false,
   data: [],
   loading: false,

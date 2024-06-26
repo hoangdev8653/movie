@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { reviewStore } from "../../../store/reviewStore";
-import Rating from "../../../components/ratting";
-import ShowMore from "../../../components/showMore";
+import { reviewStore } from "../../../store/Review";
+import Rating from "../../../components/Rating";
+import ShowMore from "../../../components/ShowMore";
 
 function Comment(props) {
   const movieId = props.data;
@@ -24,7 +24,7 @@ function Comment(props) {
   return (
     <div>
       {data && data.length > 0 ? (
-        <>
+        <ShowMore className="max-w-[100px] mx-auto">
           {data.map((item, index) => (
             <div
               key={index}
@@ -63,10 +63,7 @@ function Comment(props) {
               </div>
             </div>
           ))}
-          <div className="max-w-[100px] m-auto">
-            <ShowMore data={data} />
-          </div>
-        </>
+        </ShowMore>
       ) : (
         <div className="text-black  m-auto bg-white max-h-[250px] border-[1px] border-solid mb-[15px] rounded w-[90%] pt-2 py-3 px-5 max-w-[580px]">
           <p className="font-semibold mx-auto text-center">
