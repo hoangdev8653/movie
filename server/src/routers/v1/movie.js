@@ -12,6 +12,7 @@ router.route("/:slug").get(movieController.getMovieBySlug);
 router
   .route("/create")
   .post(uploadCloud.single("hinhAnh"), movieController.createMovie);
+router.route("/update").put(movieController.updateMovie);
 router
   .route("/updateTrailerMovie")
   .post(uploadCloud.single("trailer"), movieController.updateTrailerMovie);

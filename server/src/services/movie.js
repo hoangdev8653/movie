@@ -59,11 +59,6 @@ const createMovie = async ({
   slug,
 }) => {
   try {
-    const movieExits = await Movie.findOne({ tenPhim });
-    const rapIdExits = await Movie.findOne({ rapId });
-    if (movieExits && rapIdExits) {
-      throw createHttpError.Conflict("Movie is alredy");
-    }
     const movie = new Movie({
       tenPhim,
       hinhAnh,
@@ -79,6 +74,51 @@ const createMovie = async ({
       slug,
     });
     return await movie.save();
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+const updateMovie = async (
+  id,
+  {
+    tenPhim,
+    moTa,
+    ngayKhoiChieu,
+    dangChieu,
+    sapChieu,
+    daoDien,
+    dienVien,
+    theLoai,
+    quocGia,
+    thoiLuong,
+    slug,
+  }
+) => {
+  try {
+    const movie = await Movie.findById(id);
+    if (!movie) {
+      throw createHttpError.NotFound("Movie Not Found");
+    }
+
+    return await Movie.findByIdAndUpdate(
+      id,
+      {
+        tenPhim,
+        moTa,
+        ngayKhoiChieu,
+        dangChieu,
+        sapChieu,
+        daoDien,
+        dienVien,
+        theLoai,
+        quocGia,
+        thoiLuong,
+        slug,
+      },
+      { new: true }
+    );
   } catch (error) {
     console.log(error);
     throw error;
@@ -112,25 +152,13 @@ const deleteMovie = async (id) => {
   }
 };
 
-const getMovieByRap = async (tenRap) => {
-  try {
-    const rap = await Movie.find().populate("rapId");
-    const res = rap.filter((item) => {
-      return item.rapId.tenRap == tenRap;
-    });
-    return await res;
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
-};
-
 export const movieService = {
   getAllMovie,
   getMovieBySlug,
   getMovieDangChieu,
   getMovieSapChieu,
   createMovie,
+  updateMovie,
   updateTrailerMovie,
   deleteMovie,
 };

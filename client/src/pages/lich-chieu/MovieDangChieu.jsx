@@ -41,7 +41,7 @@ function movieDangChieu({ movieDangChieu }) {
           <SliderCustom
             dots={true}
             showSlider={4}
-            showSliderScroll={1}
+            showSliderScroll={4}
             responsiveSettings={responsiveSettings}
           >
             {movieDangChieu &&

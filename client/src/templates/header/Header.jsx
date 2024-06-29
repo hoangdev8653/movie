@@ -12,11 +12,11 @@ function Header() {
       className="w-full bg-white"
     >
       <div className="mx-8 justify-between items-center flex py-2">
-        <Link to="/">
+        <a href="/">
           <div className="logo">
             <img className="w-[50px] h-[50px]" src={Logo} alt="logo" />
           </div>
-        </Link>
+        </a>
         <div>
           <Menu />
         </div>

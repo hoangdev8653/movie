@@ -62,22 +62,6 @@ const getMovieSapChieu = async (req, res, next) => {
   }
 };
 
-const getMovieByRap = async (req, res, next) => {
-  try {
-    const tenRap = req.params.tenRap;
-    const movie = await movieService.getMovieByRap(tenRap);
-    return res
-      .status(StatusCodes.OK)
-      .json({ status: 200, message: "Xử lý thành công", content: movie });
-  } catch (error) {
-    console.log(error);
-    res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ status: 500, message: "Server Error" });
-    next(error);
-  }
-};
-
 const createMovie = async (req, res, next) => {
   try {
     const {
@@ -127,6 +111,47 @@ const createMovie = async (req, res, next) => {
   }
 };
 
+const updateMovie = async (req, res, next) => {
+  try {
+    const id = req.query.id;
+    const {
+      tenPhim,
+      moTa,
+      ngayKhoiChieu,
+      dangChieu,
+      sapChieu,
+      daoDien,
+      dienVien,
+      theLoai,
+      quocGia,
+      thoiLuong,
+      slug,
+    } = req.body;
+    const movie = await movieService.updateMovie(id, {
+      tenPhim,
+      moTa,
+      ngayKhoiChieu,
+      dangChieu,
+      sapChieu,
+      daoDien,
+      dienVien,
+      theLoai,
+      quocGia,
+      thoiLuong,
+      slug,
+    });
+    return res
+      .status(StatusCodes.OK)
+      .json({ status: 200, message: "Xử lý thành công", content: movie });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ status: 500, message: "Server Error" });
+    next(error);
+  }
+};
+
 const updateTrailerMovie = async (req, res, next) => {
   try {
     const id = req.query.id;
@@ -170,6 +195,7 @@ export const movieController = {
   getMovieDangChieu,
   getMovieSapChieu,
   createMovie,
+  updateMovie,
   updateTrailerMovie,
   deleteMovie,
 };

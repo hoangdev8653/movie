@@ -18,10 +18,15 @@ const getAllReviewByMovie = async (req, res, next) => {
 const getReviewByMovie = async (req, res, next) => {
   try {
     const id = req.query.id;
-    const movie = await reviewService.getReviewByMovie(id);
+    const { movie, avagent } = await reviewService.getReviewByMovie(id);
     return res
       .status(StatusCodes.OK)
-      .json({ status: 200, message: "Xử lý thành công", content: movie });
+      .json({
+        status: 200,
+        message: "Xử lý thành công",
+        content: movie,
+        avagent,
+      });
   } catch (error) {
     console.log(error);
     res

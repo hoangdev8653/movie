@@ -2,7 +2,6 @@ import React from "react";
 import { HiOutlineTicket } from "react-icons/hi";
 import SliderCustom from "../../components/sliderCustom/SliderCustom";
 import Button from "../../components/Button";
-import { Link } from "react-router-dom";
 
 function movieSapChieu({ movieSapChieu }) {
   const responsiveSettings = [
@@ -47,26 +46,30 @@ function movieSapChieu({ movieSapChieu }) {
           >
             {movieSapChieu &&
               movieSapChieu.map((item, index) => (
-                <Link to={`/phim/${item.slug}`}>
-                  <div key={index} className="px-[12px] pb-[30px]">
-                    <img
-                      className="rounded-lg"
-                      src={item.hinhAnh}
-                      alt={item._id}
-                    />
-                    <p className="mt-2 font-bold text-white">{item.tenPhim}</p>
-                    <p>
-                      Thể loại phim:{" "}
-                      <span className="font-semibold text-xs">
-                        {item.theLoai}
-                      </span>
-                    </p>
-                    <Button className="px-3 py-2 bg-green-500 mt-2 rounded-lg text-white font-semibold flex mx-auto">
-                      <HiOutlineTicket className="justify-center text-center items-center my-auto mx-[2px]" />
-                      Đặt vé ngay
-                    </Button>
-                  </div>
-                </Link>
+                <div className="px-[12px] pb-[30px]">
+                  <a href={`/phim/${item.slug}`}>
+                    <div key={index}>
+                      <img
+                        className="rounded-lg w-[239px] h-[300px] object-cover"
+                        src={item.hinhAnh}
+                        alt={item._id}
+                      />
+                      <p className="mt-2 font-bold text-white">
+                        {item.tenPhim}
+                      </p>
+                      <p>
+                        Thể loại phim:{" "}
+                        <span className="font-semibold text-xs">
+                          {item.theLoai}
+                        </span>
+                      </p>
+                      <Button className="px-3 py-2 bg-green-500 mt-2 rounded-lg text-white font-semibold flex mx-auto">
+                        <HiOutlineTicket className="justify-center text-center items-center my-auto mx-[2px]" />
+                        Đặt vé ngay
+                      </Button>
+                    </div>
+                  </a>
+                </div>
               ))}
           </SliderCustom>
         </div>

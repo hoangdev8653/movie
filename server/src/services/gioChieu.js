@@ -26,7 +26,6 @@ const getGioChieuById = async (id) => {
         { path: "rapId", select: "tenRap hinhAnh" },
       ],
     });
-    console.log(gioChieu);
     if (!gioChieu) {
       throw createHttpError.NotFound("Gio Chieu Not Found");
     }
@@ -67,7 +66,7 @@ const createGioChieu = async ({ gioChieu, danhSachGhe, suatChieuId }) => {
         danhSachGhe: [],
         suatChieuId,
       });
-      for (let i = 1; i <= 50; i++) {
+      for (let i = 1; i <= 100; i++) {
         newGioChieu.danhSachGhe.push({
           soGhe: `${i}`,
           trangThai: "Trong",

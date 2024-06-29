@@ -103,7 +103,6 @@ const resetPassword = async (req, res, next) => {
 const currentUser = async (req, res, next) => {
   try {
     const id = req.userId;
-    console.log(id);
     const user = await userService.currentUser(id);
     return res
       .status(StatusCodes.OK)

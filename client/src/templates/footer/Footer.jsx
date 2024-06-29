@@ -142,11 +142,13 @@ function Footer() {
                   src="https://movie-booking-project.vercel.app/img/media/facebook-logo.png"
                   alt="fb"
                 />
-                <img
-                  className="w-7 h-7"
-                  src="https://movie-booking-project.vercel.app/img/media/zalo-logo.png"
-                  alt="zalo"
-                />
+                <a href="https://zalo.me/0766640006">
+                  <img
+                    className="w-7 h-7"
+                    src="https://movie-booking-project.vercel.app/img/media/zalo-logo.png"
+                    alt="zalo"
+                  />
+                </a>
               </div>
             </div>
           </div>

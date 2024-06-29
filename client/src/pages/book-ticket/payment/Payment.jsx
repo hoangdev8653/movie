@@ -9,7 +9,7 @@ function payment({ data, arrayGhe }) {
   const [price, setPrice] = useState(0);
   const [radio, setRadio] = useState(null);
   const user = getLocalStorage("user");
-
+  console.log(data);
   const handleClickRadio = (e) => {
     setRadio(e.target.value);
   };

@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 function Button({ children, onClick, className }) {
   return (
     <button onClick={onClick} className={className}>
