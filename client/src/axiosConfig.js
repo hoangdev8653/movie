@@ -40,12 +40,9 @@ axiosConfig.interceptors.response.use(
           // Redirect to login page or handle in any other way
           return Promise.reject(error);
         }
-        const response = await axios.post(
-          "http://localhost:3007/user/refresh-token",
-          {
-            refreshToken,
-          }
-        );
+        const response = await axios.post(`${BASE_URL}/user/refreshToken`, {
+          refreshToken,
+        });
         const accessToken = response.data.newToken.accessToken;
         if (!accessToken) {
           // Handle case when refreshToken is missing

@@ -1,21 +1,21 @@
 import { Route, Routes } from "react-router-dom";
 import { PATH } from "./utils/path";
-import Home from "./pages/home/Home";
-import MovieDetail from "./pages/movie-detail/MovieDetail";
-import News from "./pages/news/News";
-import HeThongRap from "./pages/he-thong-rap/HeThongRap";
-import EventAndSale from "./pages/event-sale/EventAndSale";
-import LichChieu from "./pages/lich-chieu/LichChieu";
-import Rap from "./pages/rap-detail/RapDeatail";
+import Home from "./pages/user/home/Home";
+import MovieDetail from "./pages/user/movie-detail/MovieDetail";
+import News from "./pages/user/news/News";
+import HeThongRap from "./pages/user/he-thong-rap/HeThongRap";
+import EventAndSale from "./pages/user/event-sale/EventAndSale";
+import LichChieu from "./pages/user/lich-chieu/LichChieu";
+import Rap from "./pages/user/rap-detail/RapDeatail";
 import Layout from "./templates/Layout";
 
-import Profile from "./pages/profile/Profile";
-import Login from "./pages/login/Login";
-import Register from "./pages/register/Register";
-import BookTicket from "./pages/book-ticket/BookTicKet";
-import ForgotPassword from "./pages/ForgotPassword";
-import ResetPassword from "./pages/ResetPassword";
-import NotFound from "./pages/not-found/NotFound";
+import Profile from "./pages/user/profile/Profile";
+import Login from "./pages/user/login/Login";
+import Register from "./pages/user/register/Register";
+import BookTicket from "./pages/user/book-ticket/BookTicKet";
+import ForgotPassword from "./pages/user/ForgotPassword";
+import ResetPassword from "./pages/user/ResetPassword";
+import NotFound from "./pages/user/not-found/NotFound";
 
 function App() {
   return (
