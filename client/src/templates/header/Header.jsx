@@ -1,7 +1,6 @@
 import Logo from "../../assets/headTixLogo.png";
 import Menu from "./menu/Menu";
 import Avarta from "./avarta/Avarta";
-import { Link } from "react-router-dom";
 function Header() {
   return (
     <div

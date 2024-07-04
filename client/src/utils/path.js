@@ -1,4 +1,5 @@
 export const PATH = {
+  // USER
   LAYOUT: "/",
   HOME: "",
   PROFILE: "/profile",
@@ -13,6 +14,9 @@ export const PATH = {
   RAP: "/rap-phim/:mahethong",
   FORGOT_PASSWORD: "/forgot-password",
   RESET_PASSWORD: "/reset-password",
-
   NOTFOUND: "*",
+  // ADMIN
+  LAYOUTADMIN: "/dashboard",
+  DASHBOARD: "",
+  MOVIES: "/dashboard/movie",
 };
