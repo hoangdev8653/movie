@@ -29,12 +29,12 @@ const getBookTicketByUser = async (userId) => {
     throw createHttpError(error);
   }
 };
-const createBookTicket = async (
-  id,
-  { gioChieuId, danhSachGhe, giaVe, tongTien }
-) => {
+const createBookTicket = async (id, { gioChieuId, danhSachGhe, tongTien }) => {
   try {
-    const gioChieu = await GioChieu.findById(gioChieuId);
+    const gioChieu = await GioChieu.findById(gioChieuId).populate(
+      "suatChieuId",
+      "giaVe"
+    );
     for (const ghe of danhSachGhe) {
       const seat = gioChieu.danhSachGhe.find((seat) => seat.soGhe === ghe);
       if (seat) {
@@ -42,12 +42,11 @@ const createBookTicket = async (
       }
       await gioChieu.save();
     }
-    const tongTien = danhSachGhe.length * parseInt(giaVe);
+    const tongTien = danhSachGhe.length * parseInt(gioChieu.suatChieuId.giaVe);
     const ticket = await BookTicKet.create({
       userId: id,
       gioChieuId,
       danhSachGhe,
-      giaVe,
       tongTien: tongTien,
     });
     return ticket.save();

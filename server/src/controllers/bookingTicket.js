@@ -20,12 +20,10 @@ const getBookTicketByUser = async (req, res, next) => {
 const createBookTicket = async (req, res, next) => {
   try {
     const id = req.userId;
-    const { suatChieuId, gioChieuId, danhSachGhe, giaVe, tongTien } = req.body;
+    const { gioChieuId, danhSachGhe, tongTien } = req.body;
     const ticket = await bookTicketService.createBookTicket(id, {
-      suatChieuId,
       gioChieuId,
       danhSachGhe,
-      giaVe,
       tongTien,
     });
     return res

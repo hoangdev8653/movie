@@ -21,7 +21,6 @@ function BookTicKet() {
   }, [id]);
 
   function handleAddClass(soGhe) {
-    console.log(soGhe);
     setArrayGhe((prevArrayGhe) => {
       const newArrayGhe = [...prevArrayGhe];
       const selectedsoGhe = newArrayGhe.indexOf(soGhe);
@@ -102,7 +101,7 @@ function BookTicKet() {
               >
                 <img
                   className="rounded-full w-[60px] h-[60px] object-cover mx-auto mb-2"
-                  src={user.avarta ? user.avarta : imgageDeafaut}
+                  src={imgageDeafaut}
                   alt="avarta"
                 />
                 <div className="w-full mx-4 text-base text-gray-400 font-medium">

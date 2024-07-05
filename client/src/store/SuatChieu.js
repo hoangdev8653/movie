@@ -1,5 +1,5 @@
 import create from "zustand";
-import { getSuatChieuByMovie, getGioChieuById } from "../apis/suatChieu";
+import { getSuatChieuByMovie, getGioChieuById } from "../apis/SuatChieu";
 
 export const suatChieuStore = create((set) => ({
   data: [],

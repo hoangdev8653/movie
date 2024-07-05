@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./BookTicketHistory.module.scss";
-function BookTicketHistory(props) {
-  const userTicket = props?.userTicket;
+import { BookTicket } from "../../../../store/BookTicket";
+import { formatPrice } from "../../../../utils/forrmatPriceVn";
+
+function BookTicketHistory() {
+  const { data, getTicketByUser } = BookTicket();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await getTicketByUser();
+    };
+    fetchData();
+  }, []);
+  console.log(data);
 
   return (
     <div>
-      {userTicket ? (
+      {data && data.length > 0 ? (
         <div className="p-6">
           <div className="block w-full overflow-x-auto">
-            <table className="w-full mb-4 bg-gray-800 border-b-2 border-solid border-w-[1px] border-gray-100 ">
+            <table className="w-full mb-4  border-b-2 border-solid border-w-[1px] border-gray-100 ">
               <thead>
                 <tr>
                   <th scope="col">Stt</th>
@@ -21,35 +32,37 @@ function BookTicketHistory(props) {
                 </tr>
               </thead>
               <tbody>
-                <tr className="tr">
-                  <th scope="row">1</th>
-                  <td>{userTicket.tenPhim}</td>
-                  <td>{userTicket.ngayDat}</td>
-                  <td>
-                    {userTicket.diaChi}, {userTicket.tenRap}
-                  </td>
-                  <td>{userTicket.tenGhe}</td>
-                  <td>{userTicket.giaVe}</td>
-                  <td>{userTicket.tongTien}</td>
-                </tr>
+                {data.map((item, index) => (
+                  <tr key={index} className="border-b">
+                    <th scope="" className="px-4 py-2">
+                      {index + 1}
+                    </th>
+                    <td className="text-center px-4 py-2">
+                      {item.gioChieuId.suatChieuId.movieId.tenPhim}
+                    </td>
+                    <td className="text-center px-4 py-2">7/5/2024</td>
+                    <td className="text-center px-4 py-2">
+                      {item.gioChieuId.suatChieuId.rapId.tenRap}
+                    </td>
+                    <td className="text-center px-4 py-2">
+                      {item.danhSachGhe}
+                    </td>
+                    <td className="text-center px-4 py-2">
+                      {formatPrice(parseInt(item.gioChieuId.suatChieuId.giaVe))}
+                    </td>
+                    <td className="text-center px-4 py-2">
+                      {formatPrice(parseInt(item.gioChieuId.suatChieuId.giaVe))}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
         </div>
       ) : (
-        <table className="table table-borderd table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Stt</th>
-              <th scope="col">Tên phim</th>
-              <th scope="col">Ngày đặt</th>
-              <th scope="col">Tên rạp</th>
-              <th scope="col">Tên ghế</th>
-              <th scope="col">Giá vé(VNĐ)</th>
-              <th scope="col">Tổng tiền(VNĐ)</th>
-            </tr>
-          </thead>
-        </table>
+        <div className="text-center mt-4">
+          <p className="font-semibold text-2xl">Bạn chưa đặt vé nào.</p>
+        </div>
       )}
     </div>
   );

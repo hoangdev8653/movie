@@ -9,10 +9,11 @@ function payment({ data, arrayGhe }) {
   const [price, setPrice] = useState(0);
   const [radio, setRadio] = useState(null);
   const user = getLocalStorage("user");
-  console.log(data);
   const handleClickRadio = (e) => {
     setRadio(e.target.value);
   };
+  const id = data._id;
+  // console.log(arrayGhe);
   useEffect(() => {
     if (arrayGhe.length === 0) {
       setRadio(null);
@@ -84,7 +85,7 @@ function payment({ data, arrayGhe }) {
           </div>
           {arrayGhe && arrayGhe.length > 0 ? (
             <>
-              <div className="mt-4">
+              {/* <div className="mt-4">
                 <form>
                   <div className="flex">
                     <input
@@ -149,7 +150,8 @@ function payment({ data, arrayGhe }) {
                     <p className="my-auto">Thanh toán tại cửa hàng tiện ích</p>
                   </div>
                 </form>
-              </div>
+              </div> */}
+              <Bill totalPrice={price} arrayGhe={arrayGhe} id={id} />
             </>
           ) : (
             <>

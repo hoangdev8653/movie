@@ -40,8 +40,9 @@ function movieSapChieu({ movieSapChieu }) {
         <div className="w-full">
           <SliderCustom
             dots={true}
+            autoplay={true}
             showSlider={4}
-            showSliderScroll={1}
+            showSliderScroll={2}
             responsiveSettings={responsiveSettings}
           >
             {movieSapChieu &&

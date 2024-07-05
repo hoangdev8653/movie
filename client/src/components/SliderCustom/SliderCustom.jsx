@@ -9,12 +9,14 @@ function SliderCustom({
   showSlider,
   showSliderScroll,
   responsiveSettings,
+  autoplay,
   nextArrow: SampleNextArrow,
   prevArrow: SamplePrevArrow,
 }) {
   let settings = {
     dots: dots,
     infinite: true,
+    autoplay: autoplay,
     speed: 500,
     slidesToShow: showSlider,
     slidesToScroll: showSliderScroll,
