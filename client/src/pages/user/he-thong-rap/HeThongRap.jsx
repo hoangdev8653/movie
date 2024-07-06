@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./HeThongRap.module.scss";
 import { AiOutlineLike } from "react-icons/ai";
 import { CiShare2 } from "react-icons/ci";
-import { getAllHeThongRap } from "../../../apis/heThongRap";
+import { getAllHeThongRap } from "../../../apis/HeThongRap";
 function HeThongRap() {
   const [data, setData] = useState([]);
 

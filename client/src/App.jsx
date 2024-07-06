@@ -17,8 +17,10 @@ import ForgotPassword from "./pages/user/ForgotPassword";
 import ResetPassword from "./pages/user/ResetPassword";
 import NotFound from "./pages/user/not-found/NotFound";
 import LayoutAdmin from "./templates/admin/Layout";
+
 import Movies from "./pages/admin/Movies";
 import DashBoard from "./pages/admin/DashBoard";
+import Theater from "./pages/admin/Rap";
 
 function App() {
   return (
@@ -37,6 +39,7 @@ function App() {
       <Route path={PATH.LAYOUTADMIN} element={<LayoutAdmin />}>
         <Route path={PATH.DASHBOARD} index element={<DashBoard />} />
         <Route path={PATH.MOVIES} element={<Movies />} />
+        <Route path={PATH.THEATER} element={<Theater />} />
       </Route>
 
       <Route path={PATH.DATVE} element={<BookTicket />} />

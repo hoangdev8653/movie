@@ -19,7 +19,7 @@ export const login = async (data) => {
 export const logout = async () => {
   return await axiosConfig({
     method: "post",
-    url: "user/logout",
+    url: "/user/logout",
   });
 };
 

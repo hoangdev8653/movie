@@ -5,7 +5,7 @@ import {
   getAllMovieDangChieu,
   getAllMovieSapChieu,
   getAllBanner,
-} from "../apis/movie";
+} from "../apis/Movie";
 
 export const movieStore = create((set) => ({
   error: false,

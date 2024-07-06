@@ -47,9 +47,9 @@ function movieDangChieu({ movieDangChieu }) {
           >
             {movieDangChieu &&
               movieDangChieu.map((item, index) => (
-                <div className="px-[12px] pb-[30px]">
+                <div key={index} className="px-[12px] pb-[30px]">
                   <a className=" focus:border-none" href={`/phim/${item.slug}`}>
-                    <div key={index}>
+                    <div>
                       <img
                         className="rounded-lg focus:border-none w-[240px] h-[300px] mx-auto"
                         src={item.hinhAnh}

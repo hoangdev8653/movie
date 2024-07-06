@@ -24,7 +24,7 @@ function Navbar() {
       </div>
       <div className="m-2 p-3 cursor-pointer hover:bg-gray-300 rounded-md text-black flex items-center gap-2 opacity-50">
         <TbBrandCinema4D className="text-2xl" />
-        <span>Cinemas</span>
+        <Link to="/DashBoard/rap">Cinemas</Link>
       </div>
       <div className="m-2 p-3 cursor-pointer hover:bg-gray-300 rounded-md text-black flex items-center gap-2 opacity-50">
         <MdOutlineTimer className="text-2xl" />

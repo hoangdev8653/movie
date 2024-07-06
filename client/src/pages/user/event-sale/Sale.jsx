@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SliderCustom from "../../../components/sliderCustom/SliderCustom";
 import ModalCustom from "../../../components/modal/Modal";
-import { getAllSale } from "../../../apis/eventAndSale";
+import { getAllEvent } from "../../../apis/EventAndSale";
 
 function Event() {
   const [data, setData] = useState([]);

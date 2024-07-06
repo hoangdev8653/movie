@@ -9,8 +9,7 @@ import styles from "./RapDetail.module.scss";
 function RapDetail() {
   const { getRapByHeThongRap, data } = rapStore();
   const [itemLength, setItemLength] = useState(0);
-  const [active, setActive] = useState(false);
-  const [selectedRap, setSelectedRap] = useState(null); // Thêm state để lưu chỉ mục của rạp được chọn
+  const [selectedRap, setSelectedRap] = useState(0);
   const { mahethong } = useParams();
 
   useEffect(() => {
@@ -22,8 +21,7 @@ function RapDetail() {
 
   const handleChangeRap = (index) => {
     setItemLength(index);
-    setSelectedRap(index); // Cập nhật chỉ mục của rạp được chọn
-    setActive(true);
+    setSelectedRap(index);
   };
 
   return (

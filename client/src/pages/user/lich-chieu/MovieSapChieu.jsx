@@ -47,9 +47,9 @@ function movieSapChieu({ movieSapChieu }) {
           >
             {movieSapChieu &&
               movieSapChieu.map((item, index) => (
-                <div className="px-[12px] pb-[30px]">
+                <div key={index} className="px-[12px] pb-[30px]">
                   <a href={`/phim/${item.slug}`}>
-                    <div key={index}>
+                    <div>
                       <img
                         className="rounded-lg w-[239px] h-[300px] object-cover"
                         src={item.hinhAnh}

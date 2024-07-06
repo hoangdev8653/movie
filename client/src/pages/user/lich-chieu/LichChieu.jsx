@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllMovieDangChieu, getAllMovieSapChieu } from "../../../apis/movie";
+import { getAllMovieDangChieu, getAllMovieSapChieu } from "../../../apis/Movie";
 import MovieDangChieu from "./MovieDangChieu";
 import MovieSapChieu from "./MovieSapChieu";
 function LichChieu() {

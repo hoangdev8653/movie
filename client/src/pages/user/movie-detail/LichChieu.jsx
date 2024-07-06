@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { Tabs } from "antd";
 import { suatChieuStore } from "../../../store/SuatChieu";
+import { getLocalStorage } from "../../../utils/localStorage";
 
 function LichChieu(props) {
+  const user = getLocalStorage("user");
   const { TabPane } = Tabs;
   const { data, getSuatChieuByMovie } = suatChieuStore();
   const movieId = props.data[0]?._id;
@@ -40,17 +42,31 @@ function LichChieu(props) {
               <div className="text-red-500 font-medium overflow-x-auto px-2 py-2 my-2">
                 {item?.suatChieuId.ngaychieu}
               </div>
-              <a href={`/datVe/${item?._id}`}>
-                <button
-                  style={{
-                    background: "rgb(232 229 229)",
-                    color: "#9b9b9b",
-                  }}
-                  className="px-4 py-[6px] mx-2 text-sm rounded-md hover:opacity-80"
-                >
-                  {item?.gioChieu}
-                </button>
-              </a>
+              {user ? (
+                <a href={`/datVe/${item?._id}`}>
+                  <button
+                    style={{
+                      background: "rgb(232 229 229)",
+                      color: "#9b9b9b",
+                    }}
+                    className="px-4 py-[6px] mx-2 text-sm rounded-md hover:opacity-80"
+                  >
+                    {item?.gioChieu}
+                  </button>
+                </a>
+              ) : (
+                <Link to="/login">
+                  <button
+                    style={{
+                      background: "rgb(232 229 229)",
+                      color: "#9b9b9b",
+                    }}
+                    className="px-4 py-[6px] mx-2 text-sm rounded-md hover:opacity-80"
+                  >
+                    {item?.gioChieu}
+                  </button>
+                </Link>
+              )}
             </TabPane>
           ))}
         </Tabs>

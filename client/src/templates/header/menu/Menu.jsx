@@ -2,12 +2,20 @@ import { useState, useEffect } from "react";
 import styles from "./Menu.module.scss";
 import { MdOutlineChevronRight } from "react-icons/md";
 import { IoMenuOutline } from "react-icons/io5";
+import { getLocalStorage } from "../../../utils/localStorage";
+import { Default_avatar_profile } from "../../../image";
+import { userStore } from "../../../store/User";
 
 function Menu() {
+  const user = getLocalStorage("user");
   const [isOpen, setIsOpen] = useState(false);
+  const { logout } = userStore();
 
   const handleShowMenu = () => {
     setIsOpen(!isOpen);
+  };
+  const handleLogout = async () => {
+    await logout();
   };
   useEffect(() => {
     if (isOpen) {
@@ -46,17 +54,31 @@ function Menu() {
             <div style={{ maxHeight: "100vh" }}>
               <div className="absolute bg-white text-black z-50 top-[-20px] right-[-10px] w-[220px] h-screen">
                 <div className="flex py-2  pl-1 justify-center items-center">
-                  <a
-                    className="hover:text-red-500 flex justify-center items-center"
-                    href="/profile"
-                  >
-                    <img
-                      className="rounded-full w-[32px] h-[32px] mx-1"
-                      src="https://i.pravatar.cc/300?u=hhoang1072003@gmail.com"
-                      alt="avarta"
-                    />
-                    <span className="mr-1">Huỳnh Huy Hoàng</span>
-                  </a>
+                  {user ? (
+                    <a
+                      className="hover:text-red-500 flex justify-center items-center"
+                      href="/profile"
+                    >
+                      <img
+                        className="rounded-full w-[32px] h-[32px] mx-1"
+                        src={user.avarta ? user.avarta : Default_avatar_profile}
+                        alt="avarta"
+                      />
+                      <span className="mr-1">{user.username}</span>
+                    </a>
+                  ) : (
+                    <a
+                      className="hover:text-red-500 flex justify-center items-center"
+                      href="/login"
+                    >
+                      <img
+                        className="rounded-full w-[32px] h-[32px] mx-2"
+                        src={Default_avatar_profile}
+                        alt="avarta"
+                      />
+                      <span className="mr-1">Đăng Nhập</span>
+                    </a>
+                  )}
                   <p onClick={handleShowMenu} className="ml-3">
                     <MdOutlineChevronRight className="text-2xl hover:border-solid hover:rounded-full  hover:border-gray-400 hover:bg-gray-200 hover:text-red-500" />
                   </p>
@@ -71,11 +93,24 @@ function Menu() {
                   <div className="w-full cursor-pointer block p-4 hover:bg-gray-100">
                     <span className=" font-medium">Tin Tức</span>
                   </div>
-                  <div className="w-full cursor-pointer block p-4  hover:bg-gray-100">
+                  <div className="w-full cursor-pointer block p-4 hover:bg-gray-100">
                     <span className=" font-medium">Khuyến Mãi/Sự Kiện</span>
                   </div>
+
                   <div className="w-full cursor-pointer block p-4 hover:bg-gray-100 border-t-[0.5px] border-gray-400">
-                    <span className=" font-medium"> Đăng Xuất</span>
+                    {user ? (
+                      <a
+                        onClick={handleLogout}
+                        href="/login"
+                        className=" font-medium"
+                      >
+                        Đăng Xuất
+                      </a>
+                    ) : (
+                      <a href="/register" className=" font-medium">
+                        Đăng Ký
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>

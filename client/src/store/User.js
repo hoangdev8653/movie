@@ -1,5 +1,5 @@
 import create from "zustand";
-import { login, register, logout } from "../apis/user";
+import { login, register, logout } from "../apis/User";
 import { setLocalStorage, clearLocalStorage } from "../utils/localStorage";
 import { toast } from "react-toastify";
 

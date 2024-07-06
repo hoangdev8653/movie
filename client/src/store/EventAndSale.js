@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { getAllEvent, getAllSale } from "../apis/eventAndSale";
+import { getAllEvent, getAllSale } from "../apis/EventAndSale";
 export const EventAndSale = create((set) => ({
   error: false,
   data: [],

@@ -19,4 +19,5 @@ export const PATH = {
   LAYOUTADMIN: "/dashboard",
   DASHBOARD: "",
   MOVIES: "/dashboard/movie",
+  THEATER: "/dashboard/rap",
 };
