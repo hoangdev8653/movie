@@ -1,61 +1,60 @@
 import { create } from "zustand";
 import {
-  getAllEvent,
-  getAllSal,
-  createEventOrSale,
-  deleteById,
-} from "../apis/EventAndSale";
-export const EventAndSale = create((set) => ({
-  error: null,
-  data: [],
+  createGioChieu,
+  deleteGioChieu,
+  getAllGioChieu,
+  getGioChieuById,
+  getGioChieuByMovie,
+} from "../apis/GioChieu";
+
+export const GioChieuStore = create((set) => ({
   isLoading: false,
+  data: [],
+  error: null,
 
-  getAllEvent: async () => {
+  getAllGioChieu: async () => {
     try {
       set({ isLoading: true });
-      const response = await getAllEvent();
+      const response = await getAllGioChieu();
+      set({ isLoading: false });
       if (response.status === 200) {
         set({ data: response.data.content });
-        set({ isLoading: false });
       }
     } catch (error) {
       console.log(error);
       set({ error: error.message });
     }
   },
-  getAllSale: async () => {
+  getGioChieuById: async (id) => {
     try {
       set({ isLoading: true });
-      const response = await getAllSale();
+      const response = await getGioChieuById(id);
+      set({ isLoading: false });
       if (response.status === 200) {
         set({ data: response.data.content });
-        set({ isLoading: false });
       }
     } catch (error) {
       console.log(error);
       set({ error: error.message });
     }
   },
-
-  createEventOrSale: async (data) => {
+  createGioChieu: async (data) => {
     try {
       set({ isLoading: true });
-      const response = await createEventOrSale(data);
+      const response = await createGioChieu(data);
       set({ isLoading: false });
       if (response.status === 201) {
-        console.log("Tạo mới thành công");
+        console.log("Thêm mới thành công");
       }
     } catch (error) {
       console.log(error);
       set({ error: error.message });
     }
   },
-
-  deleteById: async (id) => {
+  deleteGioChieu: async (id) => {
     try {
       set({ isLoading: true });
-      const response = await deleteById(id);
-      set({ isLoading: false });
+      const response = await deleteGioChieu(id);
       if (response.status === 200) {
         console.log("Xóa thành công");
       }

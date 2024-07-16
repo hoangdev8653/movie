@@ -1,15 +1,21 @@
 import create from "zustand";
-import { getSuatChieuByMovie, getGioChieuById } from "../apis/SuatChieu";
+import {
+  getSuatChieuByMovie,
+  createSuatChieu,
+  deleteSuatChieu,
+  getSuatChieu,
+  getSuatChieuById,
+} from "../apis/SuatChieu";
 
 export const suatChieuStore = create((set) => ({
   data: [],
   isLoading: false,
   error: null,
 
-  getSuatChieuByMovie: async (id) => {
+  getSuatChieuByMovie: async (movieId) => {
     try {
       set({ isLoading: true });
-      const response = await getSuatChieuByMovie(id);
+      const response = await getSuatChieuByMovie(movieId);
       if (response.status === 200) {
         set({ isLoading: true });
         set({ data: response.data.content });

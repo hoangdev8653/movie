@@ -18,6 +18,8 @@ export const PATH = {
   // ADMIN
   LAYOUTADMIN: "/dashboard",
   DASHBOARD: "",
+  THEATER_SYSTEM: "/dashboard/theater-system",
   MOVIES: "/dashboard/movie",
   THEATER: "/dashboard/rap",
+  USER: "/dashboard/user",
 };

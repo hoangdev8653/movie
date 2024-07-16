@@ -1,5 +1,12 @@
 import { axiosConfig } from "../axiosConfig";
 
+export const getAllUser = async (data) => {
+  return await axiosConfig({
+    method: "get",
+    url: "/user/",
+  });
+};
+
 export const register = async (data) => {
   return await axiosConfig({
     method: "post",

@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { movieStore } from "../../store/Movie";
 import { MdOutlineModeEditOutline, MdDeleteForever } from "react-icons/md";
+import Paginate from "../../components/paginate/Paginate";
 
 function Movies() {
   const { data, getAllMovie } = movieStore();
+  const [currentItems, setCurrentItems] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -11,7 +13,10 @@ function Movies() {
     };
     fetchData();
   }, []);
-  console.log(data);
+
+  const handlePageChange = (items) => {
+    setCurrentItems(items);
+  };
 
   return (
     <div className="w-full h-full">
@@ -32,7 +37,6 @@ function Movies() {
               <th scope="col" className="px-4 py-3">
                 Hình Ảnh
               </th>
-
               <th scope="col" className="px-4 py-3 text-center">
                 Mô Tả
               </th>
@@ -42,35 +46,42 @@ function Movies() {
             </tr>
           </thead>
           <tbody>
-            {data && data.length > 0 ? (
-              <>
-                {data.map((item, index) => (
-                  <tr key={index} className="bg-white border-b  ">
-                    <td className="px-4 py-4">{item.tenPhim}</td>
-                    <td className="px-4 py-4">
-                      <img
-                        className="w-[238px]"
-                        src={item.hinhAnh}
-                        alt={item.slug}
-                      />
-                    </td>
-                    <td className="px-4 py-4">{item.moTa}</td>
-                    <td className="px-4 py-4 flex gap-1">
-                      <span className="font-medium text-blue-600 dark:text-blue-500 hover:underline hover:opacity-60 cursor-pointer">
-                        <MdOutlineModeEditOutline className="text-2xl" />
-                      </span>
-                      <span className="text-red-600 hover:opacity-70 cursor-pointer">
-                        <MdDeleteForever className="text-2xl " />
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </>
+            {currentItems && currentItems.length > 0 ? (
+              currentItems.map((item, index) => (
+                <tr key={index} className="bg-white border-b  ">
+                  <td className="px-4 py-4">{item.tenPhim}</td>
+                  <td className="px-4 py-4">
+                    <img
+                      className="w-[238px]"
+                      src={item.hinhAnh}
+                      alt={item.slug}
+                    />
+                  </td>
+                  <td className="px-4 py-4">{item.moTa}</td>
+                  <td className="px-4 py-4 flex gap-1">
+                    <span className="font-medium text-blue-600 dark:text-blue-500 hover:underline hover:opacity-60 cursor-pointer">
+                      <MdOutlineModeEditOutline className="text-2xl" />
+                    </span>
+                    <span className="text-red-600 hover:opacity-70 cursor-pointer">
+                      <MdDeleteForever className="text-2xl " />
+                    </span>
+                  </td>
+                </tr>
+              ))
             ) : (
-              <></>
+              <tr>
+                <td colSpan="4" className="px-4 py-4 text-center">
+                  No movies available
+                </td>
+              </tr>
             )}
           </tbody>
         </table>
+        <Paginate
+          data={data}
+          itemsPerPage={5}
+          onPageChange={handlePageChange}
+        />
       </div>
     </div>
   );

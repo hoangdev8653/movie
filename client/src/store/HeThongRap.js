@@ -1,60 +1,46 @@
 import { create } from "zustand";
 import {
-  getAllEvent,
-  getAllSal,
-  createEventOrSale,
-  deleteById,
-} from "../apis/EventAndSale";
-export const EventAndSale = create((set) => ({
+  getAllHeThongRap,
+  createHeThongRap,
+  deleteHeThongRap,
+} from "../apis/HeThongRap";
+
+export const HeThongRap = create((set) => ({
   error: null,
   data: [],
   isLoading: false,
 
-  getAllEvent: async () => {
+  getAllHeThongRap: async () => {
     try {
       set({ isLoading: true });
-      const response = await getAllEvent();
+      const response = await getAllHeThongRap();
+      console.log(response);
       if (response.status === 200) {
-        set({ data: response.data.content });
         set({ isLoading: false });
+        set({ data: response.data.content });
       }
     } catch (error) {
       console.log(error);
       set({ error: error.message });
     }
   },
-  getAllSale: async () => {
+  createHeThongRap: async (data) => {
     try {
       set({ isLoading: true });
-      const response = await getAllSale();
-      if (response.status === 200) {
-        set({ data: response.data.content });
-        set({ isLoading: false });
-      }
-    } catch (error) {
-      console.log(error);
-      set({ error: error.message });
-    }
-  },
-
-  createEventOrSale: async (data) => {
-    try {
-      set({ isLoading: true });
-      const response = await createEventOrSale(data);
+      const response = await createHeThongRap(data);
       set({ isLoading: false });
       if (response.status === 201) {
-        console.log("Tạo mới thành công");
+        console.log("Thêm mới thành công");
       }
     } catch (error) {
       console.log(error);
       set({ error: error.message });
     }
   },
-
-  deleteById: async (id) => {
+  deleteHeThongRap: async (id) => {
     try {
       set({ isLoading: true });
-      const response = await deleteById(id);
+      const response = await deleteHeThongRap(id);
       set({ isLoading: false });
       if (response.status === 200) {
         console.log("Xóa thành công");

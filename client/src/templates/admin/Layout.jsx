@@ -4,6 +4,7 @@ import Logo from "../../assets/headTixLogo.png";
 import { IoIosSearch } from "react-icons/io";
 import Navbar from "./navbar/Navbar";
 import { Outlet } from "react-router-dom";
+import BackToTop from "../../components/BackToTop";
 
 function Layout({ children }) {
   return (
@@ -31,8 +32,9 @@ function Layout({ children }) {
       </div>
       <div className="flex bg-gray-50 ">
         <Navbar />
-        <div>
+        <div className="flex-1">
           <Outlet />
+          <BackToTop />
         </div>
       </div>
     </div>

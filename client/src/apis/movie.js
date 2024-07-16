@@ -34,3 +34,18 @@ export const getAllMovieDangChieu = async () => {
     url: "/movie/dangChieu",
   });
 };
+
+export const createMovie = async (data) => {
+  return await axiosConfig({
+    method: "post",
+    url: "/movie/create",
+    data,
+  });
+};
+
+export const deleteMovie = async (id) => {
+  return await axiosConfig({
+    method: "delete",
+    url: `/movie/delete/?id=${id}`,
+  });
+};

@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
-import styles from "./Modal.module.scss";
+import styles from "./AddNew.module.scss";
 import { FaFacebookF, FaPinterest, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
 import { BsFillTagsFill } from "react-icons/bs";
-
-function ModalCustom({ item, onClose }) {
+function AddNew({ item, onClose }) {
   const overlay = document.getElementById("overlay");
   useEffect(() => {
     if (!overlay) {
@@ -17,7 +16,7 @@ function ModalCustom({ item, onClose }) {
       document.body.style.overflow = "auto";
     };
   }, [overlay]);
-
+  console.log(item);
   return (
     <div className="relative">
       <div className={styles.bg}>
@@ -79,4 +78,4 @@ function ModalCustom({ item, onClose }) {
   );
 }
 
-export default ModalCustom;
+export default AddNew;

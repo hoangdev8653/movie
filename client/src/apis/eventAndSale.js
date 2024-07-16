@@ -13,3 +13,18 @@ export const getAllSale = async () => {
     url: "/eventAndSale/sale",
   });
 };
+
+export const createEventOrSale = async (data) => {
+  return await axiosConfig({
+    method: "post",
+    url: "/eventAndSale/create",
+    data,
+  });
+};
+
+export const deleteById = async (id) => {
+  return await axiosConfig({
+    method: "delete",
+    url: `/eventAndSale/delete?id${id}`,
+  });
+};

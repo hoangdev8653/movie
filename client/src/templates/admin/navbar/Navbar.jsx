@@ -10,6 +10,7 @@ import { IoPersonAddOutline } from "react-icons/io5";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { MdLockReset } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { GiTheater } from "react-icons/gi";
 
 function Navbar() {
   return (
@@ -17,6 +18,10 @@ function Navbar() {
       <div className="m-2 p-3 cursor-pointer hover:bg-gray-300 rounded-md text-black flex items-center gap-2 opacity-50">
         <GoHome className="text-2xl" />
         <Link to="/DashBoard/">Dashboard</Link>
+      </div>
+      <div className="m-2 p-3 cursor-pointer hover:bg-gray-300 rounded-md text-black flex items-center gap-2 opacity-50">
+        <GiTheater className="text-2xl" />
+        <Link to="/DashBoard/theater-system">Theater System</Link>
       </div>
       <div className="m-2 p-3 cursor-pointer hover:bg-gray-300 rounded-md text-black flex items-center gap-2 opacity-50">
         <MdOutlineMovie className="text-2xl" />
@@ -38,26 +43,26 @@ function Navbar() {
         <p className="m-2 p-3">Authentication</p>
         <div className="m-2 p-3 cursor-pointer hover:bg-gray-300 rounded-md text-black flex items-center gap-2 opacity-50">
           <IoPersonAddOutline className="text-2xl" />
-          <span>Sign Up</span>
+          <Link to="/register">Sign Up</Link>
         </div>
         <div className="m-2 p-3 cursor-pointer hover:bg-gray-300 rounded-md text-black flex items-center gap-2 opacity-50">
           <IoMdLogIn className="text-2xl" />
-          <span>Sign In</span>
+          <Link to="/login">Sign In</Link>
         </div>
         <div className="m-2 p-3 cursor-pointer hover:bg-gray-300 rounded-md text-black flex items-center gap-2 opacity-50">
           <RiLockPasswordFill className="text-2xl" />
-          <span>Forgot Password</span>
+          <Link to="/forgot-password">Forgot Password</Link>
         </div>
         <div className="m-2 p-3 cursor-pointer hover:bg-gray-300 rounded-md text-black flex items-center gap-2 opacity-50">
           <MdLockReset className="text-2xl" />
-          <span>Reset Password</span>
+          <Link to="/reset-password">Reset Password</Link>
         </div>
       </div>
       <div className="my-2">
         <p className="m-2 p-3">Settings</p>
         <div className="m-2 p-3 cursor-pointer hover:bg-gray-300 rounded-md text-black flex items-center gap-2 opacity-50">
           <CgProfile className="text-2xl" />
-          <span>Person Settings</span>
+          <Link to="/dashboard/user">Person Settings</Link>
         </div>
         <div className="m-2 p-3 cursor-pointer hover:bg-gray-300 rounded-md text-black flex items-center gap-2 opacity-50">
           <GoQuestion className="text-2xl" />

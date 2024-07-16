@@ -1,5 +1,11 @@
 import create from "zustand";
-import { login, register, logout } from "../apis/User";
+import {
+  login,
+  register,
+  logout,
+  forgotPassword,
+  getAllUser,
+} from "../apis/User";
 import { setLocalStorage, clearLocalStorage } from "../utils/localStorage";
 import { toast } from "react-toastify";
 
@@ -7,6 +13,21 @@ export const userStore = create((set) => ({
   user: null,
   error: false,
   isLoading: false,
+
+  getAllUser: async () => {
+    try {
+      set({ isLoading: true });
+      const response = await getAllUser();
+      if (response.status === 200) {
+        set({ isLoading: false });
+        set({ data: response.data.content });
+      }
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message });
+    }
+  },
+
   login: async (data) => {
     try {
       set({ isLoading: true });

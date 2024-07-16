@@ -1,9 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { MdOutlineModeEditOutline, MdDeleteForever } from "react-icons/md";
 import { rapStore } from "../../store/Rap";
+import AddNew from "../../components/add-new/AddNew";
+import Paginate from "../../components/paginate/Paginate";
 
 function Rap() {
   const { data, getAllRap } = rapStore();
+  const [currentItems, setCurrentItems] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -11,11 +15,20 @@ function Rap() {
     };
     fetchData();
   }, []);
-  console.log(data);
+  const handleOpenModal = (item) => {
+    setSelectedItem(item);
+  };
+  const handlePageChange = (items) => {
+    setCurrentItems(items);
+  };
 
   return (
     <div className="w-full h-full">
       <div className="mt-8 ml-8 text-2xl font-medium">Movie</div>
+      <div onClick={handleOpenModal}>Add</div>
+      {selectedItem && (
+        <AddNew item={selectedItem} onClose={() => setSelectedItem(null)} />
+      )}
       <div className="relative overflow-x-auto sm:rounded-md my-2 mx-8">
         <table
           style={{
@@ -44,9 +57,9 @@ function Rap() {
             </tr>
           </thead>
           <tbody>
-            {data && data.length > 0 ? (
+            {currentItems && currentItems.length > 0 ? (
               <>
-                {data.map((item, index) => (
+                {currentItems.map((item, index) => (
                   <tr key={index} className="bg-white border-b  ">
                     <td className="px-4 py-4">{item._id}</td>
                     <td className="px-4 py-4">{item.tenRap}</td>
@@ -74,6 +87,13 @@ function Rap() {
             )}
           </tbody>
         </table>
+        <>
+          <Paginate
+            data={data}
+            itemsPerPage={3}
+            onPageChange={handlePageChange}
+          />
+        </>
       </div>
     </div>
   );

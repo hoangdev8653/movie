@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from "react";
 import SliderCustom from "../../../components/sliderCustom/SliderCustom";
-import { getAllNews } from "../../../apis/News";
 import ModalCustom from "../../../components/modal/Modal";
+import { NewsStore } from "../../../store/News";
+
 function News() {
-  const [data, setData] = useState([]);
+  const { data, getAllNews } = NewsStore();
   const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getAllNews();
-      if (response.status === 200) {
-        setData(response.data.content);
-      } else {
-        console.log("Fail!!!");
-      }
+      await getAllNews();
     };
     fetchData();
   }, []);

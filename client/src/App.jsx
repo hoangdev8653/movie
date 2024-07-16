@@ -18,9 +18,11 @@ import ResetPassword from "./pages/user/ResetPassword";
 import NotFound from "./pages/user/not-found/NotFound";
 import LayoutAdmin from "./templates/admin/Layout";
 
-import Movies from "./pages/admin/Movies";
 import DashBoard from "./pages/admin/DashBoard";
+import TheaterSystem from "./pages/admin/TheaterSystem";
 import Theater from "./pages/admin/Rap";
+import Movies from "./pages/admin/Movies";
+import User from "./pages/admin/User";
 
 function App() {
   return (
@@ -38,8 +40,10 @@ function App() {
 
       <Route path={PATH.LAYOUTADMIN} element={<LayoutAdmin />}>
         <Route path={PATH.DASHBOARD} index element={<DashBoard />} />
-        <Route path={PATH.MOVIES} element={<Movies />} />
+        <Route path={PATH.THEATER_SYSTEM} element={<TheaterSystem />} />
         <Route path={PATH.THEATER} element={<Theater />} />
+        <Route path={PATH.MOVIES} element={<Movies />} />
+        <Route path={PATH.USER} element={<User />} />
       </Route>
 
       <Route path={PATH.DATVE} element={<BookTicket />} />
