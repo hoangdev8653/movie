@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import SliderCustom from "../../../components/sliderCustom/SliderCustom";
 import ModalCustom from "../../../components/modal/Modal";
-import { getAllEvent } from "../../../apis/EventAndSale";
+import { EventAndSaleStore } from "../../../store/EventAndSale";
 
 function Event() {
-  const [data, setData] = useState([]);
+  const { data, getAllSale } = EventAndSaleStore();
   const [selectedItem, setSelectedItem] = useState(null);
 
   const handleOpenModal = (item) => {
@@ -13,8 +13,7 @@ function Event() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getAllSale();
-        setData(response.data.content);
+        await getAllSale();
       } catch (error) {
         console.log(error);
       }

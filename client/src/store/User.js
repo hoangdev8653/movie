@@ -33,7 +33,9 @@ export const userStore = create((set) => ({
       set({ isLoading: true });
       const response = await login(data);
       if (response.status === 200) {
-        set({ isLoading: false });
+        setTimeout(() => {
+          set({ isLoading: false });
+        }, 3000);
         toast.success("Đăng nhập thành công");
         set({ user: response.data.content });
         setLocalStorage("user", response.data.content);
@@ -75,6 +77,19 @@ export const userStore = create((set) => ({
       }
     } catch (error) {
       throw new error("Failed to register");
+    }
+  },
+  forgotPassword: async (data) => {
+    try {
+      set({ isLoading: true });
+      const response = await forgotPassword(data);
+      set({ isLoading: false });
+      if (response.status === 200) {
+        console.log("Gửi Mail thành công");
+      }
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message });
     }
   },
 }));

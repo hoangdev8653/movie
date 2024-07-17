@@ -4,7 +4,6 @@ import styles from "./Login.module.scss";
 import { useNavigate, Link } from "react-router-dom";
 import { userValidate } from "../../../validations/user";
 import { useFormik } from "formik";
-import { toast } from "react-toastify";
 import { userStore } from "../../../store/User";
 import { CgSpinner } from "react-icons/cg";
 

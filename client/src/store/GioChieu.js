@@ -11,7 +11,19 @@ export const GioChieuStore = create((set) => ({
   isLoading: false,
   data: [],
   error: null,
-
+  getGioChieuByMovie: async (id) => {
+    try {
+      set({ isLoading: true });
+      const response = await getGioChieuByMovie(id);
+      set({ isLoading: false });
+      if (response.status === 200) {
+        set({ data: response.data.content });
+      }
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message });
+    }
+  },
   getAllGioChieu: async () => {
     try {
       set({ isLoading: true });

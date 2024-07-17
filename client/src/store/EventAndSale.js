@@ -1,11 +1,11 @@
 import { create } from "zustand";
 import {
   getAllEvent,
-  getAllSal,
+  getAllSale,
   createEventOrSale,
   deleteById,
 } from "../apis/EventAndSale";
-export const EventAndSale = create((set) => ({
+export const EventAndSaleStore = create((set) => ({
   error: null,
   data: [],
   isLoading: false,

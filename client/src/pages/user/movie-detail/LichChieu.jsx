@@ -1,17 +1,18 @@
 import React, { useEffect } from "react";
 import { Tabs } from "antd";
-import { suatChieuStore } from "../../../store/SuatChieu";
+import { Link } from "react-router-dom";
+import { GioChieuStore } from "../../../store/GioChieu";
 import { getLocalStorage } from "../../../utils/localStorage";
 
 function LichChieu(props) {
   const user = getLocalStorage("user");
   const { TabPane } = Tabs;
-  const { data, getSuatChieuByMovie } = suatChieuStore();
+  const { data, getGioChieuByMovie } = GioChieuStore();
   const movieId = props.data[0]?._id;
 
   useEffect(() => {
     const fetchData = async () => {
-      await getSuatChieuByMovie(movieId);
+      await getGioChieuByMovie(movieId);
     };
     fetchData();
   }, [movieId]);
@@ -26,7 +27,7 @@ function LichChieu(props) {
           {data.map((item, index) => (
             <TabPane
               tab={
-                <div className="flex gap-2 mt-6 border-solid border-[1px]">
+                <div className="flex gap-2 mt-6 ">
                   <img
                     className="w-[40px] h-[40px] rounded-full mx-1"
                     src={item?.suatChieuId.rapId.hinhAnh}

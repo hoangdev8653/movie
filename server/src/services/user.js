@@ -94,6 +94,7 @@ const updateAvarta = async (id, { avarta }) => {
 
 const forgotPassword = async ({ email }) => {
   try {
+    console.log(email);
     const user = await User.findOne({ email });
     if (!user) {
       throw createHttpError.NotFound("Email Not Found");
@@ -101,6 +102,7 @@ const forgotPassword = async ({ email }) => {
     const token = jwt.sign({ id: user._id }, process.env.SERCRET_KEY, {
       expiresIn: "1h",
     });
+    console.log(token);
     user.passwordResetToken = token;
     user.passwordResetExpires = Date.now() + 3600000;
     await user.save();
