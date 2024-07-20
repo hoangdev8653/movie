@@ -67,7 +67,7 @@ function User() {
                     <td className="px-4 py-4 text-center">{item.phone}</td>
                     <td className="px-4 text-center">{item.role}</td>
                     <td className="px-4  text-center">{item.address}</td>
-                    <td className="px-4 py-4 flex gap-1 justify-center">
+                    <td className="px-4 py-4 flex gap-1 justify-center my-20">
                       <span className="font-medium text-blue-600 dark:text-blue-500 hover:underline hover:opacity-60 cursor-pointer ">
                         <MdOutlineModeEditOutline className="text-2xl" />
                       </span>

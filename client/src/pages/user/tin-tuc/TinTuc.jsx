@@ -3,7 +3,7 @@ import SliderCustom from "../../../components/sliderCustom/SliderCustom";
 import ModalCustom from "../../../components/modal/Modal";
 import { NewsStore } from "../../../store/News";
 
-function News() {
+function TinTuc() {
   const { data, getAllNews } = NewsStore();
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -89,4 +89,4 @@ function News() {
   );
 }
 
-export default News;
+export default TinTuc;

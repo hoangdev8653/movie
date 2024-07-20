@@ -71,7 +71,7 @@ function Rap() {
                       />
                     </td>
                     <td className="px-4 py-4">{item.diaChi}</td>
-                    <td className="px-4 py-4 flex gap-1 ">
+                    <td className="px-4 py-4 flex gap-1 my-20">
                       <span className="font-medium text-blue-600 dark:text-blue-500 hover:underline hover:opacity-60 cursor-pointer">
                         <MdOutlineModeEditOutline className="text-2xl" />
                       </span>

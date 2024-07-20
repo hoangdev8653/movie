@@ -22,4 +22,6 @@ export const PATH = {
   MOVIES: "/dashboard/movie",
   THEATER: "/dashboard/rap",
   USER: "/dashboard/user",
+  NEWS: "/dashboard/news",
+  EVENT: "/dashboard/event",
 };

@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { PATH } from "./utils/path";
 import Home from "./pages/user/home/Home";
 import MovieDetail from "./pages/user/movie-detail/MovieDetail";
-import News from "./pages/user/news/News";
+import TinTuc from "./pages/user/tin-tuc/TinTuc";
 import HeThongRap from "./pages/user/he-thong-rap/HeThongRap";
 import EventAndSale from "./pages/user/event-sale/EventAndSale";
 import LichChieu from "./pages/user/lich-chieu/LichChieu";
@@ -23,6 +23,8 @@ import TheaterSystem from "./pages/admin/TheaterSystem";
 import Theater from "./pages/admin/Rap";
 import Movies from "./pages/admin/Movies";
 import User from "./pages/admin/User";
+import News from "./pages/admin/News";
+import Event from "./pages/admin/Event";
 
 function App() {
   return (
@@ -30,7 +32,7 @@ function App() {
       <Route path={PATH.LAYOUT} element={<LayoutUser />}>
         <Route path={PATH.HOME} index element={<Home />} />
         <Route path={PATH.MOVIE} element={<MovieDetail />} />
-        <Route path={PATH.TINTUC} element={<News />} />
+        <Route path={PATH.TINTUC} element={<TinTuc />} />
         <Route path={PATH.HETHONGRAP} element={<HeThongRap />} />
         <Route path={PATH.RAP} element={<Rap />} />
         <Route path={PATH.EVENTANDSALE} element={<EventAndSale />} />
@@ -44,6 +46,8 @@ function App() {
         <Route path={PATH.THEATER} element={<Theater />} />
         <Route path={PATH.MOVIES} element={<Movies />} />
         <Route path={PATH.USER} element={<User />} />
+        <Route path={PATH.NEWS} element={<News />} />
+        <Route path={PATH.EVENT} element={<Event />} />
       </Route>
 
       <Route path={PATH.DATVE} element={<BookTicket />} />

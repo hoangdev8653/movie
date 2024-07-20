@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import {
+  getAllEventAndSale,
   getAllEvent,
   getAllSale,
   createEventOrSale,
@@ -9,6 +10,20 @@ export const EventAndSaleStore = create((set) => ({
   error: null,
   data: [],
   isLoading: false,
+
+  getAllEventAndSale: async () => {
+    try {
+      set({ isLoading: true });
+      const response = await getAllEventAndSale();
+      set({ isLoading: false });
+      if (response.status === 200) {
+        set({ data: response.data.content });
+      }
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message });
+    }
+  },
 
   getAllEvent: async () => {
     try {

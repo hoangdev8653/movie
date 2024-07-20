@@ -11,6 +11,8 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { MdLockReset } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { GiTheater } from "react-icons/gi";
+import { IoNewspaper } from "react-icons/io5";
+import { PiNumberSquareSevenThin } from "react-icons/pi";
 
 function Navbar() {
   return (
@@ -30,6 +32,14 @@ function Navbar() {
       <div className="m-2 p-3 cursor-pointer hover:bg-gray-300 rounded-md text-black flex items-center gap-2 opacity-50">
         <TbBrandCinema4D className="text-2xl" />
         <Link to="/DashBoard/rap">Cinemas</Link>
+      </div>
+      <div className="m-2 p-3 cursor-pointer hover:bg-gray-300 rounded-md text-black flex items-center gap-2 opacity-50">
+        <IoNewspaper className="text-2xl" />
+        <Link to="/DashBoard/news">News</Link>
+      </div>
+      <div className="m-2 p-3 cursor-pointer hover:bg-gray-300 rounded-md text-black flex items-center gap-2 opacity-50">
+        <PiNumberSquareSevenThin className="text-2xl" />
+        <Link to="/DashBoard/event">Event</Link>
       </div>
       <div className="m-2 p-3 cursor-pointer hover:bg-gray-300 rounded-md text-black flex items-center gap-2 opacity-50">
         <MdOutlineTimer className="text-2xl" />

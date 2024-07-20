@@ -1,5 +1,12 @@
 import { axiosConfig } from "../axiosConfig";
 
+export const getAllEventAndSale = async () => {
+  return await axiosConfig({
+    method: "get",
+    url: "/eventAndsale",
+  });
+};
+
 export const getAllEvent = async () => {
   return await axiosConfig({
     method: "get",

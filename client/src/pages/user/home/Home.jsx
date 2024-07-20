@@ -1,4 +1,4 @@
-import News from "../news/News";
+import News from "../tin-tuc/TinTuc";
 import LichChieu from "../lich-chieu/LichChieu";
 import Banner from "./banner/Banner";
 import EventAndSale from "../event-sale/EventAndSale";
