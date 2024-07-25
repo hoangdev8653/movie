@@ -41,6 +41,7 @@ const login = async ({ email, password }) => {
       throw createHttpError.NotFound("Email Not Found");
     }
     const isValid = await user.checkPassword(password);
+
     if (!isValid) {
       throw createHttpError.Unauthorized("incorrect password");
     }

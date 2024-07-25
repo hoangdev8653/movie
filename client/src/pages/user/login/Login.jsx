@@ -9,7 +9,7 @@ import { CgSpinner } from "react-icons/cg";
 
 function Login() {
   const navigate = useNavigate();
-  const { login, isLoading } = userStore();
+  const { login, isLoading, user, role } = userStore();
 
   const formik = useFormik({
     initialValues: {
@@ -19,14 +19,21 @@ function Login() {
     validationSchema: userValidate.login,
     onSubmit: async (values) => {
       try {
-        const error = await login(values);
-        if (error === null) {
-          setTimeout(() => {
-            navigate("/");
-          }, 3000);
-        } else {
-          return;
-        }
+        await login(values);
+        setTimeout(() => {
+          navigate("/");
+        }, 3000);
+        // const timer = setTimeout(() => {
+        //   console.log(role);
+        //   if (role === "user") {
+        //     navigate("/");
+        //   } else if (role === "admin") {
+        //     navigate("/dashboard");
+        //   }
+        //   return () => {
+        //     clearTimeout(timer);
+        //   };
+        // }, 3000);
       } catch (error) {
         console.log("Đăng nhập không thành công:", error);
       }

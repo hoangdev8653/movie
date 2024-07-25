@@ -81,7 +81,7 @@ function Event() {
         </table>
         <Paginate
           data={data}
-          itemsPerPage={5}
+          itemsPerPage={4}
           onPageChange={handlePageChange}
         />
       </div>

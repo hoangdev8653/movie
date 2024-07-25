@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { reviewStore } from "../../../../store/Review";
 import Rating from "../../../../components/Rating";
 import ShowMore from "../../../../components/ShowMore";
+import LogoLoader from "../../../../components/loader/Loader";
 
 function Comment(props) {
   const movieId = props.data;
@@ -18,7 +19,11 @@ function Comment(props) {
     fetchData();
   }, [movieId]);
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (
+      <>
+        <LogoLoader />
+      </>
+    );
   }
 
   return (
@@ -37,7 +42,7 @@ function Comment(props) {
                       <img
                         className="w-9 h-9 rounded-3xl"
                         src={
-                          item.avarta ||
+                          item?.avarta ||
                           "https://i.pravatar.cc/150?u=hdchgfwed123dfg"
                         }
                         alt="avatar"
@@ -45,20 +50,20 @@ function Comment(props) {
                     </span>
                     <span className="inline-block ml-3">
                       <p className="text-black text-sm font-medium capitalize">
-                        {item.userId.username}
+                        {item?.userId?.username}
                       </p>
                       <p>1 tuần trước</p>
                     </span>
                   </div>
                   <div className="float-right">
-                    <Rating rating={item.ratting} disabled={true} />
+                    <Rating rating={item?.ratting} disabled={true} />
                   </div>
                 </div>
                 <div
                   style={{ borderBottom: "1px solid #dee2e6" }}
                   className="py-2"
                 >
-                  <p className="mb-0 text-base">{item.content}</p>
+                  <p className="mb-0 text-base">{item?.content}</p>
                 </div>
               </div>
             </div>

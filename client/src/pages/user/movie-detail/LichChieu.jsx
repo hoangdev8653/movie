@@ -44,7 +44,7 @@ function LichChieu(props) {
                 {item?.suatChieuId.ngaychieu}
               </div>
               {user ? (
-                <a href={`/datVe/${item?._id}`}>
+                <a href={`/datVe/${item._id}`}>
                   <button
                     style={{
                       background: "rgb(232 229 229)",

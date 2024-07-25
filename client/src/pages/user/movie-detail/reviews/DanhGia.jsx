@@ -7,13 +7,14 @@ import Ratting from "../../../../components/Rating";
 import { getLocalStorage } from "../../../../utils/localStorage";
 import { Default_avatar_profile } from "../../../../image";
 import { reviewStore } from "../../../../store/Review";
+import LogoLoader from "../../../../components/loader/Loader";
 
 function DanhGia({ data }) {
   const movieId = data[0]._id;
   const [isShowModal, setIsShowModal] = useState(false);
   const [starValue, setStarValue] = useState(0);
   const [content, setContent] = useState("");
-  const { createReview } = reviewStore();
+  const { createReview, isLoading } = reviewStore();
   const [canSubmit, setCanSubmit] = useState(false);
   const user = getLocalStorage("user");
   const modalRef = useRef();
@@ -43,11 +44,10 @@ function DanhGia({ data }) {
       document.removeEventListener("mousedown", handleClickOuside);
     };
   }, [isShowModal]);
-
   const handleChangeContent = (e) => {
     const newValue = e.target.value;
     setContent(newValue);
-    if (newValue.length > 5) {
+    if (newValue.length > 5 && starValue != 0) {
       setCanSubmit(true);
     } else {
       setCanSubmit(false);
@@ -61,7 +61,7 @@ function DanhGia({ data }) {
       setIsShowModal(false);
       setStarValue(0);
       setContent("");
-    }, 1500);
+    }, 3000);
   };
 
   return (
@@ -126,6 +126,9 @@ function DanhGia({ data }) {
                         className="text-black border-solid border-2 border-gray mx-auto p-4 text-base focus:border-red-300 rounded w-11/12"
                         type="text"
                       />
+                    </div>
+                    <div className="p-4 text-center">
+                      {isLoading ? <LogoLoader /> : ""}
                     </div>
                     <div className="flex items-center justify-center p-2 border-solid border-slate-200 rounded-b">
                       <button

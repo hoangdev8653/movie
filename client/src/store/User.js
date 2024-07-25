@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 
 export const userStore = create((set) => ({
   user: null,
+  role: null,
   error: false,
   isLoading: false,
 
@@ -38,6 +39,7 @@ export const userStore = create((set) => ({
         }, 3000);
         toast.success("Đăng nhập thành công");
         set({ user: response.data.content });
+        set({ role: response.data.content.role });
         setLocalStorage("user", response.data.content);
         setLocalStorage("accessToken", response.data.accessToken);
         setLocalStorage("refreshToken", response.data.refreshToken);
