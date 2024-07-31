@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import styles from "./BookTicketHistory.module.scss";
 import { BookTicket } from "../../../../store/BookTicket";
 import { formatPrice } from "../../../../utils/forrmatPriceVn";
 
@@ -12,7 +11,6 @@ function BookTicketHistory() {
     };
     fetchData();
   }, []);
-  console.log(data);
 
   return (
     <div>

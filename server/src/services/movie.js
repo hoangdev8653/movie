@@ -127,7 +127,6 @@ const updateMovie = async (
 
 const updateTrailerMovie = async (id, { trailer }) => {
   try {
-    console.log(id);
     const movieExits = await Movie.findById(id);
     if (!movieExits) {
       throw createHttpError.NotFound("Movie Not Found");

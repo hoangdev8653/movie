@@ -4,6 +4,7 @@ import { FaFacebookF, FaPinterest, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
 import { BsFillTagsFill } from "react-icons/bs";
+import Overlay from "../overlay/Overlay";
 
 function ModalCustom({ item, onClose }) {
   const overlay = document.getElementById("overlay");
@@ -74,7 +75,7 @@ function ModalCustom({ item, onClose }) {
           <IoMdClose className="font-bold text-3xl cursor-pointer hover:opacity-70 text-white" />
         </div>
       </div>
-      <div id="overlay" onClick={onClose} className={styles.overlay}></div>
+      <Overlay onClick={onClose} />
     </div>
   );
 }

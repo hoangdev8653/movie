@@ -1,7 +1,6 @@
 import React from "react";
 import { HiOutlineTicket } from "react-icons/hi";
 import SliderCustom from "../../../components/sliderCustom/SliderCustom";
-import Button from "../../../components/Button";
 
 function movieSapChieu({ movieSapChieu }) {
   const responsiveSettings = [
@@ -64,10 +63,10 @@ function movieSapChieu({ movieSapChieu }) {
                           {item.theLoai}
                         </span>
                       </p>
-                      <Button className="px-3 py-2 bg-green-500 mt-2 rounded-lg text-white font-semibold flex mx-auto">
+                      <button className="px-3 py-2 bg-green-500 mt-2 rounded-lg text-white font-semibold flex mx-auto">
                         <HiOutlineTicket className="justify-center text-center items-center my-auto mx-[2px]" />
                         Đặt vé ngay
-                      </Button>
+                      </button>
                     </div>
                   </a>
                 </div>

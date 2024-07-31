@@ -3,8 +3,11 @@ import BookTicketHistory from "./bookTicketHistory/BookTicketHistory";
 import { Tabs } from "antd";
 import avartaDeafaut from "../../../assets/imgDeafaut.jpg";
 import styles from "./Profile.module.scss";
+import { BookTicket } from "../../../store/BookTicket";
+import { formatPrice } from "../../../utils/forrmatPriceVn";
 
 function Profile() {
+  const { paymentlenght, totalPrice } = BookTicket();
   const onChange = (key) => {};
   const items = [
     {
@@ -18,6 +21,7 @@ function Profile() {
       children: <BookTicketHistory />,
     },
   ];
+
   return (
     <div className={styles.content}>
       <div className={styles.forYou}>
@@ -50,20 +54,20 @@ function Profile() {
               <div className="">
                 <strong>Số Lần Thanh Toán</strong>
               </div>
-              <div>0</div>
+              <div>{paymentlenght}</div>
             </li>
             <li className="relative  py-3 px-5 bg-white border-[1px] border-solid flex justify-between">
               <div className="">
                 <strong>Tổng Tiền</strong>
               </div>
-              <div>0</div>
+              <div>{formatPrice(totalPrice)}</div>
             </li>
           </ul>
         </div>
       </div>
       <div className="mt-4 ml-8" style={{ width: "75%" }}>
         <Tabs
-          defaultActiveKey="1"
+          defaultActiveKey="2"
           items={items}
           onChange={onChange}
           tabBarStyle={{ color: "red", marginLeft: "32px" }}

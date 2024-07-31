@@ -7,9 +7,9 @@ import { BookTicket } from "../../../../../store/BookTicket";
 function Bill({ totalPrice, arrayGhe, id }) {
   const { bookTicket } = BookTicket();
   const navigate = useNavigate();
-  console.log(arrayGhe);
-  console.log(totalPrice);
-  console.log(id);
+  // console.log(arrayGhe);
+  // console.log(totalPrice);
+  // console.log(id);
   const token = getLocalStorage("accessToken");
 
   async function createOrder(data, actions) {

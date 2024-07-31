@@ -9,11 +9,10 @@ function payment({ data, arrayGhe }) {
   const [price, setPrice] = useState(0);
   const [radio, setRadio] = useState(null);
   const user = getLocalStorage("user");
-  const handleClickRadio = (e) => {
-    setRadio(e.target.value);
-  };
+
+  console.log(arrayGhe);
+
   const id = data._id;
-  // console.log(arrayGhe);
   useEffect(() => {
     if (arrayGhe.length === 0) {
       setRadio(null);
@@ -85,72 +84,6 @@ function payment({ data, arrayGhe }) {
           </div>
           {arrayGhe && arrayGhe.length > 0 ? (
             <>
-              {/* <div className="mt-4">
-                <form>
-                  <div className="flex">
-                    <input
-                      // onClick={handleClickRadio}
-                      onChange={handleClickRadio}
-                      type="radio"
-                      id="method"
-                      name="method"
-                      value="ZALOPAY"
-                      // checked={radio === "zaloPay"}
-                    />
-                    <img
-                      className="max-w-[40px] mx-[15px] rounded"
-                      src="https://movie-booking-project.vercel.app/img/bookticket/zalo.jpg"
-                      alt="zalopay"
-                    />
-                    <p className=" my-auto">Thanh toán qua ZaloPay</p>
-                  </div>
-                  <div className="flex ">
-                    <input
-                      onChange={handleClickRadio}
-                      type="radio"
-                      id="method"
-                      name="method"
-                      value="VISA"
-                    />
-                    <img
-                      className="max-w-[40px] mx-[15px] rounded"
-                      src="https://movie-booking-project.vercel.app/img/bookticket/visa.png"
-                      alt="visa"
-                    />
-                    <p className="my-auto">Visa, Master, JCB</p>
-                  </div>
-                  <div className="flex">
-                    <input
-                      onChange={handleClickRadio}
-                      id="method"
-                      type="radio"
-                      name="method"
-                      value="ATM"
-                    />
-                    <img
-                      className="max-w-[40px] mx-[15px] rounded"
-                      src="https://movie-booking-project.vercel.app/img/bookticket/atm.png"
-                      alt="atm"
-                    />
-                    <p className="my-auto">Thẻ ATM nội địa</p>
-                  </div>
-                  <div className="flex">
-                    <input
-                      onChange={handleClickRadio}
-                      id="method"
-                      type="radio"
-                      name="method"
-                      value="PAYYOO"
-                    />
-                    <img
-                      className="max-w-[40px] mx-[15px] rounded"
-                      src="https://movie-booking-project.vercel.app/img/bookticket/cuahang.png"
-                      alt="payoo"
-                    />
-                    <p className="my-auto">Thanh toán tại cửa hàng tiện ích</p>
-                  </div>
-                </form>
-              </div> */}
               <Bill totalPrice={price} arrayGhe={arrayGhe} id={id} />
             </>
           ) : (

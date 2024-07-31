@@ -70,7 +70,6 @@ export const movieStore = create((set) => ({
       set({ loading: true });
       const response = await getAllBanner();
       if (response.status === 200) {
-        console.log(response.data.content);
         set({ data: response.data.content });
         set({ loading: false });
       }

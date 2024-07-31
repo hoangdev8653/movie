@@ -1,11 +1,14 @@
 import { create } from "zustand";
 import { bookTicket, getTicketByUser } from "../apis/BookTicket";
 import { toast } from "react-toastify";
+import { formatPrice } from "../utils/forrmatPriceVn";
 
 export const BookTicket = create((set) => ({
   error: false,
   data: [],
   isLoading: false,
+  paymentlenght: 0,
+  totalPrice: 0,
 
   bookTicket: async (data) => {
     try {
@@ -29,6 +32,14 @@ export const BookTicket = create((set) => ({
       if (response.status === 200) {
         set({ isLoading: false });
         set({ data: response.data.content });
+        set({ paymentlenght: response.data.content.length });
+        const price = response.data.content.map((item) => item.tongTien);
+        const formatNumber = price.map(Number);
+        set({
+          totalPrice: formatNumber.reduce((a, b) => {
+            return a + b;
+          }, 0),
+        });
       }
     } catch (error) {
       console.log(error);

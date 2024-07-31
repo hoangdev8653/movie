@@ -59,24 +59,22 @@ function Sale() {
           >
             {data.length > 0 &&
               data.map((item, index) => (
-                <div key={index}>
-                  <div className="px-[12px] pb-[30px] relative">
-                    <img
-                      onClick={() => handleOpenModal(item)}
-                      className="rounded-lg"
-                      src={item.hinhAnh}
-                      alt={item.id}
-                    />
-                    <p
-                      style={{ color: "#B2EC0F" }}
-                      className="mt-2 mb-1 font-bold hover:text-green-500 cursor-pointer"
-                    >
-                      {item.tieuDe}
-                    </p>
-                    <p className="text-sm">
-                      Thời gian khuyến mãi: {item.thoiGian}
-                    </p>
-                  </div>
+                <div key={index} className="px-[12px] pb-[30px] relative">
+                  <img
+                    onClick={() => handleOpenModal(item)}
+                    className="rounded-lg"
+                    src={item.hinhAnh}
+                    alt={item.id}
+                  />
+                  <p
+                    style={{ color: "#B2EC0F" }}
+                    className="mt-2 mb-1 font-bold hover:text-green-500 cursor-pointer"
+                  >
+                    {item.tieuDe}
+                  </p>
+                  <p className="text-sm">
+                    Thời gian khuyến mãi: {item.thoiGian}
+                  </p>
                 </div>
               ))}
           </SliderCustom>

@@ -10,9 +10,12 @@ import ThongTin from "./reviews/thongTin/ThongTin";
 import Loader from "../../../components/loader/Loader";
 import { movieStore } from "../../../store/Movie";
 import styles from "./MovieDetail.module.scss";
+import Play from "../../../components/Play";
+import { reviewStore } from "../../../store/Review";
 
 function PhimDetail() {
   const { data, getAllMovieBySlug } = movieStore();
+  const { averageStar } = reviewStore();
   const { slug } = useParams();
   const onChange = (key) => {};
   const items = [
@@ -50,6 +53,7 @@ function PhimDetail() {
       behavior: "smooth",
     });
   };
+
   return (
     <div>
       {data && data.length > 0 ? (
@@ -73,6 +77,11 @@ function PhimDetail() {
                       className="w-full h-full"
                       src={data[0].hinhAnh}
                       alt={data[0].slug}
+                    />
+                    <Play
+                      className={"top-32 left-[40%]"}
+                      onClick={true}
+                      sourceUrl={data[0].trailer}
                     />
                   </div>
                   <div className="text-red-50 mt-10 ml-4">
@@ -102,7 +111,7 @@ function PhimDetail() {
                           style={{ fontSize: 50 }}
                           className="absolute top-[24px] left-[30px]"
                         >
-                          10
+                          {averageStar}
                         </p>
                       </div>
                     </div>

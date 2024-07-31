@@ -157,7 +157,6 @@ const updateTrailerMovie = async (req, res, next) => {
     const id = req.query.id;
     const { trailer } = req.body;
     const fileData = req.file;
-    console.log(fileData);
     const movie = await movieService.updateTrailerMovie(id, {
       trailer: fileData?.path,
     });

@@ -1,6 +1,5 @@
 import React from "react";
 import SliderCustom from "../../../components/sliderCustom/SliderCustom";
-import Button from "../../../components/Button";
 import { HiOutlineTicket } from "react-icons/hi";
 
 function movieDangChieu({ movieDangChieu }) {
@@ -65,10 +64,10 @@ function movieDangChieu({ movieDangChieu }) {
                         </p>
                       </div>
 
-                      <Button className="px-3 py-2 bg-green-500 mt-2 rounded-lg text-white font-semibold flex mx-auto hover:opacity-90">
+                      <button className="px-3 py-2 bg-green-500 mt-2 rounded-lg text-white font-semibold flex mx-auto hover:opacity-90">
                         <HiOutlineTicket className="justify-center text-center items-center my-auto mx-[2px]" />
                         Đặt vé ngay
-                      </Button>
+                      </button>
                     </div>
                   </a>
                 </div>
