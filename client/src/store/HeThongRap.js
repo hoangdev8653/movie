@@ -3,7 +3,7 @@ import {
   getAllHeThongRap,
   createHeThongRap,
   deleteHeThongRap,
-} from "../apis/HeThongRap";
+} from "../apis/heThongRap";
 
 export const HeThongRap = create((set) => ({
   error: null,

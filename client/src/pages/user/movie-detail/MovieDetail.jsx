@@ -7,7 +7,7 @@ import { Tabs } from "antd";
 import DanhGia from "./reviews/DanhGia";
 import LichChieu from "./LichChieu";
 import ThongTin from "./reviews/thongTin/ThongTin";
-import Loader from "../../../components/loader/Loader";
+import Loader from "../../../components/loader/loader";
 import { movieStore } from "../../../store/Movie";
 import styles from "./MovieDetail.module.scss";
 import Play from "../../../components/Play";
@@ -56,7 +56,7 @@ function PhimDetail() {
 
   return (
     <div>
-      {data && data.length > 0 ? (
+      {data && data?.length > 0 ? (
         <>
           <div
             className="pb-[50px] "
@@ -67,16 +67,16 @@ function PhimDetail() {
             <div className="relative">
               <img
                 className={styles.bg}
-                src={data[0].hinhAnh}
-                alt={data[0].slug}
+                src={data[0]?.hinhAnh}
+                alt={data[0]?.slug}
               />
               <div className="flex justify-center ">
                 <div className={styles.content}>
                   <div className="w-56 h-80 mr-2 relative">
                     <img
                       className="w-full h-full"
-                      src={data[0].hinhAnh}
-                      alt={data[0].slug}
+                      src={data[0]?.hinhAnh}
+                      alt={data[0]?.slug}
                     />
                     <Play
                       className={"top-32 left-[40%]"}
@@ -89,12 +89,12 @@ function PhimDetail() {
                       <div className="bg-red-500 mr-2 rounded">
                         <span className="px-1">C18</span>
                       </div>
-                      <span>{data[0].tenPhim}</span>
+                      <span>{data[0]?.tenPhim}</span>
                     </div>
                     <p>
-                      {data[0].thoiLuong} - {data[0].theLoai}
+                      {data[0]?.thoiLuong} - {data[0].theLoai}
                     </p>
-                    <p>{data[0].ngayKhoiChieu}</p>
+                    <p>{data[0]?.ngayKhoiChieu}</p>
 
                     <button
                       onClick={handleBookTicket}
@@ -125,12 +125,12 @@ function PhimDetail() {
                     <div className="bg-red-500 mr-2 rounded">
                       <span className="px-1">C18</span>
                     </div>
-                    <span>{data[0].tenPhim}</span>
+                    <span>{data[0]?.tenPhim}</span>
                   </div>
                   <p>
-                    {data[0].thoiLuong} - {data[0].theLoai}
+                    {data[0]?.thoiLuong} - {data[0].theLoai}
                   </p>
-                  <p className="my-1">{data[0].ngayKhoiChieu}</p>
+                  <p className="my-1">{data[0]?.ngayKhoiChieu}</p>
                 </div>
               </div>
             </div>

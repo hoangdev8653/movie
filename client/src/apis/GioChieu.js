@@ -7,17 +7,31 @@ export const getAllGioChieu = async () => {
   });
 };
 
+export const getAllMovieDangChieu = async () => {
+  return await axiosConfig({
+    method: "get",
+    url: "/movie/dangChieu",
+  });
+};
+
+export const getAllMovieSapChieu = async () => {
+  return await axiosConfig({
+    method: "get",
+    url: "/movie/sapChieu",
+  });
+};
+
 export const getGioChieuByMovie = async (id) => {
   return await axiosConfig({
     method: "get",
-    url: `/gioChieu/getByMovieId/?movieId=${id}`,
+    url: `/movie/getByMovieId/?movieId=${id}`,
   });
 };
 
 export const getGioChieuById = async (id) => {
   return await axiosConfig({
     method: "get",
-    url: `/gioChieu/getById?id=${id}`,
+    url: `/movie/getById?id=${id}`,
   });
 };
 

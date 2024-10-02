@@ -4,7 +4,7 @@ import {
   deleteReview,
   getReviewByMovie,
   updateReview,
-} from "../apis/Review";
+} from "../apis/review";
 export const reviewStore = create((set) => ({
   data: null,
   isLoading: false,

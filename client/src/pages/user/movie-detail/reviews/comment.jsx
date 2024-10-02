@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { reviewStore } from "../../../../store/Review";
 import Rating from "../../../../components/Rating";
-import ShowMore from "../../../../components/ShowMore";
-import LogoLoader from "../../../../components/loader/Loader";
+import ShowMore from "../../../../components/showMore";
+// import LogoLoader from "../../../../components/loader/Loader";
+import LogoLoader from "../../../../components/loader/loader";
 
 function Comment(props) {
   const movieId = props.data;

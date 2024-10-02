@@ -5,7 +5,7 @@ import {
   logout,
   forgotPassword,
   getAllUser,
-} from "../apis/User";
+} from "../apis/user";
 import { setLocalStorage, clearLocalStorage } from "../utils/localStorage";
 import { toast } from "react-toastify";
 

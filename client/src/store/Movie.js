@@ -7,7 +7,7 @@ import {
   getAllBanner,
   createMovie,
   deleteMovie,
-} from "../apis/Movie";
+} from "../apis/movie";
 
 export const movieStore = create((set) => ({
   error: false,

@@ -3,11 +3,15 @@ import createHttpError from "http-errors";
 
 export const verifyRefreshToken = (refreshToken) => {
   return new Promise((resolve, reject) => {
-    jwt.verify(refreshToken, process.env.SERCRET_KEY, (err, payload) => {
-      if (err) {
-        reject(createHttpError(err));
+    jwt.verify(
+      refreshToken,
+      process.env.SERCRET_KEY || "huyhoang123",
+      (err, payload) => {
+        if (err) {
+          reject(createHttpError(err));
+        }
+        resolve(payload.userId);
       }
-      resolve(payload.userId);
-    });
+    );
   });
 };

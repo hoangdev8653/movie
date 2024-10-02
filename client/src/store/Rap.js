@@ -4,7 +4,7 @@ import {
   getRapByHeThongRap,
   getRapById,
   getRapBySlug,
-} from "../apis/Rap";
+} from "../apis/rap";
 export const rapStore = create((set) => ({
   error: null,
   data: [],

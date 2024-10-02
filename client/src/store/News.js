@@ -1,5 +1,5 @@
 import create from "zustand";
-import { getAllNews, createNews, deleteNews } from "../apis/News";
+import { getAllNews, createNews, deleteNews } from "../apis/news";
 
 export const NewsStore = create((set) => ({
   isLoading: false,

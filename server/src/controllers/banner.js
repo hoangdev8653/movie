@@ -3,6 +3,7 @@ import { StatusCodes } from "http-status-codes";
 const getAllBanner = async (req, res, next) => {
   try {
     const banner = await bannerService.getAllBanner();
+    console.log(banner);
     return res
       .status(StatusCodes.OK)
       .json({ status: 200, message: "Xử lý thành công", content: banner });

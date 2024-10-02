@@ -47,7 +47,7 @@ const login = async ({ email, password }) => {
     }
     const accessToken = SignAccessToken(user.id);
     const refreshToken = SignRefreshToken(user.id);
-    setKey(`refreshToken_${user.id}`, refreshToken);
+    // setKey(`refreshToken_${user.id}`, refreshToken);
     return { user, accessToken, refreshToken };
   } catch (error) {
     console.log(error);

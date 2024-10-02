@@ -18,7 +18,7 @@
     "cloudinary": "^1.41.3",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
+    "dotenv": "^16.3.1",
     "express": "^4.19.2",
     "http-errors": "^2.0.0",
     "http-status-codes": "^2.3.0",
@@ -34,6 +34,10 @@
     "redis": "^4.6.13"
   },
   "devDependencies": {
+    "@babel/cli": "^7.25.6",
+    "@babel/core": "^7.25.2",
+    "@babel/node": "^7.25.0",
+    "@babel/preset-env": "^7.25.4",
     "nodemon": "^3.1.0"
   }
 }

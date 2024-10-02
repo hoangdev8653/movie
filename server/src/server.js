@@ -1,5 +1,5 @@
-import express from "express";
 import "dotenv/config";
+import express from "express";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import createHttpError from "http-errors";
@@ -7,15 +7,14 @@ import { routers } from "./routers/v1/index.js";
 import cors from "cors";
 import { corsConfig } from "./configs/cors.js";
 import { connectDb } from "./configs/connectDb.js";
-import { connectRedis } from "./configs/connectRedis.js";
+// import { connectRedis } from "./configs/connectRedis.js";
 import morgan from "morgan";
 
-const port = process.env.PORT || 7000;
+const port = process.env.PORT || 3007;
 connectDb();
-connectRedis();
+// connectRedis();
 const app = express();
-// app.use(cors(corsConfig));
-app.use(cors());
+app.use(cors(corsConfig));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

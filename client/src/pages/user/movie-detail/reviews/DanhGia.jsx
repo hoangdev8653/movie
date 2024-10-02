@@ -7,7 +7,8 @@ import Ratting from "../../../../components/Rating";
 import { getLocalStorage } from "../../../../utils/localStorage";
 import { Default_avatar_profile } from "../../../../image";
 import { reviewStore } from "../../../../store/Review";
-import LogoLoader from "../../../../components/loader/Loader";
+// import LogoLoader from "../../../../components/loader/Loader";
+import LogoLoader from "../../../../components/loader/loader";
 
 function DanhGia({ data }) {
   const movieId = data[0]._id;

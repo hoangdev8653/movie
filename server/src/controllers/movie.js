@@ -79,6 +79,8 @@ const createMovie = async (req, res, next) => {
       slug,
     } = req.body;
     const fileHinhAnh = req.file;
+    console.log(req.file);
+
     const movie = await movieService.createMovie({
       tenPhim,
       hinhAnh: fileHinhAnh?.path,

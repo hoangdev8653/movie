@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import SliderCustom from "../../../components/sliderCustom/SliderCustom";
+import SliderCustom from "../../../components/SliderCustom/SliderCustom";
 import ModalCustom from "../../../components/modal/Modal";
 import { NewsStore } from "../../../store/News";
 
@@ -60,18 +60,18 @@ function TinTuc() {
             showSliderScroll={2}
             responsiveSettings={responsiveSettings}
           >
-            {data.length > 0 &&
-              data.map((item, index) => (
+            {data?.length > 0 &&
+              data?.map((item, index) => (
                 <div key={index} className=" max-w-[500px] px-[2px]">
                   <img
                     onClick={() => handleOpenModal(item)}
                     className="w-full h-[260px] rounded object-cover"
-                    src={item.hinhAnh}
-                    alt={item.id}
+                    src={item?.hinhAnh}
+                    alt={item?.id}
                   />
                   <div className="py-3">
                     <h4 className="text-base font-bold mb-3 text-center">
-                      {item.tieuDe}
+                      {item?.tieuDe}
                     </h4>
                   </div>
                 </div>

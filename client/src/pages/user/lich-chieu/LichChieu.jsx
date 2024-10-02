@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { getAllMovieDangChieu, getAllMovieSapChieu } from "../../../apis/Movie";
+import {
+  getAllMovieDangChieu,
+  getAllMovieSapChieu,
+} from "../../../apis/GioChieu";
 import MovieDangChieu from "./MovieDangChieu";
 import MovieSapChieu from "./MovieSapChieu";
+
 function LichChieu() {
   const [movieDangChieu, setMovieDangChieu] = useState([]);
   const [movieSapChieu, setMovieSapChieu] = useState([]);

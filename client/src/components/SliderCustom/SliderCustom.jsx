@@ -2,7 +2,7 @@ import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { SampleNextArrow, SamplePrevArrow } from "../CustomArrows";
+import { SampleNextArrow, SamplePrevArrow } from "../customArrows";
 function SliderCustom({
   children,
   dots,
