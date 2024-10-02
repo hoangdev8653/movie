@@ -1,6 +1,6 @@
 import React from "react";
-import Sale from "./Event";
-import Event from "./Sale";
+import Sale from "./Sale";
+import Event from "./Event";
 function EventAndSale() {
   return (
     <div style={{ background: "#1a1d29" }} className="w-full">

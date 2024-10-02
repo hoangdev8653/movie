@@ -6,6 +6,7 @@ import {
   createEventOrSale,
   deleteById,
 } from "../apis/eventAndSale";
+
 export const EventAndSaleStore = create((set) => ({
   error: null,
   data: [],

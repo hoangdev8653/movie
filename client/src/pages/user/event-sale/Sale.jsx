@@ -3,7 +3,7 @@ import SliderCustom from "../../../components/SliderCustom/SliderCustom";
 import ModalCustom from "../../../components/modal/Modal";
 import { EventAndSaleStore } from "../../../store/EventAndSale";
 
-function Event() {
+function Sale() {
   const { data, getAllSale } = EventAndSaleStore();
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -92,4 +92,4 @@ function Event() {
   );
 }
 
-export default Event;
+export default Sale;

@@ -10,13 +10,9 @@ cloudinary.config({
 
 const storage = new CloudinaryStorage({
   cloudinary,
-  params: async (req, file) => {
-    return {
-      folder: "tix",
-      resource_type: "video",
-      format: "mp4",
-      public_id: file.originalname.split(".")[0],
-    };
+  allowedFormats: ["jpg", "png"],
+  params: {
+    folder: "tix",
   },
 });
 

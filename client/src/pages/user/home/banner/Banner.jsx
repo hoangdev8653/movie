@@ -14,10 +14,10 @@ function Banner() {
         {data &&
           data?.map((item, index) => (
             <img
-              className="h-screen w-full object-fill object-center"
+              className="h-screen w-full object-cover object-center"
               key={index}
-              src={item?.movieId.hinhAnh}
-              alt={item?.movieId.tenPhim}
+              src={item?.movieId?.hinhAnh}
+              alt={item?.movieId?.tenPhim}
             />
           ))}
       </SliderCustom>
