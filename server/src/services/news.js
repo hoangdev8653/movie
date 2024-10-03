@@ -19,6 +19,22 @@ const createNews = async ({ tieuDe, hinhAnh, noiDung }) => {
   }
 };
 
+const updateNews = async (id, { tieuDe, hinhAnh, noiDung }) => {
+  try {
+    const news = await News.findById(id);
+    if (!news) {
+      throw Error("News Not Found");
+    }
+    return await News.findByIdAndUpdate(
+      id,
+      { tieuDe, hinhAnh, noiDung },
+      { new: true }
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const deleteNews = async (id) => {
   try {
     const news = await News.findById(id);
@@ -34,6 +50,7 @@ const deleteNews = async (id) => {
 
 export const newsService = {
   getAllNews,
+  updateNews,
   createNews,
   deleteNews,
 };

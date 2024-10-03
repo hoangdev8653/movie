@@ -37,6 +37,28 @@ const createNews = async (req, res, next) => {
   }
 };
 
+const updateNews = async (req, res, next) => {
+  try {
+    const id = req.query.id;
+    const { tieuDe, hinhAnh, noiDung } = req.body;
+    const fileData = req.file;
+    const news = await newsService.updateNews(id, {
+      tieuDe,
+      hinhAnh: fileData?.path,
+      noiDung,
+    });
+    return res
+      .status(StatusCodes.OK)
+      .json({ status: 200, message: "Xử lý thành công", content: news });
+  } catch (error) {
+    console.log(error);
+    next(error);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Server Error" });
+  }
+};
+
 const deleteNews = async (req, res, next) => {
   try {
     const id = req.query.id;
@@ -56,5 +78,6 @@ const deleteNews = async (req, res, next) => {
 export const newsController = {
   getAllNews,
   createNews,
+  updateNews,
   deleteNews,
 };

@@ -7,6 +7,9 @@ router.route("/").get(newsController.getAllNews);
 router
   .route("/create")
   .post(uploadCloud.single("hinhAnh"), newsController.createNews);
+router
+  .route("/update")
+  .put(uploadCloud.single("hinhAnh"), newsController.updateNews);
 router.route("/delete").delete(newsController.deleteNews);
 
 export default router;
