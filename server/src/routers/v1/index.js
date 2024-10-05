@@ -3,7 +3,7 @@ import HeThongRapRoutes from "./heThongRap.js";
 import RapRoutes from "./rap.js";
 import MovieRoutes from "./movie.js";
 import ReviewRoutes from "./review.js";
-import SuatChieuRoutes from "./suatChieu.js";
+import ngayChieuRoutes from "./ngayChieu.js";
 import GioChieuRoutes from "./gioChieu.js";
 import BookTicketRoutes from "./bookTicket.js";
 import BannerRoutes from "./banner.js";
@@ -16,7 +16,7 @@ export const routers = {
   RapRoutes,
   MovieRoutes,
   ReviewRoutes,
-  SuatChieuRoutes,
+  ngayChieuRoutes,
   GioChieuRoutes,
   BookTicketRoutes,
   BannerRoutes,

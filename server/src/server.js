@@ -26,7 +26,7 @@ app.use("/v1/heThongRap/", routers.HeThongRapRoutes);
 app.use("/v1/rap/", routers.RapRoutes);
 app.use("/v1/movie/", routers.MovieRoutes);
 app.use("/v1/review/", routers.ReviewRoutes);
-app.use("/v1/suatChieu/", routers.SuatChieuRoutes);
+app.use("/v1/ngayChieu/", routers.ngayChieuRoutes);
 app.use("/v1/gioChieu/", routers.GioChieuRoutes);
 app.use("/v1/bookTicket/", routers.BookTicketRoutes);
 app.use("/v1/banner/", routers.BannerRoutes);

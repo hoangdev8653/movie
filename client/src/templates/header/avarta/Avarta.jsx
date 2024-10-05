@@ -40,7 +40,7 @@ function Avarta() {
         <span className="opacity-70 my-auto">|</span>
         <Link className="my-auto" to={user ? "/login" : "/register"}>
           <div className=" justify-center items-center hover:text-red-500 cursor-pointer">
-            <p onClick={user ? handleLogout : ""}>
+            <p onClick={user ? handleLogout : null}>
               {user ? "Đăng Xuất" : "Đăng Kí"}
             </p>
           </div>

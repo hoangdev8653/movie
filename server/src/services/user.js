@@ -182,7 +182,7 @@ const logout = async (id) => {
     if (!user) {
       throw createHttpError.NotFound("User not found");
     }
-    deleteKey(`refreshToken_${user.id}`);
+    // deleteKey(`refreshToken_${user.id}`);
     return user;
   } catch (error) {
     throw error;

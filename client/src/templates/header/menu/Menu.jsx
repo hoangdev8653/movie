@@ -5,11 +5,14 @@ import { IoMenuOutline } from "react-icons/io5";
 import { getLocalStorage } from "../../../utils/localStorage";
 import { Default_avatar_profile } from "../../../image";
 import { userStore } from "../../../store/User";
+import { useLocation } from "react-router-dom";
 
 function Menu() {
   const user = getLocalStorage("user");
   const [isOpen, setIsOpen] = useState(false);
   const { logout } = userStore();
+
+  const location = useLocation();
 
   const handleShowMenu = () => {
     setIsOpen(!isOpen);
@@ -28,20 +31,44 @@ function Menu() {
     };
   }, [isOpen]);
   return (
-    <div className="">
+    <div>
       <div className={styles.menu}>
         <ul className="flex gap-4 font-medium">
           <a href="/lich-chieu/">
-            <li className={styles.item}>Lịch chiếu</li>
+            <li
+              className={`${styles.item} ${
+                location.pathname == "/lich-chieu/" ? "text-red-400" : ""
+              }`}
+            >
+              Lịch chiếu
+            </li>
           </a>
           <a href="/he-thong-rap">
-            <li className={styles.item}>Hệ thống rạp</li>
+            <li
+              className={`${styles.item} ${
+                location.pathname == "/he-thong-rap" ? "text-red-400" : ""
+              }`}
+            >
+              Hệ Thống Rạp
+            </li>
           </a>
           <a href="/news">
-            <li className={styles.item}>Tin Tức</li>
+            <li
+              className={`${styles.item} ${
+                location.pathname == "/news" ? "text-red-400" : ""
+              }`}
+            >
+              Tin Tức
+            </li>
           </a>
           <a href="/khuyen-mai-su-kien">
-            <li className={styles.item}>Khuyến mãi/Sự kiện</li>
+            <li
+              className={`${styles.item} ${
+                location.pathname == "/khuyen-mai-su-kien" ? "text-red-400" : ""
+              }`}
+            >
+              Khuyến Mãi/Sự Kiện
+            </li>
           </a>
         </ul>
       </div>

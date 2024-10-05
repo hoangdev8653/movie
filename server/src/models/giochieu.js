@@ -16,12 +16,12 @@ const gioChieu = mongoose.Schema({
       },
     },
   ],
-  suatChieuId: {
+  ngayChieuId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "suatChieu",
+    ref: "ngayChieu",
   },
 });
 
-const GioChieu = mongoose.model("GioChieu", gioChieu);
+const GioChieuModel = mongoose.model("GioChieu", gioChieu);
 
-export default GioChieu;
+export default GioChieuModel;

@@ -17,6 +17,7 @@ function DanhGia({ data }) {
   const [content, setContent] = useState("");
   const { createReview, isLoading } = reviewStore();
   const [canSubmit, setCanSubmit] = useState(false);
+  const [isDisible, setIsDisible] = useState(false);
   const user = getLocalStorage("user");
   const modalRef = useRef();
 
@@ -24,13 +25,16 @@ function DanhGia({ data }) {
     setStarValue(value);
   };
   const handleShowModal = () => {
+    // setIsDisible(true);
     setIsShowModal(true);
   };
   const handleClickOuside = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
       setIsShowModal(false);
+      // setIsDisible(false);
     }
     setIsShowModal(true);
+    setIsDisible(false);
   };
 
   useEffect(() => {
@@ -169,6 +173,7 @@ function DanhGia({ data }) {
                 />
               </span>
               <input
+                disabled={isDisible}
                 style={{
                   padding: "10px 10px 10px 60px",
                 }}
