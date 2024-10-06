@@ -9,6 +9,7 @@ import BookTicketRoutes from "./bookTicket.js";
 import BannerRoutes from "./banner.js";
 import NewsRoutes from "./news.js";
 import EventAndSaleRoutes from "./eventAndSale.js";
+import LichChieuRoutes from "./lichChieu.js";
 
 export const routers = {
   UserRoutes,
@@ -22,4 +23,5 @@ export const routers = {
   BannerRoutes,
   NewsRoutes,
   EventAndSaleRoutes,
+  LichChieuRoutes,
 };

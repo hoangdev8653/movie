@@ -32,6 +32,7 @@ app.use("/v1/bookTicket/", routers.BookTicketRoutes);
 app.use("/v1/banner/", routers.BannerRoutes);
 app.use("/v1/news/", routers.NewsRoutes);
 app.use("/v1/eventAndSale/", routers.EventAndSaleRoutes);
+app.use("/v1/lichChieu/", routers.LichChieuRoutes);
 
 app.use((req, res, next) => {
   next(createHttpError(404, "Not Found"));
