@@ -4,7 +4,7 @@ import ModalCustom from "../../../components/modal/Modal";
 import { EventAndSaleStore } from "../../../store/EventAndSale";
 
 function Sale() {
-  const { data, getAllSale } = EventAndSaleStore();
+  const { saleData, getAllSale } = EventAndSaleStore();
   const [selectedItem, setSelectedItem] = useState(null);
 
   const handleOpenModal = (item) => {
@@ -59,8 +59,8 @@ function Sale() {
             showSliderScroll={1}
             responsiveSettings={responsiveSettings}
           >
-            {data.length > 0 &&
-              data.map((item, index) => (
+            {saleData.length > 0 &&
+              saleData.map((item, index) => (
                 <div key={index} className="px-[12px] pb-[30px] relative">
                   <img
                     onClick={() => handleOpenModal(item)}

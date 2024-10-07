@@ -19,6 +19,7 @@ const getAllMovie = async (req, res, next) => {
 const getMovieBySlug = async (req, res, next) => {
   try {
     const slug = req.params.slug;
+    console.log(slug);
 
     const movie = await movieService.getMovieBySlug(slug);
     return res
@@ -157,14 +158,16 @@ const updateMovie = async (req, res, next) => {
 const updateTrailerMovie = async (req, res, next) => {
   try {
     const id = req.query.id;
+
     const { trailer } = req.body;
     const fileData = req.file;
+
     const movie = await movieService.updateTrailerMovie(id, {
       trailer: fileData?.path,
     });
     return res
-      .status(StatusCodes.CREATED)
-      .json({ status: 201, message: "Xử lý thành công", content: movie });
+      .status(StatusCodes.OK)
+      .json({ status: 200, message: "Xử lý thành công", content: movie });
   } catch (error) {
     console.log(error);
     res

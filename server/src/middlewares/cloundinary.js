@@ -11,8 +11,12 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary,
   allowedFormats: ["jpg", "png"],
-  params: {
-    folder: "tix",
+  params: async (req, file) => {
+    return {
+      folder: "tix",
+      resource_type: "auto",
+      allowedFormats: ["jpeg", "png", "jpg", "mp3", "mp4"],
+    };
   },
 });
 

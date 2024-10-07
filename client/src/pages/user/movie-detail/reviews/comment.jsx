@@ -23,12 +23,12 @@ function Comment(props) {
   const star = data?.map((item) => {
     return item.ratting;
   });
-  console.log(star);
+  // console.log(star);
   const averageStar = star?.reduce(
     (item, currentValue) => item + currentValue,
     0
   );
-  console.log(averageStar);
+  // console.log(averageStar);
   if (isLoading) {
     return (
       <>
@@ -36,6 +36,7 @@ function Comment(props) {
       </>
     );
   }
+  // console.log(data);
 
   return (
     <div>

@@ -15,7 +15,7 @@ router
 router.route("/update").put(movieController.updateMovie);
 router
   .route("/updateTrailerMovie")
-  .post(uploadCloud.single("trailer"), movieController.updateTrailerMovie);
+  .put(uploadCloud.single("trailer"), movieController.updateTrailerMovie);
 router.route("/delete").delete(movieController.deleteMovie);
 
 export default router;

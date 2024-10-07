@@ -7,7 +7,6 @@ import Ratting from "../../../../components/Rating";
 import { getLocalStorage } from "../../../../utils/localStorage";
 import { Default_avatar_profile } from "../../../../image";
 import { reviewStore } from "../../../../store/Review";
-// import LogoLoader from "../../../../components/loader/Loader";
 import LogoLoader from "../../../../components/loader/loader";
 
 function DanhGia({ data }) {
@@ -25,13 +24,12 @@ function DanhGia({ data }) {
     setStarValue(value);
   };
   const handleShowModal = () => {
-    // setIsDisible(true);
+    setIsDisible(true);
     setIsShowModal(true);
   };
   const handleClickOuside = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
       setIsShowModal(false);
-      // setIsDisible(false);
     }
     setIsShowModal(true);
     setIsDisible(false);
@@ -44,14 +42,18 @@ function DanhGia({ data }) {
     } else {
       document.removeEventListener("mousedown", handleClickOuside);
       document.body.style.overflow = "auto";
+      setContent("");
+      setStarValue(0);
     }
     return () => {
       document.removeEventListener("mousedown", handleClickOuside);
     };
   }, [isShowModal]);
+
   const handleChangeContent = (e) => {
     const newValue = e.target.value;
     setContent(newValue);
+
     if (newValue.length > 5 && starValue != 0) {
       setCanSubmit(true);
     } else {
@@ -82,6 +84,7 @@ function DanhGia({ data }) {
                 />
               </span>
               <input
+                disabled={isDisible}
                 style={{
                   padding: "10px 10px 10px 60px",
                 }}

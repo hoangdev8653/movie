@@ -7,12 +7,12 @@ import { routers } from "./routers/v1/index.js";
 import cors from "cors";
 import { corsConfig } from "./configs/cors.js";
 import { connectDb } from "./configs/connectDb.js";
-// import { connectRedis } from "./configs/connectRedis.js";
+import { connectRedis } from "./configs/connectRedis.js";
 import morgan from "morgan";
 
 const port = process.env.PORT || 3007;
 connectDb();
-// connectRedis();
+connectRedis();
 const app = express();
 app.use(cors(corsConfig));
 app.use(express.json());

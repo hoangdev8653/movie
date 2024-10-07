@@ -9,29 +9,16 @@ import {
 
 export const EventAndSaleStore = create((set) => ({
   error: null,
-  data: [],
+  eventData: [],
+  saleData: [],
   isLoading: false,
-
-  getAllEventAndSale: async () => {
-    try {
-      set({ isLoading: true });
-      const response = await getAllEventAndSale();
-      set({ isLoading: false });
-      if (response.status === 200) {
-        set({ data: response.data.content });
-      }
-    } catch (error) {
-      console.log(error);
-      set({ error: error.message });
-    }
-  },
 
   getAllEvent: async () => {
     try {
       set({ isLoading: true });
       const response = await getAllEvent();
       if (response.status === 200) {
-        set({ data: response.data.content });
+        set({ eventData: response.data.content });
         set({ isLoading: false });
       }
     } catch (error) {
@@ -39,12 +26,14 @@ export const EventAndSaleStore = create((set) => ({
       set({ error: error.message });
     }
   },
+
   getAllSale: async () => {
     try {
       set({ isLoading: true });
       const response = await getAllSale();
+
       if (response.status === 200) {
-        set({ data: response.data.content });
+        set({ saleData: response.data.content });
         set({ isLoading: false });
       }
     } catch (error) {
