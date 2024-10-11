@@ -10,17 +10,16 @@ function payment({ data, arrayGhe }) {
   const [radio, setRadio] = useState(null);
   const user = getLocalStorage("user");
 
-  console.log(arrayGhe);
-
   const id = data._id;
   useEffect(() => {
     if (arrayGhe.length === 0) {
       setRadio(null);
       setPrice(0);
     } else {
-      setPrice(data?.suatChieuId?.giaVe * arrayGhe.length);
+      setPrice(Number(data?.tienGhe) * arrayGhe.length);
     }
   }, [arrayGhe]);
+
   return (
     <div className={styles.payment}>
       <div className="mx-auto my-4 text-center">
@@ -33,11 +32,11 @@ function payment({ data, arrayGhe }) {
           <p className="font-semibold text-black">
             {data?.suatChieuId?.movieId?.tenPhim}
           </p>
-          <p className="font-medium my-2">{data?.suatChieuId?.rapId?.tenRap}</p>
+          <p className="font-medium my-2">{data?.ngayChieuId?.rapId?.tenRap}</p>
           <p className="font-medium">
             <span>{data?.gioChieu}</span>
             <span> - </span>
-            <span>{data?.suatChieuId?.ngaychieu}</span>
+            <span>{data?.ngayChieuId?.ngaychieu}</span>
           </p>
         </div>
       </div>

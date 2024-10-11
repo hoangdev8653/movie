@@ -14,7 +14,12 @@ const getAllGioChieu = async () => {
 
 const getGioChieuById = async (id) => {
   try {
-    const gioChieu = await GioChieuModel.findById(id).populate("ngayChieuId");
+    const gioChieu = await GioChieuModel.findById(id).populate({
+      path: "ngayChieuId",
+      populate: {
+        path: "rapId",
+      },
+    });
     if (!gioChieu) {
       throw createHttpError.NotFound("Gio Chieu Not Found");
     }
@@ -24,12 +29,13 @@ const getGioChieuById = async (id) => {
     throw error;
   }
 };
-const createGioChieu = async ({ gioChieu, ngayChieuId }) => {
+const createGioChieu = async ({ gioChieu, ngayChieuId, tienGhe }) => {
   try {
     const newGioChieu = new GioChieuModel({
       gioChieu,
       danhSachGhe: [],
       ngayChieuId,
+      tienGhe,
     });
     for (let i = 1; i <= 100; i++) {
       newGioChieu.danhSachGhe.push({
@@ -41,6 +47,26 @@ const createGioChieu = async ({ gioChieu, ngayChieuId }) => {
   } catch (error) {
     console.log(error);
     throw error;
+  }
+};
+
+const updateGioChieu = async (id, { gioChieu, ngayChieuId, tienGhe }) => {
+  try {
+    const gc = await GioChieuModel.findById(id);
+    if (!gc) {
+      throw Error("GioChieu Not Found");
+    }
+    return await GioChieuModel.findByIdAndUpdate(
+      id,
+      {
+        gioChieu,
+        ngayChieuId,
+        tienGhe,
+      },
+      { new: true }
+    );
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -65,7 +91,7 @@ const deleteGioChieu = async (id) => {
   try {
     const gioChieu = await GioChieuModel.findById(id);
     if (!gioChieu) {
-      throw createHttpError.NotFound("gio Chieu chua ton tai");
+      throw createHttpError.NotFound("GioChieu Not Found");
     }
     return await GioChieuModel.deleteOne({ _id: id });
   } catch (error) {
@@ -78,6 +104,7 @@ export const gioChieuService = {
   getAllGioChieu,
   getGioChieuById,
   createGioChieu,
+  updateGioChieu,
   updateStatusGhe,
   deleteGioChieu,
 };

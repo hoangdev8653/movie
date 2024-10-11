@@ -16,6 +16,9 @@ const gioChieu = mongoose.Schema({
       },
     },
   ],
+  tienGhe: {
+    type: String,
+  },
   ngayChieuId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "ngayChieu",

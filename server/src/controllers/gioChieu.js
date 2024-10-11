@@ -32,10 +32,11 @@ const getGioChieuById = async (req, res, next) => {
 
 const createGioChieu = async (req, res, next) => {
   try {
-    const { gioChieu, ngayChieuId } = req.body;
+    const { gioChieu, ngayChieuId, tienGhe } = req.body;
     const gc = await gioChieuService.createGioChieu({
       gioChieu,
       ngayChieuId,
+      tienGhe,
     });
     return res
       .status(StatusCodes.CREATED)
@@ -46,6 +47,27 @@ const createGioChieu = async (req, res, next) => {
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json({ status: 500, message: "Server Error" });
     next(error);
+  }
+};
+
+const updateGioChieu = async (req, res, next) => {
+  try {
+    const id = req.query.id;
+    const { gioChieu, ngayChieuId, tienGhe } = req.body;
+    const gc = await gioChieuService.updateGioChieu(id, {
+      gioChieu,
+      ngayChieuId,
+      tienGhe,
+    });
+    return res
+      .status(StatusCodes.OK)
+      .json({ status: 200, message: "Xử lý thành công", content: gc });
+  } catch (error) {
+    console.log(error);
+    next(error);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ status: 500, message: "Server Error" });
   }
 };
 
@@ -84,8 +106,8 @@ const deleteGioChieu = async (req, res, next) => {
 
 export const gioChieuController = {
   getAllGioChieu,
-  // getGioChieuByMovieId,
   getGioChieuById,
+  updateGioChieu,
   updateStatusGhe,
   createGioChieu,
   deleteGioChieu,

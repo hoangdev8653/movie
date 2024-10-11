@@ -124,17 +124,17 @@ function BookTicKet() {
                 <div className="flex">
                   <img
                     className="w-[50px] h-[50px] rounded-full"
-                    src={data?.suatChieuId?.rapId?.hinhAnh}
-                    alt={data?.suatChieuId?.rapId?._id}
+                    src={data?.ngayChieuId?.rapId?.hinhAnh}
+                    alt={data?.ngayChieuId?.rapId?._id}
                   />
                   <div className="ml-3">
                     <p className="text-green-400 font-bold">
-                      {data?.suatChieuId?.rapId?.tenRap}
+                      {data?.ngayChieuId?.rapId?.tenRap}
                     </p>
                     <p className="text-sm text-gray-600">
                       <span>{data?.gioChieu}</span>
                       <span> - </span>
-                      <span>{data?.suatChieuId?.ngaychieu}</span>
+                      <span>{data?.ngayChieuId?.ngaychieu}</span>
                     </p>
                   </div>
                 </div>
@@ -218,7 +218,6 @@ function BookTicKet() {
                         </svg>
                       </div>
                       <p>Ghế Đã Mua</p>
-                      {/* <div className="close">X</div> */}
                     </div>
                   </div>
                 </div>

@@ -34,6 +34,38 @@ const getLichChieuById = async (id) => {
   }
 };
 
+const getLichChieuByMovieId = async (id) => {
+  try {
+    const lichChieu = await LichChieuModel.find()
+      .populate({
+        path: "movieId",
+        select:
+          "-trailer -moTa -dangChieu -sapChieu -daoDien -dienVien -theLoai -quocGia -thoiLuong -slug",
+      })
+      .populate({
+        path: "gioChieuId",
+        select: "-danhSachGhe",
+        populate: {
+          path: "ngayChieuId",
+          populate: {
+            path: "rapId",
+            populate: {
+              path: "heThongRapId",
+            },
+          },
+        },
+      });
+
+    const newLichChieu = lichChieu.filter((item) => {
+      return item.movieId._id == id;
+    });
+
+    return newLichChieu;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const createLichChieu = async ({ gioChieuId, movieId }) => {
   try {
     return await LichChieuModel.create({ gioChieuId, movieId });
@@ -73,6 +105,7 @@ const deleteLichChieu = async (id) => {
 export const lichChieuServices = {
   getAllLichChieu,
   getLichChieuById,
+  getLichChieuByMovieId,
   createLichChieu,
   updateLichChieu,
   deleteLichChieu,

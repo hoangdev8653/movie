@@ -32,6 +32,21 @@ const getLichChieuById = async (req, res, next) => {
   }
 };
 
+const getLichChieuByMovieId = async (req, res, next) => {
+  try {
+    const id = req.query.id;
+    const lichChieu = await lichChieuServices.getLichChieuByMovieId(id);
+    return res
+      .status(StatusCodes.OK)
+      .json({ status: 200, message: "Xử lý thành công", content: lichChieu });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ status: 500, message: "Server Error" });
+  }
+};
+
 const createLichChieu = async (req, res, next) => {
   try {
     const { gioChieuId, movieId } = req.body;
@@ -90,6 +105,7 @@ const deleteLichChieu = async (req, res, next) => {
 export const lichChieuControllers = {
   getAllLichChieu,
   getLichChieuById,
+  getLichChieuByMovieId,
   createLichChieu,
   updateLichChieu,
   deleteLichChieu,

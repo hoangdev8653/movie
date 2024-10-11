@@ -17,7 +17,6 @@ function PhimDetail() {
   const { data, getAllMovieBySlug } = movieStore();
   const { averageStar } = reviewStore();
   const { slug } = useParams();
-  console.log(slug);
 
   const onChange = (key) => {};
   const items = [

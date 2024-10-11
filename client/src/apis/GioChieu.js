@@ -7,6 +7,13 @@ export const getAllGioChieu = async () => {
   });
 };
 
+export const getGioChieuById = async (id) => {
+  return await axiosConfig({
+    method: "get",
+    url: `/gioChieu/getById?id=${id}`,
+  });
+};
+
 export const getAllMovieDangChieu = async () => {
   return await axiosConfig({
     method: "get",
@@ -25,13 +32,6 @@ export const getGioChieuByMovie = async (id) => {
   return await axiosConfig({
     method: "get",
     url: `/movie/getByMovieId/?movieId=${id}`,
-  });
-};
-
-export const getGioChieuById = async (id) => {
-  return await axiosConfig({
-    method: "get",
-    url: `/movie/getById?id=${id}`,
   });
 };
 
