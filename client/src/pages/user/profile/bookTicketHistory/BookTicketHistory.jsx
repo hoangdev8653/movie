@@ -21,8 +21,8 @@ function BookTicketHistory() {
               <thead>
                 <tr>
                   <th scope="col">Stt</th>
-                  <th scope="col">Tên phim</th>
-                  <th scope="col">Ngày đặt</th>
+                  {/* <th scope="col">Tên phim</th> */}
+                  <th scope="col">Ngày chiếu</th>
                   <th scope="col">Tên rạp</th>
                   <th scope="col">Tên ghế</th>
                   <th scope="col">Giá vé(VNĐ)</th>
@@ -35,21 +35,25 @@ function BookTicketHistory() {
                     <th scope="" className="px-4 py-2">
                       {index + 1}
                     </th>
+                    {/* <td className="text-center px-4 py-2"></td> */}
                     <td className="text-center px-4 py-2">
-                      {item.gioChieuId.suatChieuId.movieId.tenPhim}
-                    </td>
-                    <td className="text-center px-4 py-2">7/5/2024</td>
-                    <td className="text-center px-4 py-2">
-                      {item.gioChieuId.suatChieuId.rapId.tenRap}
+                      {item?.gioChieuId.ngayChieuId.ngaychieu}
                     </td>
                     <td className="text-center px-4 py-2">
-                      {item.danhSachGhe}
+                      {item?.gioChieuId.ngayChieuId.rapId.tenRap}
                     </td>
                     <td className="text-center px-4 py-2">
-                      {formatPrice(parseInt(item.gioChieuId.suatChieuId.giaVe))}
+                      {item?.danhSachGhe}
                     </td>
                     <td className="text-center px-4 py-2">
-                      {formatPrice(parseInt(item.gioChieuId.suatChieuId.giaVe))}
+                      {formatPrice(Number(item?.gioChieuId.tienGhe))}
+                    </td>
+                    <td className="text-center px-4 py-2">
+                      {formatPrice(
+                        Number(
+                          item?.gioChieuId.tienGhe * item?.danhSachGhe.length
+                        )
+                      )}
                     </td>
                   </tr>
                 ))}

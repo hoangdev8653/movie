@@ -82,7 +82,7 @@ function PhimDetail() {
                     <Play
                       className={"top-32 left-[40%]"}
                       onClick={true}
-                      sourceUrl={data[0].trailer}
+                      sourceUrl={data[0]?.trailer}
                     />
                   </div>
                   <div className="text-red-50 mt-10 ml-4">

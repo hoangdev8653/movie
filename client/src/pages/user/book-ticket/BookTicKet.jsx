@@ -3,14 +3,14 @@ import { useParams } from "react-router-dom";
 import imgageDeafaut from "../../../assets/imgDeafaut.jpg";
 import Payment from "./payment/Payment";
 import "./BookTicket.css";
-import { suatChieuStore } from "../../../store/SuatChieu";
+import { GioChieuStore } from "../../../store/GioChieu";
 import ExpiredTime from "./ExpiredTime";
 import { getLocalStorage } from "../../../utils/localStorage";
 
 function BookTicKet() {
   const { id } = useParams();
   const [arrayGhe, setArrayGhe] = useState([]);
-  const { data, getGioChieuById } = suatChieuStore();
+  const { data, getGioChieuById } = GioChieuStore();
   const user = getLocalStorage("user");
 
   useEffect(() => {

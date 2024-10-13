@@ -14,32 +14,26 @@ export const getGioChieuById = async (id) => {
   });
 };
 
-export const getAllMovieDangChieu = async () => {
-  return await axiosConfig({
-    method: "get",
-    url: "/movie/dangChieu",
-  });
-};
-
-export const getAllMovieSapChieu = async () => {
-  return await axiosConfig({
-    method: "get",
-    url: "/movie/sapChieu",
-  });
-};
-
-export const getGioChieuByMovie = async (id) => {
-  return await axiosConfig({
-    method: "get",
-    url: `/movie/getByMovieId/?movieId=${id}`,
-  });
-};
-
 export const createGioChieu = async (data) => {
   return await axiosConfig({
     method: "post",
     url: "/gioChieu/create/",
     data,
+  });
+};
+
+export const updateGioChieu = async (id, data) => {
+  return await axiosConfig({
+    method: "put",
+    url: `/gioChieu/updateGioChieu/?id=${id}`,
+    data,
+  });
+};
+
+export const updateStatusGhe = async (id, idGhe) => {
+  return await axiosConfig({
+    method: "put",
+    url: `/gioChieu/updateStatusGhe/?id=${id}&idGhe=${idGhe}`,
   });
 };
 

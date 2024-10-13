@@ -1,7 +1,7 @@
 import InfoUser from "./infoUser/InfoUser";
 import BookTicketHistory from "./bookTicketHistory/BookTicketHistory";
 import { Tabs } from "antd";
-import avartaDeafaut from "../../../assets/imgDeafaut.jpg";
+import avartaDeafaut from "../../../assets/Default_avatar_profile.jpg";
 import styles from "./Profile.module.scss";
 import { BookTicket } from "../../../store/BookTicket";
 import { formatPrice } from "../../../utils/forrmatPriceVn";

@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  getAllMovieDangChieu,
-  getAllMovieSapChieu,
-} from "../../../apis/GioChieu";
+import { getAllMovieDangChieu, getAllMovieSapChieu } from "../../../apis/movie";
 import MovieDangChieu from "./MovieDangChieu";
 import MovieSapChieu from "./MovieSapChieu";
 

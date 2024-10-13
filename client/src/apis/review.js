@@ -23,9 +23,9 @@ export const updateReview = async (data) => {
   });
 };
 
-export const deleteReview = async () => {
-  return axiosConfig({
+export const deleteReview = async (id) => {
+  return await axiosConfig({
     method: "delete",
-    url: "/review/delete",
+    url: `/review/delete/?id=${id}`,
   });
 };

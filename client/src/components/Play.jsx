@@ -34,7 +34,7 @@ function Play({ className, onClick, sourceUrl }) {
             />
           </div>
           <div onClick={handleClose}>
-            <ButtonClose className={"top-20 right-60"} />
+            <ButtonClose className="right-60 top-20" />
           </div>
           <Overlay onClick={handleClose} />
         </div>

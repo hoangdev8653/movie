@@ -1,7 +1,7 @@
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { getLocalStorage } from "../../../utils/localStorage";
-import imgDeafault from "../../../assets/imgDeafaut.jpg";
+import avartaDeafault from "../../../assets/Default_avatar_profile.jpg";
 import { userStore } from "../../../store/User";
 import styles from "./Avarta.module.scss";
 
@@ -25,7 +25,7 @@ function Avarta() {
               <>
                 <img
                   className={styles.avarta}
-                  src={user.avarta || imgDeafault}
+                  src={user.avarta || avartaDeafault}
                 />
                 <p>{user.username}</p>
               </>

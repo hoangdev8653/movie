@@ -7,13 +7,11 @@ import { getLocalStorage } from "../../../../utils/localStorage";
 function payment({ data, arrayGhe }) {
   const [datVe, setDatVe] = useState(false);
   const [price, setPrice] = useState(0);
-  const [radio, setRadio] = useState(null);
   const user = getLocalStorage("user");
 
   const id = data._id;
   useEffect(() => {
     if (arrayGhe.length === 0) {
-      setRadio(null);
       setPrice(0);
     } else {
       setPrice(Number(data?.tienGhe) * arrayGhe.length);
@@ -113,7 +111,7 @@ function payment({ data, arrayGhe }) {
         <div
           onClick={() => setDatVe(true)}
           style={
-            radio !== null && arrayGhe.length > 0
+            arrayGhe.length > 0
               ? {
                   backgroundImage:
                     " linear-gradient(223deg, rgb(180, 236, 81) 0px, rgb(66, 147, 33) 100%)",

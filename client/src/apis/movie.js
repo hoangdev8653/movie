@@ -43,6 +43,22 @@ export const createMovie = async (data) => {
   });
 };
 
+export const updateMovie = async (id, data) => {
+  return await axiosConfig({
+    method: "put",
+    url: `/movie/update?id=${id}`,
+    data,
+  });
+};
+
+export const updateTrailer = async (id, data) => {
+  return await axiosConfig({
+    method: "put",
+    url: `/movie/updateTrailerMovie?id=${id}`,
+    data,
+  });
+};
+
 export const deleteMovie = async (id) => {
   return await axiosConfig({
     method: "delete",

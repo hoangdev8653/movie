@@ -30,6 +30,7 @@ function LichChieu(props) {
     const diaChiRap = item.gioChieuId.ngayChieuId.rapId.diaChi;
     const gioChieu = item.gioChieuId.gioChieu;
     const gioChieuId = item.gioChieuId._id;
+    console.log(acc);
 
     if (!acc[heThongRapId]) {
       acc[heThongRapId] = {
@@ -39,13 +40,18 @@ function LichChieu(props) {
     }
 
     if (!acc[heThongRapId].ngayChieu[ngayChieu]) {
-      acc[heThongRapId].ngayChieu[ngayChieu] = [];
+      acc[heThongRapId].ngayChieu[ngayChieu] = {};
     }
 
-    acc[heThongRapId].ngayChieu[ngayChieu].push({
-      tenRap,
-      hinhAnhRap,
-      diaChiRap,
+    if (!acc[heThongRapId].ngayChieu[ngayChieu][tenRap]) {
+      acc[heThongRapId].ngayChieu[ngayChieu][tenRap] = {
+        hinhAnhRap,
+        diaChiRap,
+        gioChieu: [],
+      };
+    }
+
+    acc[heThongRapId].ngayChieu[ngayChieu][tenRap].gioChieu.push({
       gioChieu,
       gioChieuId,
     });
@@ -86,39 +92,52 @@ function LichChieu(props) {
                       tab={<span className="text-base">{ngayChieu}</span>}
                       key={idx}
                     >
-                      {ngayChieuGroup[ngayChieu].map((item, index) => (
-                        <div
-                          key={index}
-                          className="mb-4 border-b border-solid border-[rgba(222,226,230)]"
-                        >
-                          <div className="flex gap-2">
-                            <div>
-                              <img
-                                className="w-14 h-14 rounded"
-                                src={item.hinhAnhRap}
-                                alt="ảnh"
-                              />
+                      {Object.keys(ngayChieuGroup[ngayChieu]).map(
+                        (tenRap, rapIndex) => (
+                          <div
+                            key={rapIndex}
+                            className="mb-4 border-b border-solid border-[rgba(222,226,230)]"
+                          >
+                            <div className="flex gap-2">
+                              <div>
+                                <img
+                                  className="w-14 h-14 rounded"
+                                  src={
+                                    ngayChieuGroup[ngayChieu][tenRap].hinhAnhRap
+                                  }
+                                  alt="ảnh"
+                                />
+                              </div>
+                              <div>
+                                <p className="text-green-600 font-semibold text-lg">
+                                  {tenRap}
+                                </p>
+                                <p className="text-xs opacity-60">
+                                  {ngayChieuGroup[ngayChieu][tenRap].diaChiRap}
+                                </p>
+                              </div>
                             </div>
-                            <div>
-                              <p className="text-green-600 font-semibold text-lg">
-                                {item.tenRap}
-                              </p>
-                              <p className="text-xs opacity-60">
-                                {item.diaChiRap}
-                              </p>
-                            </div>
-                          </div>
 
-                          <div className="mt-2 mb-4">
-                            <a
-                              href={`/datve/${item.gioChieuId}`}
-                              className="px-[10px] font-semibold py-1 cursor-pointer text-[#9b9b9b] border border-[#e4e4e4] bg-[rgba(246,246,246,.5)] rounded hover:text-red-500"
-                            >
-                              {item.gioChieu}
-                            </a>
+                            <div className="mt-2 mb-4 flex flex-wrap gap-2">
+                              {ngayChieuGroup[ngayChieu][tenRap].gioChieu.map(
+                                (gioChieuItem, gioIndex) => (
+                                  <a
+                                    key={gioIndex}
+                                    href={
+                                      user
+                                        ? `/datve/${gioChieuItem.gioChieuId}`
+                                        : "/login"
+                                    }
+                                    className="px-[10px] font-semibold py-1 cursor-pointer text-[#9b9b9b] border border-[#e4e4e4] bg-[rgba(246,246,246,.5)] rounded hover:text-red-500"
+                                  >
+                                    {gioChieuItem.gioChieu}
+                                  </a>
+                                )
+                              )}
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        )
+                      )}
                     </TabPane>
                   ))}
                 </Tabs>

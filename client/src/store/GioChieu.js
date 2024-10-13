@@ -4,7 +4,6 @@ import {
   deleteGioChieu,
   getAllGioChieu,
   getGioChieuById,
-  getGioChieuByMovie,
 } from "../apis/GioChieu";
 
 export const GioChieuStore = create((set) => ({

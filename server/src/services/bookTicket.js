@@ -1,6 +1,6 @@
 import BookTicKet from "../models/bookTicket.js";
 import createHttpError from "http-errors";
-import GioChieu from "../models/giochieu.js";
+import GioChieuModel from "../models/giochieu.js";
 
 const getBookTicketByUser = async (userId) => {
   try {
@@ -8,19 +8,12 @@ const getBookTicketByUser = async (userId) => {
       .populate("userId", "username avarta")
       .populate({
         path: "gioChieuId",
-        select: "gioChieu",
+        select: "-danhSachGhe",
         populate: {
-          path: "suatChieuId",
-          populate: [
-            {
-              path: "movieId",
-              select: "tenPhim hinhAnh",
-            },
-            {
-              path: "rapId",
-              select: "tenRap hinhAnh",
-            },
-          ],
+          path: "ngayChieuId",
+          populate: {
+            path: "rapId",
+          },
         },
       });
     return ticketUser;
@@ -31,10 +24,7 @@ const getBookTicketByUser = async (userId) => {
 };
 const createBookTicket = async (id, { gioChieuId, danhSachGhe, tongTien }) => {
   try {
-    const gioChieu = await GioChieu.findById(gioChieuId).populate(
-      "suatChieuId",
-      "giaVe"
-    );
+    const gioChieu = await GioChieuModel.findById(gioChieuId);
     for (const ghe of danhSachGhe) {
       const seat = gioChieu.danhSachGhe.find((seat) => seat.soGhe === ghe);
       if (seat) {
@@ -42,7 +32,7 @@ const createBookTicket = async (id, { gioChieuId, danhSachGhe, tongTien }) => {
       }
       await gioChieu.save();
     }
-    const tongTien = danhSachGhe.length * parseInt(gioChieu.suatChieuId.giaVe);
+    const tongTien = danhSachGhe.length * parseInt(gioChieu.tienGhe);
     const ticket = await BookTicKet.create({
       userId: id,
       gioChieuId,
