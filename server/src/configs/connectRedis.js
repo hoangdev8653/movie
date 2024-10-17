@@ -11,7 +11,7 @@ export const connectRedis = async () => {
       process.exit(1);
     }
   });
-  console.log("Redis connected successfully ✅");
+  console.log("Kết nối Redis thành công ✅");
 };
 
 export const setKey = async (key, value) => {

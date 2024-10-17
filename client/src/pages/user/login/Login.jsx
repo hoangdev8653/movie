@@ -23,17 +23,6 @@ function Login() {
         setTimeout(() => {
           navigate("/");
         }, 3000);
-        // const timer = setTimeout(() => {
-        //   console.log(role);
-        //   if (role === "user") {
-        //     navigate("/");
-        //   } else if (role === "admin") {
-        //     navigate("/dashboard");
-        //   }
-        //   return () => {
-        //     clearTimeout(timer);
-        //   };
-        // }, 3000);
       } catch (error) {
         console.log("Đăng nhập không thành công:", error);
       }
@@ -58,7 +47,7 @@ function Login() {
             onSubmit={formik.handleSubmit}
             className="max-w-full relative w-full mr-3 ml-3 my-2"
           >
-            <div className="mb-4 mt-4 ">
+            <div className="mb-3 mt-3 ">
               <label className="my-1">Tài khoản</label>
               <input
                 name="email"
@@ -74,7 +63,7 @@ function Login() {
                 {formik.errors.email}
               </div>
             )}
-            <div className="mb-4 mt-4">
+            <div className="mb-3 mt-3">
               <label>Mật khẩu</label>
               <input
                 name="password"
@@ -91,9 +80,11 @@ function Login() {
                 {formik.errors.password}
               </div>
             )}
-            <span className="text-green-500  my-4 cursor-pointer ml-4">
-              * Đăng ký
-            </span>
+            <div className="text-right my-2">
+              <a href="/forgot-password" className="text-blue-300 underline">
+                Forgot Password?
+              </a>
+            </div>
             <div className="text-center p-2 relative hover:opacity-80">
               <button className={styles.buttonDN} type="submit">
                 Đăng Nhập
@@ -105,6 +96,15 @@ function Login() {
               ) : (
                 <></>
               )}
+            </div>
+
+            <div className="text-center my-2">
+              <p>
+                Dont't have an account? {""}
+                <a href="/register" className="text-blue-400 underline">
+                  Sign up
+                </a>
+              </p>
             </div>
           </form>
         </div>

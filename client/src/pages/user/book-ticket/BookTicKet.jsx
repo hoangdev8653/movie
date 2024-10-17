@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import imgageDeafaut from "../../../assets/imgDeafaut.jpg";
 import Payment from "./payment/Payment";
@@ -6,13 +6,32 @@ import "./BookTicket.css";
 import { GioChieuStore } from "../../../store/GioChieu";
 import ExpiredTime from "./ExpiredTime";
 import { getLocalStorage } from "../../../utils/localStorage";
+import socketIOClient from "socket.io-client";
+
+const host = "http://localhost:3007";
 
 function BookTicKet() {
   const { id } = useParams();
   const [arrayGhe, setArrayGhe] = useState([]);
+  const [mangGhe, setMangGhe] = useState([]);
   const { data, getGioChieuById } = GioChieuStore();
   const user = getLocalStorage("user");
 
+  const socketRef = useRef();
+
+  useEffect(() => {
+    socketRef.current = socketIOClient.connect(host);
+
+    socketRef.current.on("seatsUpdated", (updatedSeats) => {
+      setMangGhe(updatedSeats);
+    });
+    return () => {
+      socketRef.current.disconnect();
+    };
+  }, []);
+  useEffect(() => {
+    console.log("Updated seats:", mangGhe);
+  }, [mangGhe]);
   useEffect(() => {
     const fetchData = async () => {
       await getGioChieuById(id);
@@ -29,16 +48,23 @@ function BookTicKet() {
       } else {
         newArrayGhe.push(soGhe);
       }
+      socketRef.current.emit("updateSeats", {
+        soGhe,
+        arrayGhe: newArrayGhe,
+      });
+
       return newArrayGhe;
     });
 
     const ghe = document.querySelectorAll(".status")[soGhe - 1];
+
     if (ghe.classList.contains("gheDangChon")) {
       ghe.classList.remove("gheDangChon");
     } else {
       ghe.classList.add("gheDangChon");
     }
   }
+
   return (
     <div className="datve w-full bg-white flex ">
       <div className="w-[70%]">
@@ -191,7 +217,7 @@ function BookTicKet() {
                       <p>Ghế Thường</p>
                     </div>
                     <div>
-                      <div className="gheDangChon  relative inline-block ml-8 ">
+                      <div className="gheDangChon relative inline-block ml-8 ">
                         <svg
                           className="MuiSvgIcon-root jss1144"
                           focusable="false"
@@ -206,7 +232,7 @@ function BookTicKet() {
                       <p>Ghế Đang Chọn</p>
                     </div>
                     <div className="relative">
-                      <div className="gheDaChon  inline-block ml-6  ">
+                      <div className="gheDaChon inline-block ml-6  ">
                         <svg
                           className="svg_color"
                           focusable="false"

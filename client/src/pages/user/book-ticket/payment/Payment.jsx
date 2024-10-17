@@ -107,7 +107,7 @@ function payment({ data, arrayGhe }) {
         </div>
       </div>
 
-      <div className="fixed right-0  text-center bottom-0 w-[30%]">
+      {/* <div className="fixed right-0  text-center bottom-0 w-[30%]">
         <div
           onClick={() => setDatVe(true)}
           style={
@@ -129,7 +129,7 @@ function payment({ data, arrayGhe }) {
         </>
       ) : (
         <></>
-      )}
+      )} */}
     </div>
   );
 }

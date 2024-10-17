@@ -8,12 +8,17 @@ import cors from "cors";
 import { corsConfig } from "./configs/cors.js";
 import { connectDb } from "./configs/connectDb.js";
 import { connectRedis } from "./configs/connectRedis.js";
+import { connectSocket } from "./configs/connectSocket.js";
 import morgan from "morgan";
+import http from "http";
 
 const port = process.env.PORT || 3007;
 connectDb();
 connectRedis();
 const app = express();
+const server = http.createServer(app);
+connectSocket(server);
+
 app.use(cors(corsConfig));
 app.use(express.json());
 app.use(bodyParser.json());
@@ -46,6 +51,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(port, (req, res) => {
+server.listen(port, (req, res) => {
   console.log(`listen running on ${port}`);
 });

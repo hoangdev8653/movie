@@ -5,9 +5,14 @@ import avartaDeafaut from "../../../assets/Default_avatar_profile.jpg";
 import styles from "./Profile.module.scss";
 import { BookTicket } from "../../../store/BookTicket";
 import { formatPrice } from "../../../utils/forrmatPriceVn";
+import UpdateAvarta from "./UpdateAvarta";
+import { useState } from "react";
+import { getLocalStorage } from "../../../utils/localStorage";
 
 function Profile() {
   const { paymentlenght, totalPrice } = BookTicket();
+  const user = getLocalStorage("user");
+  const [isOpen, setIsOpen] = useState(false);
   const onChange = (key) => {};
   const items = [
     {
@@ -25,16 +30,22 @@ function Profile() {
   return (
     <div className={styles.content}>
       <div className={styles.forYou}>
-        <div className="text-center">
+        <div className="text-center my-4">
           <img
-            className="w-[60%] rounded-full p-1 bg-white border-solid border-[1px] h-auto m-4 text-center mx-auto "
-            src={avartaDeafaut}
+            className="w-[100px] h-[100px] rounded-full p-1  object-cover text-center mx-auto my-1 "
+            src={user ? user?.avarta : avartaDeafaut}
             alt="avarta"
           />
-          <p className="text-4xl px-4 font-bold"></p>
+          <p
+            className="bg-green-500 text-white font-bold px-[8px] py-[8px] rounded w-[50%] text-center mx-auto cursor-pointer"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            Cập Nhật{" "}
+          </p>
+          {isOpen ? <UpdateAvarta onClose={() => setIsOpen(false)} /> : <></>}
         </div>
         <div>
-          <ul className="flex flex-col rounded mx-3 my1">
+          <ul className="flex flex-col rounded mx-3 my-1">
             <li className="relative  py-3 px-5 bg-white border-[1px] border-solid  text-muted">
               Hoạt động
             </li>

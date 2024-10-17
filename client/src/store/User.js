@@ -5,6 +5,11 @@ import {
   logout,
   forgotPassword,
   getAllUser,
+  updateAvarta,
+  updatePassword,
+  getUserCurrent,
+  resetPassword,
+  updateUser,
 } from "../apis/user";
 import { setLocalStorage, clearLocalStorage } from "../utils/localStorage";
 import { toast } from "react-toastify";
@@ -12,7 +17,7 @@ import { toast } from "react-toastify";
 export const userStore = create((set) => ({
   user: null,
   role: null,
-  error: false,
+  error: null,
   isLoading: false,
 
   getAllUser: async () => {
@@ -63,11 +68,13 @@ export const userStore = create((set) => ({
       const response = await logout();
       if (response.status === 200) {
         set({ isLoading: false });
-        console.log("xóa tất cả");
+        setTimeout(() => {
+          toast.success("Cập nhật thành công");
+        }, 2000);
         clearLocalStorage();
       }
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
       set({ error: error.message });
     }
   },
@@ -78,9 +85,25 @@ export const userStore = create((set) => ({
         console.log("Register Success!!");
       }
     } catch (error) {
-      throw new error("Failed to register");
+      console.log(error);
+      set({ error: error.message });
     }
   },
+  updateAvarta: async (data) => {
+    try {
+      set({ isLoading: true });
+      const response = await updateAvarta(data);
+      set({ isLoading: false });
+      if (response.status === 200) {
+        toast.success("Cập nhật thành công");
+        setLocalStorage("user", response.data.content);
+      }
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message });
+    }
+  },
+
   forgotPassword: async (data) => {
     try {
       set({ isLoading: true });
