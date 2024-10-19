@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import Overlay from "../../../components/overlay/Overlay";
+import Overlay from "../../../components/Overlay";
 import Default_avatar_profile from "../../../assets/Default_avatar_profile.jpg";
 import { getLocalStorage } from "../../../utils/localStorage";
 import { useFormik } from "formik";
@@ -37,14 +37,15 @@ function UpdateAvarta({ onClose }) {
         if (values.avarta) {
           formData.append("avarta", values.avarta);
         }
-        await updateAvarta(formData);
+        const error = await updateAvarta(formData);
         setCurrentImage(URL.createObjectURL(values.avarta));
-        setTimeout(() => {
-          navigate("/");
-        }, 3000);
+        if (!error) {
+          setTimeout(() => {
+            navigate("/");
+          }, 3000);
+        }
       } catch (error) {
-        console.log(error.message);
-        toast.error("Cập nhật thất bại");
+        console.log(error);
       }
     },
   });

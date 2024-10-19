@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import SliderCustom from "../../../components/SliderCustom/SliderCustom";
-import ModalCustom from "../../../components/modal/Modal";
+import ModalCustom from "../../../components/Modal";
 import { NewsStore } from "../../../store/News";
+import { BsFillTagsFill } from "react-icons/bs";
+import { FaFacebookF, FaPinterest, FaLinkedin } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 function TinTuc() {
   const { data, getAllNews } = NewsStore();
@@ -52,7 +55,7 @@ function TinTuc() {
     >
       <p className="font-bold text-2xl py-4 text-center mx-1 ">Tin tức</p>
 
-      <div className=" mx-auto justify-center max-w-[1050px]">
+      <div className="mx-auto justify-center max-w-[1050px]">
         <div className="mx-2">
           <SliderCustom
             dots={true}
@@ -77,14 +80,80 @@ function TinTuc() {
                 </div>
               ))}
           </SliderCustom>
-          {selectedItem && (
-            <ModalCustom
-              item={selectedItem}
-              onClose={() => setSelectedItem(null)}
-            />
-          )}
         </div>
       </div>
+      {selectedItem && (
+        <ModalCustom
+          onClose={() => {
+            handleOpenModal(null);
+          }}
+        >
+          <div className="relative items-center mx-auto">
+            <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50">
+              <div
+                style={{ backgroundColor: "#1A1A1A" }}
+                className="rounded w-[70%] px-4 py-4 relative top-[-100px]"
+              >
+                <div className="flex m-4 gap-4">
+                  <div className="max-w-[33%]">
+                    <div className="justify-center ">
+                      <img
+                        className="mx-auto w-[320px] h-[180px] object-cover rounded-xl"
+                        src={selectedItem?.hinhAnh}
+                        alt={selectedItem?._id}
+                      />
+                      <div className="flex mx-auto gap-2 justify-center my-2">
+                        <a
+                          title="Share on Facebook"
+                          className="my-[3px] mx-[6px] pt-[2.5px] rounded border-[0px] border-solid text-white"
+                          href="/"
+                        >
+                          <FaFacebookF className="bg-blue-600  text-white p-[5px] rounded text-3xl hover:bg-green-500" />
+                        </a>
+                        <a
+                          title="Share on Twitter"
+                          className="my-[3px] mx-[6px] pt-[2.5px] rounded border-[0px] border-solid text-white"
+                          href="/"
+                        >
+                          <FaXTwitter className="bg-black  text-white p-[5px] rounded text-3xl hover:bg-green-500" />
+                        </a>
+                        <a
+                          title="Share on Pinterest"
+                          className="my-[3px] mx-[6px] pt-[2.5px] rounded border-[0px] border-solid text-white"
+                          href="/"
+                        >
+                          <FaPinterest className="bg-red-700  text-white p-[5px] rounded text-3xl hover:bg-green-500" />
+                        </a>
+                        <a
+                          title="Share on Linkedin"
+                          className="my-[3px] mx-[6px] pt-[2.5px] rounded border-[0px] border-solid text-white"
+                          href="/"
+                        >
+                          <FaLinkedin className="bg-blue-900 text-white p-[5px] rounded text-3xl hover:bg-green-500" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div className=" flex-1">
+                    <div className="mx-4">
+                      <h1 className="text-green-600">{selectedItem.tieuDe}</h1>
+                      <p className="my-1">{selectedItem.thoiGian}</p>
+
+                      <p className="flex gap-2 my-2">
+                        <BsFillTagsFill className="text-green-600 text-xl" />
+                        <span className="uppercase">
+                          {selectedItem.kieuNoiDung}
+                        </span>
+                      </p>
+                      <p className="font-medium">{selectedItem.noiDung}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ModalCustom>
+      )}
     </div>
   );
 }

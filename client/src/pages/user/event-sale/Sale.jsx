@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import SliderCustom from "../../../components/SliderCustom/SliderCustom";
-import ModalCustom from "../../../components/modal/Modal";
+import ModalCustom from "../../../components/Modal";
 import { EventAndSaleStore } from "../../../store/EventAndSale";
+import { BsFillTagsFill } from "react-icons/bs";
+import { FaFacebookF, FaPinterest, FaLinkedin } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 function Sale() {
   const { saleData, getAllSale } = EventAndSaleStore();
   const [selectedItem, setSelectedItem] = useState(null);
 
-  const handleOpenModal = (item) => {
-    setSelectedItem(item);
-  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -20,7 +20,9 @@ function Sale() {
     };
     fetchData();
   }, []);
-
+  const handleOpenModal = (item) => {
+    setSelectedItem(item);
+  };
   const responsiveSettings = [
     {
       breakpoint: 900,
@@ -49,45 +51,115 @@ function Sale() {
   ];
 
   return (
-    <div>
-      <div id="sale" className="max-w-[1050px] mx-auto text-white">
-        <p className="font-bold text-2xl py-4 text-center">Khuyến mãi</p>
-        <div className="w-full">
+    <div
+      style={{ background: "rgb(26, 29, 41)" }}
+      id="event"
+      className="py-4 text-white "
+    >
+      <p className="font-bold text-2xl py-4 text-center mx-1 ">Khuyến mãi</p>
+
+      <div className="mx-auto justify-center max-w-[1050px]">
+        <div className="mx-2">
           <SliderCustom
             dots={true}
             showSlider={3}
-            showSliderScroll={1}
+            showSliderScroll={2}
             responsiveSettings={responsiveSettings}
           >
-            {saleData.length > 0 &&
-              saleData.map((item, index) => (
-                <div key={index} className="px-[12px] pb-[30px] relative">
+            {saleData?.length > 0 &&
+              saleData?.map((item, index) => (
+                <div key={index} className="px-3 pb-[30px] relative">
                   <img
                     onClick={() => handleOpenModal(item)}
-                    className="rounded-lg"
-                    src={item.hinhAnh}
-                    alt={item.id}
+                    className=" rounded-lg object-cover"
+                    src={item?.hinhAnh}
+                    alt={item?.id}
                   />
-                  <p
-                    style={{ color: "#B2EC0F" }}
-                    className="mt-2 mb-1 font-bold hover:text-green-500 cursor-pointer"
-                  >
-                    {item.tieuDe}
-                  </p>
-                  <p className="text-sm">
-                    Thời gian khuyến mãi: {item.thoiGian}
-                  </p>
+                  <div className="py-3">
+                    <p className="text-base font-bold mb-3 text-center text-green-600">
+                      {item?.tieuDe}
+                    </p>
+                    <p className="text-sm text-center">
+                      Thời gian khuyến mãi: {item?.thoiGian}
+                    </p>
+                  </div>
                 </div>
               ))}
           </SliderCustom>
-          {selectedItem && (
-            <ModalCustom
-              item={selectedItem}
-              onClose={() => setSelectedItem(null)}
-            />
-          )}
         </div>
       </div>
+      {selectedItem && (
+        <ModalCustom
+          onClose={() => {
+            handleOpenModal(null);
+          }}
+        >
+          <div className="relative items-center mx-auto">
+            <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50">
+              <div
+                style={{ backgroundColor: "#1A1A1A" }}
+                className="rounded w-[70%] px-4 py-4 relative top-[-100px]"
+              >
+                <div className="flex m-4 gap-4">
+                  <div className="max-w-[33%]">
+                    <div className="justify-center ">
+                      <img
+                        className="mx-auto w-[320px] h-[180px] object-cover rounded-xl"
+                        src={selectedItem?.hinhAnh}
+                        alt={selectedItem?._id}
+                      />
+                      <div className="flex mx-auto gap-2 justify-center my-2">
+                        <a
+                          title="Share on Facebook"
+                          className="my-[3px] mx-[6px] pt-[2.5px] rounded border-[0px] border-solid text-white"
+                          href="/"
+                        >
+                          <FaFacebookF className="bg-blue-600  text-white p-[5px] rounded text-3xl hover:bg-green-500" />
+                        </a>
+                        <a
+                          title="Share on Twitter"
+                          className="my-[3px] mx-[6px] pt-[2.5px] rounded border-[0px] border-solid text-white"
+                          href="/"
+                        >
+                          <FaXTwitter className="bg-black  text-white p-[5px] rounded text-3xl hover:bg-green-500" />
+                        </a>
+                        <a
+                          title="Share on Pinterest"
+                          className="my-[3px] mx-[6px] pt-[2.5px] rounded border-[0px] border-solid text-white"
+                          href="/"
+                        >
+                          <FaPinterest className="bg-red-700  text-white p-[5px] rounded text-3xl hover:bg-green-500" />
+                        </a>
+                        <a
+                          title="Share on Linkedin"
+                          className="my-[3px] mx-[6px] pt-[2.5px] rounded border-[0px] border-solid text-white"
+                          href="/"
+                        >
+                          <FaLinkedin className="bg-blue-900 text-white p-[5px] rounded text-3xl hover:bg-green-500" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div className=" flex-1">
+                    <div className="mx-4">
+                      <h1 className="text-green-600">{selectedItem.tieuDe}</h1>
+                      <p className="my-1">{selectedItem.thoiGian}</p>
+
+                      <p className="flex gap-2 my-2">
+                        <BsFillTagsFill className="text-green-600 text-xl" />
+                        <span className="uppercase">
+                          {selectedItem.kieuNoiDung}
+                        </span>
+                      </p>
+                      <p className="font-medium">{selectedItem.noiDung}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ModalCustom>
+      )}
     </div>
   );
 }

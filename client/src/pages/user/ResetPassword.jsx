@@ -91,9 +91,13 @@ function ResetPassword() {
               </div>
 
               <button
-                // disabled
+                disabled={formik.errors.password && formik.touched.password}
                 type="submit"
-                className=" font-semibold mt-[30px] hover:opacity-95 w-full bg-blue-500 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300  rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                className={`font-semibold mt-[30px] hover:opacity-95 w-full bg-blue-500 text-white   focus:ring-4 focus:outline-none focus:ring-primary-300  rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800  ${
+                  formik.errors.password && formik.touched.password
+                    ? "bg-blue-300"
+                    : "bg-blue-500 hover:bg-blue-600"
+                }`}
               >
                 Reset password
               </button>

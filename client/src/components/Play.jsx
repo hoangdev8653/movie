@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BsPlayCircle } from "react-icons/bs";
 import ReactPlayer from "react-player";
 import ButtonClose from "./ButtonClose";
-import Overlay from "./overlay/Overlay";
+import Overlay from "./Overlay";
 
 function Play({ className, onClick, sourceUrl }) {
   const [showVideo, setShowVideo] = useState(false);
