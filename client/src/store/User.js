@@ -11,6 +11,7 @@ import {
   resetPassword,
   updateUser,
 } from "../apis/user";
+
 import { setLocalStorage, clearLocalStorage } from "../utils/localStorage";
 import { toast } from "react-toastify";
 
@@ -42,12 +43,14 @@ export const userStore = create((set) => ({
         setTimeout(() => {
           set({ isLoading: false });
         }, 3000);
+
         toast.success("Đăng nhập thành công");
         set({ user: response.data.content });
         set({ role: response.data.content.role });
         setLocalStorage("user", response.data.content);
         setLocalStorage("accessToken", response.data.accessToken);
         setLocalStorage("refreshToken", response.data.refreshToken);
+
         return null;
       } else {
         set({ isLoading: false });
@@ -57,7 +60,7 @@ export const userStore = create((set) => ({
     } catch (error) {
       set({ isLoading: false });
       set({ error: error.message });
-      toast.error("Tài khoản hoặc mật khảo không đúng");
+      toast.error("Tài khoản hoặc mật khẩu không đúng");
       return error.message;
     }
   },
@@ -68,9 +71,6 @@ export const userStore = create((set) => ({
       const response = await logout();
       if (response.status === 200) {
         set({ isLoading: false });
-        setTimeout(() => {
-          toast.success("Cập nhật thành công");
-        }, 2000);
         clearLocalStorage();
       }
     } catch (error) {
@@ -80,13 +80,20 @@ export const userStore = create((set) => ({
   },
   register: async (data) => {
     try {
+      set({ isLoading: true });
       const response = await register(data);
       if (response.status === 201) {
-        console.log("Register Success!!");
+        setTimeout(() => {
+          set({ isLoading: false });
+        }, 3000);
+
+        toast.success("Đăng kí thành công");
       }
+      return null;
     } catch (error) {
       console.log(error);
       set({ error: error.message });
+      return error.message;
     }
   },
   updateAvarta: async (data) => {
@@ -110,11 +117,33 @@ export const userStore = create((set) => ({
       const response = await forgotPassword(data);
       set({ isLoading: false });
       if (response.status === 200) {
-        console.log("Gửi Mail thành công");
+        toast.success("Gửi Mail thành công");
+      }
+      return null;
+    } catch (error) {
+      console.log(error.response.status);
+      toast.error("Tài khoản không tồn tại");
+      set({ error: error.message });
+      return error.message;
+    }
+  },
+
+  resetPassword: async (token, { password }) => {
+    try {
+      set({ isLoading: true });
+      const response = await resetPassword(token, { password });
+      if (response.status === 200) {
+        setTimeout(() => {
+          set({ isLoading: false });
+        }, 3000);
+        toast.success("Cập nhật thành công");
+        return null;
       }
     } catch (error) {
       console.log(error);
+      toast.error("Cập nhật thất bại");
       set({ error: error.message });
+      return error.message;
     }
   },
 }));

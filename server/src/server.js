@@ -13,6 +13,7 @@ import morgan from "morgan";
 import http from "http";
 
 const port = process.env.PORT || 3007;
+
 connectDb();
 connectRedis();
 const app = express();

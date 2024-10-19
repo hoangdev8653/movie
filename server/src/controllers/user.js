@@ -78,7 +78,7 @@ const deleteUser = async (req, res, next) => {
     console.log(error);
     res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ status: 200, message: "Server Error" });
+      .json({ status: 500, message: "Server Error" });
     next(error);
   }
 };
@@ -95,7 +95,7 @@ const resetPassword = async (req, res, next) => {
     console.log(error);
     res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ status: 200, message: "Server Error" });
+      .json({ status: 500, message: "Server Error" });
     next(error);
   }
 };
@@ -110,6 +110,10 @@ const currentUser = async (req, res, next) => {
       .json({ status: 200, message: "Xử lý thành công", content: user });
   } catch (error) {
     console.log(error);
+    next(error);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ status: 500, message: "Server Error" });
     next(error);
   }
 };
@@ -179,6 +183,9 @@ const logout = async (req, res, next) => {
       .json({ status: 200, message: "Xử lý thành công", content: user });
   } catch (error) {
     console.log(error.message);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ status: 500, message: "Server Error" });
     next(error);
   }
 };

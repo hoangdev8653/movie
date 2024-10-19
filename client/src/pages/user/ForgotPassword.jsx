@@ -1,6 +1,32 @@
 import React from "react";
+import { useFormik } from "formik";
+import { userValidate } from "../../validations/user";
+import { userStore } from "../../store/User";
+import { useNavigate } from "react-router-dom";
 
 function ForgotPassword() {
+  const { forgotPassword } = userStore();
+  const Navigate = useNavigate();
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+    },
+    validationSchema: userValidate.forgotPassword,
+    onSubmit: async (values) => {
+      try {
+        const error = await forgotPassword(values);
+        if (!error) {
+          setTimeout(() => {
+            Navigate("/login");
+          }, 3000);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  });
+
   return (
     <div className="dark:bg-gray-900 min-h-screen">
       <main
@@ -26,7 +52,7 @@ function ForgotPassword() {
             </div>
 
             <div className="mt-5">
-              <form>
+              <form onSubmit={formik.handleSubmit}>
                 <div className="grid gap-y-4">
                   <div>
                     <label
@@ -41,15 +67,15 @@ function ForgotPassword() {
                         id="email"
                         name="email"
                         className="py-3 px-4 block w-full border-2 border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm"
-                        // value={formik.values.email}
-                        // onChange={formik.handleChange}
-                        // onBlur={formik.handleBlur}
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                       />
-                      {/* {formik.touched.email && formik.errors.email && (
+                      {formik.touched.email && formik.errors.email && (
                         <div className="text-red-500  text-center mt-1">
                           {formik.errors.email}
                         </div>
-                      )} */}
+                      )}
                     </div>
 
                     <p

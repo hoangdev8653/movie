@@ -25,6 +25,9 @@ const forgotPassword = Yup.object().shape({
 
 const resetPassword = Yup.object().shape({
   password: Yup.string().min(6).required("Password is Required"),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password"), null], "Passwords must match")
+    .required("Confirm Password Required"),
 });
 
 const updatePassword = Yup.object().shape({

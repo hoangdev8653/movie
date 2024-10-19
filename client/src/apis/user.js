@@ -37,18 +37,22 @@ export const getUserCurrent = async () => {
   });
 };
 
-export const forgotPassword = async () => {
+export const forgotPassword = async (data) => {
   return await axiosConfig({
     method: "post",
     url: "/user/forgot-password",
+    data,
   });
 };
 
-export const resetPassword = async (data) => {
+export const resetPassword = async (token, { password }) => {
+  console.log(token);
+  console.log(password);
+
   return await axiosConfig({
     method: "patch",
-    url: "/user/reset-password",
-    data,
+    url: `/user/reset-password?token=${token}`,
+    data: { password },
   });
 };
 

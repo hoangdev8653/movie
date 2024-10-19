@@ -12,6 +12,7 @@ import { getLocalStorage } from "../../../utils/localStorage";
 function Profile() {
   const { paymentlenght, totalPrice } = BookTicket();
   const user = getLocalStorage("user");
+  const avarta = user?.avarta;
   const [isOpen, setIsOpen] = useState(false);
   const onChange = (key) => {};
   const items = [
@@ -33,7 +34,7 @@ function Profile() {
         <div className="text-center my-4">
           <img
             className="w-[100px] h-[100px] rounded-full p-1  object-cover text-center mx-auto my-1 "
-            src={user ? user?.avarta : avartaDeafaut}
+            src={avarta !== "" ? avarta : avartaDeafaut}
             alt="avarta"
           />
           <p

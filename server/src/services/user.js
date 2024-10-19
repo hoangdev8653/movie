@@ -47,7 +47,6 @@ const login = async ({ email, password }) => {
     }
     const accessToken = SignAccessToken(user.id);
     const refreshToken = SignRefreshToken(user.id);
-    // setKey(`refreshToken_${user.id}`, refreshToken);
     return { user, accessToken, refreshToken };
   } catch (error) {
     console.log(error);
@@ -100,15 +99,19 @@ const forgotPassword = async ({ email }) => {
     if (!user) {
       throw createHttpError.NotFound("Email Not Found");
     }
-    const token = jwt.sign({ id: user._id }, process.env.SERCRET_KEY, {
-      expiresIn: "1h",
-    });
+    const token = jwt.sign(
+      { id: user._id },
+      process.env.SERCRET_KEY || "huyhoang123",
+      {
+        expiresIn: "1h",
+      }
+    );
     console.log(token);
     user.passwordResetToken = token;
     user.passwordResetExpires = Date.now() + 3600000;
     await user.save();
-    const resetUrl = `http://localhost:3007/v1/user/reset-password?token=${token}`;
-    const message = `we heve recived a password reset request. Please use the below link to reset your password\n\n${resetUrl}\n\nThis reset password link will be valid only for 10 minutes.`;
+    const resetUrl = `http://localhost:5173/reset-password?token=${token}`;
+    const message = `we heve recived a password reset request. Please use the below link to reset your password\n\n${resetUrl}\n\nThis reset password link will be valid only for 1 hour.`;
     try {
       sendMail({
         email: user.email,
@@ -130,7 +133,7 @@ const forgotPassword = async ({ email }) => {
 
 const resetPassword = async (token, { password }) => {
   try {
-    const decoded = jwt.verify(token, process.env.SERCRET_KEY);
+    const decoded = jwt.verify(token, process.env.SERCRET_KEY || "huyhoang123");
     const user = await User.findOne({
       _id: decoded.id,
       passwordResetToken: token,

@@ -2,9 +2,9 @@
 
 .bg {
     background-color: #1A1A1A;
-    border-radius: 4px;
+    // border-radius: 4px;
     width: 70%;
-    top: 10%;
+    top: 20%;
     position: fixed;
     z-index: 50;
     display: flex;
@@ -12,6 +12,9 @@
     padding-right: 1rem;
     padding-top: 2.5rem ;
     padding-bottom: 2.5rem ;
+    // align-items: center;
+    // justify-content: center;
+    // inset: 0px;
 }
 
 

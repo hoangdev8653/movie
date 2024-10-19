@@ -19,10 +19,12 @@ function Login() {
     validationSchema: userValidate.login,
     onSubmit: async (values) => {
       try {
-        await login(values);
-        setTimeout(() => {
-          navigate("/");
-        }, 3000);
+        const error = await login(values);
+        if (!error) {
+          setTimeout(() => {
+            navigate("/");
+          }, 3000);
+        }
       } catch (error) {
         console.log("Đăng nhập không thành công:", error);
       }
