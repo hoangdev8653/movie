@@ -18,6 +18,15 @@ function PhimDetail() {
   const { averageStar } = reviewStore();
   const { slug } = useParams();
 
+  let valueCircular;
+  let valueStar;
+  if (!isNaN(averageStar) && averageStar !== 0) {
+    valueStar = averageStar?.toFixed(1) * 1;
+    valueCircular = valueStar * 2 * 10;
+  } else {
+    valueStar = 0;
+  }
+
   const onChange = (key) => {};
   const items = [
     {
@@ -75,7 +84,7 @@ function PhimDetail() {
                 <div className={styles.content}>
                   <div className="w-56 h-80 mr-2 relative">
                     <img
-                      className="w-full h-full"
+                      className="w-full h-full object-cover"
                       src={data[0]?.hinhAnh}
                       alt={data[0]?.slug}
                     />
@@ -105,18 +114,22 @@ function PhimDetail() {
                     </button>
                   </div>
                   <div className="ml-[200px] mt-[60px]">
-                    <div className="w-[120px] h-[120px] text-white">
+                    <div className="w-[120px] h-[120px] text-white my-2">
                       <div className="relative">
-                        <CircularProgressbar value={100} />
+                        <CircularProgressbar value={valueCircular} />
                         <p
                           style={{ fontSize: 50 }}
                           className="absolute top-[24px] left-[30px]"
                         >
-                          {averageStar}
+                          {valueStar}
                         </p>
                       </div>
                     </div>
-                    <Ratting disabled={true} rating={5} />
+                    <Ratting
+                      disabled={true}
+                      rating={valueStar?.toFixed(1)}
+                      allowHalf={true}
+                    />
                   </div>
                 </div>
               </div>

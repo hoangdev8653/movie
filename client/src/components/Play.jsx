@@ -3,6 +3,7 @@ import { BsPlayCircle } from "react-icons/bs";
 import ReactPlayer from "react-player";
 import ButtonClose from "./ButtonClose";
 import Overlay from "./Overlay";
+import ModalCustom from "./Modal";
 
 function Play({ className, onClick, sourceUrl }) {
   const [showVideo, setShowVideo] = useState(false);
@@ -24,19 +25,21 @@ function Play({ className, onClick, sourceUrl }) {
       </div>
       {showVideo && (
         <div>
-          <div className="fixed top-24 w-[900px] z-50 ">
-            <ReactPlayer
-              playing={true}
-              width="100%"
-              height="100%"
-              url={sourceUrl}
-              controls
-            />
-          </div>
-          <div onClick={handleClose}>
-            <ButtonClose className="right-60 top-20" />
-          </div>
-          <Overlay onClick={handleClose} />
+          <ModalCustom onClose={handleClose}>
+            <div className="relative items-center mx-auto">
+              <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50 ">
+                <div className="w-[70%]">
+                  <ReactPlayer
+                    playing={true}
+                    width="100%"
+                    height="100%"
+                    url={sourceUrl}
+                    controls
+                  />
+                </div>
+              </div>
+            </div>
+          </ModalCustom>
         </div>
       )}
     </div>

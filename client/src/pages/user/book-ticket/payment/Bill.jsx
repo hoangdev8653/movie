@@ -1,16 +1,11 @@
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import { getLocalStorage } from "../../../../../utils/localStorage";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { BookTicket } from "../../../../../store/BookTicket";
+import { BookTicketStore } from "../../../../store/BookTicket";
 
 function Bill({ totalPrice, arrayGhe, id }) {
-  const { bookTicket } = BookTicket();
+  const { bookTicket } = BookTicketStore();
   const navigate = useNavigate();
-  // console.log(arrayGhe);
-  // console.log(totalPrice);
-  // console.log(id);
-  const token = getLocalStorage("accessToken");
 
   async function createOrder(data, actions) {
     return actions.order.create({

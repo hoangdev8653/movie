@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { reviewStore } from "../../../../store/Review";
 import Rating from "../../../../components/Rating";
 import ShowMore from "../../../../components/showMore";
-// import LogoLoader from "../../../../components/loader/Loader";
 import LogoLoader from "../../../../components/loader/loader";
 
 function Comment(props) {
@@ -20,15 +19,6 @@ function Comment(props) {
     fetchData();
   }, [movieId]);
 
-  const star = data?.map((item) => {
-    return item.ratting;
-  });
-  // console.log(star);
-  const averageStar = star?.reduce(
-    (item, currentValue) => item + currentValue,
-    0
-  );
-  // console.log(averageStar);
   if (isLoading) {
     return (
       <>
@@ -36,7 +26,6 @@ function Comment(props) {
       </>
     );
   }
-  // console.log(data);
 
   return (
     <div>

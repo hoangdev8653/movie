@@ -3,14 +3,14 @@ import BookTicketHistory from "./bookTicketHistory/BookTicketHistory";
 import { Tabs } from "antd";
 import avartaDeafaut from "../../../assets/Default_avatar_profile.jpg";
 import styles from "./Profile.module.scss";
-import { BookTicket } from "../../../store/BookTicket";
+import { BookTicketStore } from "../../../store/BookTicket";
 import { formatPrice } from "../../../utils/forrmatPriceVn";
 import UpdateAvarta from "./UpdateAvarta";
 import { useState } from "react";
 import { getLocalStorage } from "../../../utils/localStorage";
 
 function Profile() {
-  const { paymentlenght, totalPrice } = BookTicket();
+  const { paymentlenght, totalPrice } = BookTicketStore();
   const user = getLocalStorage("user");
   const avarta = user?.avarta;
   const [isOpen, setIsOpen] = useState(false);

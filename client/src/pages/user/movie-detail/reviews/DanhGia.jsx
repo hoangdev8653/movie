@@ -20,9 +20,6 @@ function DanhGia({ data }) {
   const user = getLocalStorage("user");
   const modalRef = useRef();
 
-  const handleStarChange = (value) => {
-    setStarValue(value);
-  };
   const handleShowModal = () => {
     setIsDisible(true);
     setIsShowModal(true);
@@ -50,15 +47,20 @@ function DanhGia({ data }) {
     };
   }, [isShowModal]);
 
-  const handleChangeContent = (e) => {
-    const newValue = e.target.value;
-    setContent(newValue);
-
-    if (newValue.length > 5 && starValue != 0) {
+  useEffect(() => {
+    if (content.length > 5 && starValue !== 0) {
       setCanSubmit(true);
     } else {
       setCanSubmit(false);
     }
+  }, [content, starValue]);
+
+  const handleContentChange = (event) => {
+    setContent(event.target.value);
+  };
+
+  const handleStarChange = (value) => {
+    setStarValue(value);
   };
 
   const handleSubmitReview = async (e) => {
@@ -130,7 +132,7 @@ function DanhGia({ data }) {
                     <div className="p-4 text-center">
                       <input
                         value={content}
-                        onChange={(e) => handleChangeContent(e)}
+                        onChange={(e) => handleContentChange(e)}
                         className="text-black border-solid border-2 border-gray mx-auto p-4 text-base focus:border-red-300 rounded w-11/12"
                         type="text"
                       />
@@ -141,9 +143,9 @@ function DanhGia({ data }) {
                     <div className="flex items-center justify-center p-2 border-solid border-slate-200 rounded-b">
                       <button
                         disabled={!canSubmit}
-                        className={`text-white font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 ${
+                        className={`text-white font-bold uppercase text-sm px-6 py-3 rounded shadow  outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 ${
                           canSubmit
-                            ? "bg-red-500 active:bg-red-400"
+                            ? "bg-red-500 active:bg-red-400 hover:shadow-lg"
                             : "bg-red-200"
                         }`}
                         type="submit"

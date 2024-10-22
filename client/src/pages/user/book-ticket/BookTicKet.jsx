@@ -5,7 +5,7 @@ import Payment from "./payment/Payment";
 import "./BookTicket.css";
 import { GioChieuStore } from "../../../store/GioChieu";
 import ExpiredTime from "./ExpiredTime";
-import { getLocalStorage } from "../../../utils/localStorage";
+import { getLocalStorage, setLocalStorage } from "../../../utils/localStorage";
 import socketIOClient from "socket.io-client";
 
 const host = "http://localhost:3007";
@@ -29,9 +29,15 @@ function BookTicKet() {
       socketRef.current.disconnect();
     };
   }, []);
+
   useEffect(() => {
-    console.log("Updated seats:", mangGhe);
-  }, [mangGhe]);
+    if (arrayGhe.length > 0) {
+      setLocalStorage("ghe", true);
+    } else {
+      setLocalStorage("ghe", false);
+    }
+  }, [arrayGhe]);
+
   useEffect(() => {
     const fetchData = async () => {
       await getGioChieuById(id);
@@ -154,7 +160,7 @@ function BookTicKet() {
                     alt={data?.ngayChieuId?.rapId?._id}
                   />
                   <div className="ml-3">
-                    <p className="text-green-400 font-bold">
+                    <p className="text-green-400 font-bold uppercase">
                       {data?.ngayChieuId?.rapId?.tenRap}
                     </p>
                     <p className="text-sm text-gray-600">
@@ -164,7 +170,7 @@ function BookTicKet() {
                     </p>
                   </div>
                 </div>
-                <ExpiredTime />
+                <ExpiredTime arrayGhe={arrayGhe} />
               </div>
               <div className="overflow-x-auto overflow-y-hidden">
                 <div className="min-w-[600px]">

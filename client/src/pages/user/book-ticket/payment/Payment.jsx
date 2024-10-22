@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Payment.module.scss";
-import Bill from "./bill/Bill";
+import Bill from "./Bill";
 import { formatPrice } from "../../../../utils/forrmatPriceVn";
 import { getLocalStorage } from "../../../../utils/localStorage";
 
-function payment({ data, arrayGhe }) {
-  const [datVe, setDatVe] = useState(false);
+function Payment({ data, arrayGhe }) {
   const [price, setPrice] = useState(0);
   const user = getLocalStorage("user");
 
@@ -30,7 +29,9 @@ function payment({ data, arrayGhe }) {
           <p className="font-semibold text-black">
             {data?.suatChieuId?.movieId?.tenPhim}
           </p>
-          <p className="font-medium my-2">{data?.ngayChieuId?.rapId?.tenRap}</p>
+          <p className="text-green-600 font-semibold  my-2 uppercase">
+            {data?.ngayChieuId?.rapId?.tenRap}
+          </p>
           <p className="font-medium">
             <span>{data?.gioChieu}</span>
             <span> - </span>
@@ -106,32 +107,8 @@ function payment({ data, arrayGhe }) {
           <span className="text-orange-300"> Email</span> đã nhập.
         </div>
       </div>
-
-      {/* <div className="fixed right-0  text-center bottom-0 w-[30%]">
-        <div
-          onClick={() => setDatVe(true)}
-          style={
-            arrayGhe.length > 0
-              ? {
-                  backgroundImage:
-                    " linear-gradient(223deg, rgb(180, 236, 81) 0px, rgb(66, 147, 33) 100%)",
-                }
-              : { backgroundColor: "rgb(175, 175, 175)" }
-          }
-          className=" text-white py-4 cursor-pointer text-2xl"
-        >
-          Đặt vé
-        </div>
-      </div>
-      {datVe ? (
-        <>
-          <Bill />
-        </>
-      ) : (
-        <></>
-      )} */}
     </div>
   );
 }
 
-export default payment;
+export default Payment;

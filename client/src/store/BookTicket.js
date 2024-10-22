@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { bookTicket, getTicketByUser } from "../apis/BookTicket";
 import { toast } from "react-toastify";
 
-export const BookTicket = create((set) => ({
+export const BookTicketStore = create((set) => ({
   error: false,
   data: [],
   isLoading: false,

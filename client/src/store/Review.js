@@ -9,7 +9,7 @@ export const reviewStore = create((set) => ({
   data: null,
   isLoading: false,
   error: null,
-  averageStar: 10,
+  averageStar: 0,
 
   getReviewByMovie: async (id) => {
     try {
@@ -17,15 +17,13 @@ export const reviewStore = create((set) => ({
       const resepone = await getReviewByMovie(id);
       set({ isLoading: false });
       set({ data: resepone.data.content });
+      const star = resepone.data.content.map((item) => {
+        return item.ratting;
+      });
       set({
-        averageStar: resepone.data.content.map((item) => {
-          // const star = item.ratting.reduce(
-          //   (item, currentValue) => item + currentValue,
-          //   0
-          // );
-          // console.log(item.ratting);
-          return item.ratting;
-        }),
+        averageStar:
+          star.reduce((item, currentValue) => item + currentValue, 0) /
+          resepone.data.content.length,
       });
     } catch (error) {
       console.log(error);

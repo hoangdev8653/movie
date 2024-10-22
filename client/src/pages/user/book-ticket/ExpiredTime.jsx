@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react";
 import ShowMessage from "./ShowMesssage";
 
-function ExpiredTime() {
+function ExpiredTime({ arrayGhe }) {
   const [expiredTime, setExpiredTime] = useState(0);
   const [showMessage, setShowMessage] = useState(false);
 
   useEffect(() => {
-    if (expiredTime > 0) {
-      setTimeout(() => {
-        setExpiredTime(expiredTime - 1);
-      }, 1000);
-      return clearTimeout(() => {});
-    } else {
-      setShowMessage(false);
-      return;
+    if (arrayGhe.length > 0 && expiredTime === 0 && !showMessage) {
+      setExpiredTime(10);
     }
-  }, [expiredTime]);
+    if (expiredTime > 0) {
+      const timerId = setTimeout(() => {
+        setExpiredTime((prevTime) => prevTime - 1);
+      }, 1000);
+      if (expiredTime === 1 && arrayGhe.length > 0 && !showMessage) {
+        setShowMessage(true);
+      }
+      return () => clearTimeout(timerId);
+    }
+  }, [expiredTime, arrayGhe.length, showMessage]);
 
   return (
     <div>

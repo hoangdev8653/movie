@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { BookTicket } from "../../../../store/BookTicket";
+import { BookTicketStore } from "../../../../store/BookTicket";
 import { formatPrice } from "../../../../utils/forrmatPriceVn";
 
 function BookTicketHistory() {
-  const { data, getTicketByUser } = BookTicket();
+  const { data, getTicketByUser } = BookTicketStore();
 
   useEffect(() => {
     const fetchData = async () => {

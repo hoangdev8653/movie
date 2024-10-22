@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import Overlay from "./Overlay";
 
-function ModalCustom({ onClose, children }) {
+function ModalCustom({ onClose, children, iconClose }) {
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -13,12 +13,13 @@ function ModalCustom({ onClose, children }) {
   return (
     <div className="relative">
       {children}
-
-      <div className="fixed top-5 z-50 right-10">
-        <div onClick={onClose} className="absolute">
-          <IoMdClose className="font-bold text-3xl cursor-pointer hover:opacity-70 text-white" />
+      {iconClose ?? (
+        <div className="fixed top-5 z-50 right-10">
+          <div onClick={onClose} className="absolute">
+            <IoMdClose className="font-bold text-3xl cursor-pointer hover:opacity-70 text-white" />
+          </div>
         </div>
-      </div>
+      )}
 
       <div onClick={onClose} className="fixed inset-0 z-40">
         <Overlay />
