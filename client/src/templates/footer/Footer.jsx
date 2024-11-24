@@ -20,6 +20,11 @@ import {
   ivb,
   go,
   laban,
+  apple,
+  facebook,
+  zaloPay,
+  android,
+  logo,
 } from "../../image";
 
 function Footer() {
@@ -122,32 +127,16 @@ function Footer() {
             <div>
               <p className="text-white mx-4 mb-2">MOBILE APP</p>
               <div className="flex gap-8">
-                <img
-                  className="w-7 h-7"
-                  src="https://movie-booking-project.vercel.app/img/mobile-system/apple-logo.png"
-                  alt="apple"
-                />
-                <img
-                  className="w-7 h-7"
-                  src="https://movie-booking-project.vercel.app/img/mobile-system/android-logo.png"
-                  alt="android"
-                />
+                <img className="w-7 h-7" src={apple} alt="apple" />
+                <img className="w-7 h-7" src={android} alt="android" />
               </div>
             </div>
             <div>
               <p className="text-white mx-4 mb-2">SOCIAL APP</p>
               <div className="flex gap-8">
-                <img
-                  className="w-7 h-7"
-                  src="https://movie-booking-project.vercel.app/img/media/facebook-logo.png"
-                  alt="fb"
-                />
+                <img className="w-7 h-7" src={facebook} alt="facebook" />
                 <a href="https://zalo.me/0766640006">
-                  <img
-                    className="w-7 h-7"
-                    src="https://movie-booking-project.vercel.app/img/media/zalo-logo.png"
-                    alt="zalo"
-                  />
+                  <img className="w-7 h-7" src={zaloPay} alt="zalo" />
                 </a>
               </div>
             </div>

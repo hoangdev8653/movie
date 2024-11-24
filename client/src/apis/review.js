@@ -15,6 +15,13 @@ export const getReviewByMovie = async (id) => {
   });
 };
 
+export const getReviewBySlug = async (slug) => {
+  return axiosConfig({
+    method: "get",
+    url: `/review/${slug}`,
+  });
+};
+
 export const updateReview = async (data) => {
   return await axiosConfig({
     method: "put",

@@ -7,14 +7,14 @@ function ExpiredTime({ arrayGhe }) {
 
   useEffect(() => {
     if (arrayGhe.length > 0 && expiredTime === 0 && !showMessage) {
-      setExpiredTime(10);
+      setExpiredTime(0);
     }
     if (expiredTime > 0) {
       const timerId = setTimeout(() => {
         setExpiredTime((prevTime) => prevTime - 1);
       }, 1000);
       if (expiredTime === 1 && arrayGhe.length > 0 && !showMessage) {
-        setShowMessage(true);
+        setShowMessage(false);
       }
       return () => clearTimeout(timerId);
     }

@@ -3,6 +3,7 @@ import {
   createReview,
   deleteReview,
   getReviewByMovie,
+  getReviewBySlug,
   updateReview,
 } from "../apis/review";
 export const reviewStore = create((set) => ({
@@ -30,6 +31,22 @@ export const reviewStore = create((set) => ({
       set({ error: error.message });
     }
   },
+
+  getReviewBySlug: async (slug) => {
+    try {
+      set({ isLoading: true });
+      const resepone = await getReviewBySlug(slug);
+      if (resepone.status === 200) {
+        set({ isLoading: false });
+        set({ data: resepone.data.content });
+        set({ averageStar: resepone.data.avagent });
+      }
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message });
+    }
+  },
+
   createReview: async (data) => {
     try {
       set({ isLoading: true });

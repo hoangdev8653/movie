@@ -75,6 +75,8 @@ export const userStore = create((set) => ({
       }
     } catch (error) {
       console.log(error);
+      set({ isLoading: false });
+
       set({ error: error.message });
     }
   },

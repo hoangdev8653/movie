@@ -15,17 +15,8 @@ import { reviewStore } from "../../../store/Review";
 
 function PhimDetail() {
   const { data, getAllMovieBySlug } = movieStore();
-  const { averageStar } = reviewStore();
+  const review = reviewStore();
   const { slug } = useParams();
-
-  let valueCircular;
-  let valueStar;
-  if (!isNaN(averageStar) && averageStar !== 0) {
-    valueStar = averageStar?.toFixed(1) * 1;
-    valueCircular = valueStar * 2 * 10;
-  } else {
-    valueStar = 0;
-  }
 
   const onChange = (key) => {};
   const items = [
@@ -50,12 +41,21 @@ function PhimDetail() {
     const fetchData = async () => {
       try {
         await getAllMovieBySlug(slug);
+        await review.getReviewBySlug(slug);
       } catch (error) {
         console.log(error.message);
       }
     };
     fetchData();
   }, []);
+  let valueCircular;
+  let valueStar;
+  if (!isNaN(review.averageStar) && review.averageStar !== 0) {
+    valueStar = review.averageStar?.toFixed(1) * 1;
+    valueCircular = valueStar * 2 * 10;
+  } else {
+    valueStar = 0;
+  }
 
   const handleBookTicket = () => {
     window.scrollTo({
@@ -116,12 +116,12 @@ function PhimDetail() {
                   <div className="ml-[200px] mt-[60px]">
                     <div className="w-[120px] h-[120px] text-white my-2">
                       <div className="relative">
-                        <CircularProgressbar value={valueCircular} />
+                        <CircularProgressbar value={valueCircular || 0} />
                         <p
                           style={{ fontSize: 50 }}
-                          className="absolute top-[24px] left-[30px]"
+                          className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-center"
                         >
-                          {valueStar}
+                          {valueStar || 0}
                         </p>
                       </div>
                     </div>

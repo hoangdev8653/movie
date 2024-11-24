@@ -13,7 +13,7 @@
   .gheDangChon {
     fill: rgb(68, 192, 32);
   }
-  .gheNKChon {
+  .gheNKChon  svg{
     fill: rgb(220, 58, 58);
   }
   .gheDaChon svg {

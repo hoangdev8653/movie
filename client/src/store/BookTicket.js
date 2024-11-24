@@ -41,7 +41,7 @@ export const BookTicketStore = create((set) => ({
         });
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
       set({ error: error.message });
     }
   },

@@ -11,7 +11,7 @@ import dcine from "../src/assets/dcine.png";
 import dongdacinema from "../src/assets/dongdacinema.png";
 import facebook from "../src/assets/facebook-logo.png";
 import galaxycine from "../src/assets/galaxycine.png";
-import headTixLogo from "../src/assets/headTixLogo.png";
+import logo from "../src/assets/logo.png";
 import imgDeafaut from "../src/assets/imgDeafaut.jpg";
 import ivb from "../src/assets/IVB.png";
 import laban from "../src/assets/laban.png";
@@ -27,6 +27,7 @@ import vib from "../src/assets/VIETTINBANK.png";
 import zalo from "../src/assets/zalo-logo.png";
 import zaloPay from "../src/assets/zalopay_icon.png";
 import Default_avatar_profile from "../src/assets/Default_avatar_profile.jpg";
+import screen from "../src/assets/screen.png";
 
 export {
   go,
@@ -42,7 +43,7 @@ export {
   dongdacinema,
   facebook,
   galaxycine,
-  headTixLogo,
+  logo,
   imgDeafaut,
   ivb,
   laban,
@@ -58,4 +59,5 @@ export {
   zalo,
   zaloPay,
   Default_avatar_profile,
+  screen,
 };

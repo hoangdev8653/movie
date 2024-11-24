@@ -5,38 +5,19 @@ import Payment from "./payment/Payment";
 import "./BookTicket.css";
 import { GioChieuStore } from "../../../store/GioChieu";
 import ExpiredTime from "./ExpiredTime";
-import { getLocalStorage, setLocalStorage } from "../../../utils/localStorage";
+import { getLocalStorage } from "../../../utils/localStorage";
 import socketIOClient from "socket.io-client";
-
-const host = "http://localhost:3007";
+import { screen } from "../../../image";
+import { HOST } from "../../../utils/constants";
 
 function BookTicKet() {
   const { id } = useParams();
   const [arrayGhe, setArrayGhe] = useState([]);
-  const [mangGhe, setMangGhe] = useState([]);
+  const [seatSelected, setSeatSelected] = useState([]);
   const { data, getGioChieuById } = GioChieuStore();
   const user = getLocalStorage("user");
 
   const socketRef = useRef();
-
-  useEffect(() => {
-    socketRef.current = socketIOClient.connect(host);
-
-    socketRef.current.on("seatsUpdated", (updatedSeats) => {
-      setMangGhe(updatedSeats);
-    });
-    return () => {
-      socketRef.current.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
-    if (arrayGhe.length > 0) {
-      setLocalStorage("ghe", true);
-    } else {
-      setLocalStorage("ghe", false);
-    }
-  }, [arrayGhe]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,6 +25,41 @@ function BookTicKet() {
     };
     fetchData();
   }, [id]);
+
+  useEffect(() => {
+    socketRef.current = socketIOClient.connect(HOST);
+
+    socketRef.current.on("seatsUpdated", (updatedSeats) => {
+      setSeatSelected(updatedSeats?.arrayGhe);
+    });
+    return () => {
+      socketRef.current.disconnect();
+    };
+  }, [seatSelected]);
+
+  useEffect(() => {
+    const notInArrayGhe = seatSelected?.filter(
+      (seat) => !arrayGhe.includes(seat)
+    );
+    console.log(notInArrayGhe);
+
+    notInArrayGhe?.forEach((seat) => {
+      console.log(seat);
+
+      const seatElement = document.querySelector(`[data-seat="${seat}"]`);
+      console.log(seatElement);
+
+      if (seatElement && !seatElement.classList.contains("gheNKChon")) {
+        seatElement.classList.add("gheNKChon");
+        seatElement.disabled = true;
+        seatElement.style.cursor = "default";
+      } else if (seatElement && !seatElement.classList.contains("gheNKChon")) {
+        seatElement.classList.remove("gheNKChon");
+        seatElement.disabled = false;
+        seatElement.style.cursor = "cursor";
+      }
+    });
+  }, [seatSelected, arrayGhe]);
 
   function handleAddClass(soGhe) {
     setArrayGhe((prevArrayGhe) => {
@@ -55,7 +71,7 @@ function BookTicKet() {
         newArrayGhe.push(soGhe);
       }
       socketRef.current.emit("updateSeats", {
-        soGhe,
+        id,
         arrayGhe: newArrayGhe,
       });
 
@@ -133,7 +149,7 @@ function BookTicKet() {
               >
                 <img
                   className="rounded-full w-[60px] h-[60px] object-cover mx-auto mb-2"
-                  src={imgageDeafaut}
+                  src={user.avarta !== "" ? user.avarta : imgageDeafaut}
                   alt="avarta"
                 />
                 <div className="w-full mx-4 text-base text-gray-400 font-medium">
@@ -175,22 +191,21 @@ function BookTicKet() {
               <div className="overflow-x-auto overflow-y-hidden">
                 <div className="min-w-[600px]">
                   <div className="w-full">
-                    <img
-                      src="https://movie-booking-project.vercel.app/img/bookticket/screen.png"
-                      alt="screen"
-                    />
+                    <img src={screen} alt="screen" />
                   </div>
                   <div className="ghe">
                     {data?.danhSachGhe?.map((item, index) => (
                       <div key={index} className="py-0 px-[10%]">
                         <button
+                          data-seat={item.soGhe}
                           disabled={item.trangThai === "DaDat" ? true : false}
                           onClick={() => handleAddClass(item.soGhe)}
                           className={`${
                             item.trangThai === "Trong"
-                              ? "gheThuong cursor-pointer"
+                              ? "gheThuong cursor-pointer "
                               : "gheDaChon "
-                          }    status relative inline-block`}
+                          }    status relative inline-block 
+                          }`}
                         >
                           <svg
                             className="MuiSvgIcon-root jss1144"
@@ -207,8 +222,8 @@ function BookTicKet() {
                     ))}
                   </div>
                   <div className="flex justify-between mt-2 mb-8 mx-20">
-                    <div>
-                      <div className="gheThuong relative inline-block ml-8 ">
+                    <div className="relative text-center">
+                      <div className="gheThuong  inline-block  ">
                         <svg
                           className="MuiSvgIcon-root jss1144"
                           focusable="false"
@@ -222,8 +237,8 @@ function BookTicKet() {
                       </div>
                       <p>Ghế Thường</p>
                     </div>
-                    <div>
-                      <div className="gheDangChon relative inline-block ml-8 ">
+                    <div className="text-center relative">
+                      <div className="gheDangChon  inline-block  ">
                         <svg
                           className="MuiSvgIcon-root jss1144"
                           focusable="false"
@@ -237,8 +252,8 @@ function BookTicKet() {
                       </div>
                       <p>Ghế Đang Chọn</p>
                     </div>
-                    <div className="relative">
-                      <div className="gheDaChon inline-block ml-6  ">
+                    <div className="relative text-center">
+                      <div className="gheDaChon inline-block  ">
                         <svg
                           className="svg_color"
                           focusable="false"
@@ -250,6 +265,20 @@ function BookTicKet() {
                         </svg>
                       </div>
                       <p>Ghế Đã Mua</p>
+                    </div>
+                    <div className="relative text-center">
+                      <div className="gheNKChon inline-block ">
+                        <svg
+                          className="svg_color"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                          width={30}
+                          aria-hidden="true"
+                        >
+                          <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H4c-.55 0-1-.45-1-1v-1c0-.55.45-1 1-1h16c.55 0 1 .45 1 1v1c0 .55-.45 1-1 1z"></path>
+                        </svg>
+                      </div>
+                      <p>Ghế Đang Được Chọn</p>
                     </div>
                   </div>
                 </div>

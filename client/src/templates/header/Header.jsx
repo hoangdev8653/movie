@@ -1,4 +1,4 @@
-import Logo from "../../assets/headTixLogo.png";
+import { logo } from "../../image";
 import Menu from "./menu/Menu";
 import Avarta from "./avarta/Avarta";
 function Header() {
@@ -13,7 +13,7 @@ function Header() {
       <div className="mx-8 justify-between items-center flex py-2">
         <a href="/">
           <div className="logo">
-            <img className="w-[50px] h-[50px]" src={Logo} alt="logo" />
+            <img className="w-[50px] h-[50px]" src={logo} alt="logo" />
           </div>
         </a>
         <div>

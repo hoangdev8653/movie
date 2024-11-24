@@ -19,20 +19,40 @@ const getReviewByMovie = async (req, res, next) => {
   try {
     const id = req.query.id;
     const { movie, avagent } = await reviewService.getReviewByMovie(id);
-    return res
-      .status(StatusCodes.OK)
-      .json({
-        status: 200,
-        message: "Xử lý thành công",
-        content: movie,
-        avagent,
-      });
+    return res.status(StatusCodes.OK).json({
+      status: 200,
+      message: "Xử lý thành công",
+      content: movie,
+      avagent,
+    });
   } catch (error) {
     console.log(error);
     res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json({ status: 500, message: "Server Error" });
     next(error);
+  }
+};
+
+const getReviewBySlug = async (req, res, next) => {
+  try {
+    const slug = req.params.slug;
+    console.log(slug);
+    const { reviewBySlug, avagent } = await reviewService.getReviewBySlug(slug);
+    return res
+      .status(StatusCodes.OK)
+      .json({
+        status: 200,
+        message: "Xử lý thành công",
+        content: reviewBySlug,
+        avagent,
+      });
+  } catch (error) {
+    console.log(error);
+    next(error);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ status: 500, message: "Server Error" });
   }
 };
 
@@ -76,6 +96,7 @@ const deleteReview = async (req, res, next) => {
 export const reviewController = {
   getAllReviewByMovie,
   getReviewByMovie,
+  getReviewBySlug,
   createReview,
   deleteReview,
 };

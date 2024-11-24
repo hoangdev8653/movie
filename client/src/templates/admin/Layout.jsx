@@ -1,6 +1,6 @@
 import React from "react";
 import Avarta from "../../templates/header/avarta/Avarta";
-import Logo from "../../assets/headTixLogo.png";
+import { logo } from "../../image";
 import { IoIosSearch } from "react-icons/io";
 import Navbar from "./navbar/Navbar";
 import { Outlet } from "react-router-dom";
@@ -18,7 +18,7 @@ function Layout({ children }) {
         <div className="mx-8 justify-between items-center flex py-2">
           <a href="/">
             <div className="logo">
-              <img className="w-[50px] h-[50px]" src={Logo} alt="logo" />
+              <img className="w-[50px] h-[50px]" src={logo} alt="logo" />
             </div>
           </a>
           <div className=" flex">

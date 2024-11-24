@@ -19,8 +19,6 @@ const getAllMovie = async (req, res, next) => {
 const getMovieBySlug = async (req, res, next) => {
   try {
     const slug = req.params.slug;
-    console.log(slug);
-
     const movie = await movieService.getMovieBySlug(slug);
     return res
       .status(StatusCodes.OK)
