@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import styles from "./HeThongRap.module.scss";
 import { AiOutlineLike } from "react-icons/ai";
 import { CiShare2 } from "react-icons/ci";
-import { getAllHeThongRap } from "../../../apis/heThongRap";
+import { getAllHeThongRap } from "../../apis/heThongRap";
 function HeThongRap() {
   const [data, setData] = useState([]);
 
@@ -23,7 +22,10 @@ function HeThongRap() {
       <div className="max-w-[1080px] text-center mx-auto">
         <p className="font-semibold text-2xl text-white pt-4">Hệ thống rạp</p>
         <div
-          className={`${styles.layout} text-white text-center justify-center`}
+          className="grid grid-cols-1 gap-4 
+                sm:grid-cols-2
+                lg:grid-cols-3 
+                text-white text-center justify-center"
         >
           {data?.length > 0 &&
             data?.map((item, index) => (

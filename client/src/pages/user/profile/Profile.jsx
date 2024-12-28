@@ -2,8 +2,7 @@ import InfoUser from "./infoUser/InfoUser";
 import BookTicketHistory from "./bookTicketHistory/BookTicketHistory";
 import { Tabs } from "antd";
 import avartaDeafaut from "../../../assets/Default_avatar_profile.jpg";
-import styles from "./Profile.module.scss";
-import { BookTicketStore } from "../../../store/BookTicket";
+import { BookTicketStore } from "../../../store/bookTicket";
 import { formatPrice } from "../../../utils/forrmatPriceVn";
 import UpdateAvarta from "./UpdateAvarta";
 import { useState } from "react";
@@ -29,8 +28,8 @@ function Profile() {
   ];
 
   return (
-    <div className={styles.content}>
-      <div className={styles.forYou}>
+    <div className="flex w-full mb-5 mmd:block">
+      <div className="block max-w-[25%] mmd:max-w-full md:w-full">
         <div className="text-center my-4">
           <img
             className="w-[100px] h-[100px] rounded-full p-1  object-cover text-center mx-auto my-1 "

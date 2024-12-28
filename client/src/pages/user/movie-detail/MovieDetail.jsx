@@ -8,10 +8,10 @@ import DanhGia from "./reviews/DanhGia";
 import LichChieu from "./LichChieu";
 import ThongTin from "./reviews/thongTin/ThongTin";
 import Loader from "../../../components/loader/loader";
-import { movieStore } from "../../../store/Movie";
+import { movieStore } from "../../../store/movie";
 import styles from "./MovieDetail.module.scss";
 import Play from "../../../components/Play";
-import { reviewStore } from "../../../store/Review";
+import { reviewStore } from "../../../store/review";
 
 function PhimDetail() {
   const { data, getAllMovieBySlug } = movieStore();

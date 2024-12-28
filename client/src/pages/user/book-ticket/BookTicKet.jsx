@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import imgageDeafaut from "../../../assets/imgDeafaut.jpg";
 import Payment from "./payment/Payment";
 import "./BookTicket.css";
-import { GioChieuStore } from "../../../store/GioChieu";
+import { GioChieuStore } from "../../../store/gioChieu";
 import ExpiredTime from "./ExpiredTime";
 import { getLocalStorage } from "../../../utils/localStorage";
 import socketIOClient from "socket.io-client";

@@ -3,8 +3,7 @@ import { useParams } from "react-router-dom";
 import { GrFormNextLink } from "react-icons/gr";
 import { FaFacebookF, FaPinterest, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { rapStore } from "../../../store/Rap";
-import styles from "./RapDetail.module.scss";
+import { rapStore } from "../../store/rap";
 
 function RapDetail() {
   const { getRapByHeThongRap, data } = rapStore();
@@ -53,10 +52,10 @@ function RapDetail() {
             <p className="font-bold text-white text-3xl text-center py-2">
               Hệ Thống Rạp
             </p>
-            <div className={styles.content}>
+            <div className="flex gap-2 my-4 mmd:block mmd:my-2 ">
               <div
                 style={{ borderColor: "#454D6A" }}
-                className={styles.infoRap}
+                className="w-[65%] h-auto border-solid border-w-[1px] rounded mx-2 mmd:w-full mmd:my-2"
               >
                 <div className="px-4 my-4 text-white">
                   <h1 className="text-green-600 text-2xl font-bold">
@@ -130,7 +129,7 @@ function RapDetail() {
                   </div>
                 </div>
               </div>
-              <div className="flex-1 text-white">
+              <div className="flex-1 text-white mmd:mx-2">
                 <div className="px-4 py-4 border-[1px] border-solid border-green-400 rounded">
                   <p className="font-semibold text-xl text-center">
                     Địa điểm khác

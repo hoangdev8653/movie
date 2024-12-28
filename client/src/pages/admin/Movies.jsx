@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { movieStore } from "../../store/Movie";
+import { movieStore } from "../../store/movie";
 import { MdOutlineModeEditOutline, MdDeleteForever } from "react-icons/md";
 import Paginate from "../../components/paginate/Paginate";
 

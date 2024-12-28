@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BookTicketStore } from "../../../../store/BookTicket";
+import { BookTicketStore } from "../../../../store/bookTicket";
 import { formatPrice } from "../../../../utils/forrmatPriceVn";
 
 function BookTicketHistory() {

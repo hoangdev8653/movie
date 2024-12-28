@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NewsStore } from "../../store/News";
+import { NewsStore } from "../../store/news";
 import Paginate from "../../components/paginate/Paginate";
 import { MdOutlineModeEditOutline, MdDeleteForever } from "react-icons/md";
 

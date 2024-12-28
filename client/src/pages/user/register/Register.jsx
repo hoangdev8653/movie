@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { userValidate } from "../../../validations/user";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
-import { userStore } from "../../../store/User";
+import { userStore } from "../../../store/user";
 
 function Register() {
   const navigate = useNavigate();
