@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MdOutlineModeEditOutline, MdDeleteForever } from "react-icons/md";
 import Paginate from "../../components/paginate/Paginate";
-import { EventAndSaleStore } from "../../store/EventAndSale";
+import { EventAndSaleStore } from "../../store/eventAndSale";
 function Event() {
   const { data, getAllEventAndSale } = EventAndSaleStore();
   const [currentItems, setCurrentItems] = useState([]);

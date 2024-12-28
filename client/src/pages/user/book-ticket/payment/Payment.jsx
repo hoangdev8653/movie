@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import styles from "./Payment.module.scss";
 import Bill from "./Bill";
 import { formatPrice } from "../../../../utils/forrmatPriceVn";
 import { getLocalStorage } from "../../../../utils/localStorage";
@@ -18,7 +17,10 @@ function Payment({ data, arrayGhe }) {
   }, [arrayGhe]);
 
   return (
-    <div className={styles.payment}>
+    <div
+      style={{ boxShadow: "rgba(0, 0, 0, 0.3) 0px 0px 15px" }}
+      className="w-full h-screen px-[8%] justify-between select-none block bg-white"
+    >
       <div className="mx-auto my-4 text-center">
         <p className="text-green-500 font-semibold text-4xl">
           {formatPrice(price)}

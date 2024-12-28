@@ -6,7 +6,7 @@ import Comment from "./comment";
 import Ratting from "../../../../components/Rating";
 import { getLocalStorage } from "../../../../utils/localStorage";
 import { Default_avatar_profile } from "../../../../image";
-import { reviewStore } from "../../../../store/Review";
+import { reviewStore } from "../../../../store/review";
 import LogoLoader from "../../../../components/loader/loader";
 
 function DanhGia({ data }) {

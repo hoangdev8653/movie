@@ -4,7 +4,7 @@ import { MdOutlineChevronRight } from "react-icons/md";
 import { IoMenuOutline } from "react-icons/io5";
 import { getLocalStorage } from "../../../utils/localStorage";
 import { Default_avatar_profile } from "../../../image";
-import { userStore } from "../../../store/User";
+import { userStore } from "../../../store/user";
 import { useLocation } from "react-router-dom";
 
 function Menu() {

@@ -4,7 +4,7 @@ import Default_avatar_profile from "../../../assets/Default_avatar_profile.jpg";
 import { getLocalStorage } from "../../../utils/localStorage";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
-import { userStore } from "../../../store/User";
+import { userStore } from "../../../store/user";
 import { useNavigate } from "react-router-dom";
 import { CgSpinner } from "react-icons/cg";
 import ButtonClose from "../../../components/ButtonClose";

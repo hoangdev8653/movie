@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { MdOutlineModeEditOutline, MdDeleteForever } from "react-icons/md";
-import { userStore } from "../../store/User";
+import { userStore } from "../../store/user";
 import { Default_avatar_profile } from "../../image";
 
 function User() {

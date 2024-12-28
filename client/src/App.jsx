@@ -2,11 +2,11 @@ import { Route, Routes } from "react-router-dom";
 import { PATH } from "./utils/path";
 import Home from "./pages/user/home/Home";
 import MovieDetail from "./pages/user/movie-detail/MovieDetail";
-import TinTuc from "./pages/user/tin-tuc/TinTuc";
-import HeThongRap from "./pages/user/he-thong-rap/HeThongRap";
+import TinTuc from "./pages/user/TinTuc";
+import HeThongRap from "./pages/user/HeThongRap";
 import EventAndSale from "./pages/user/event-sale/EventAndSale";
 import LichChieu from "./pages/user/lich-chieu/LichChieu";
-import Rap from "./pages/user/rap-detail/RapDeatail";
+import Rap from "./pages/user/RapDeatail";
 import LayoutUser from "./templates/Layout";
 
 import Profile from "./pages/user/profile/Profile";
@@ -15,7 +15,7 @@ import Register from "./pages/user/register/Register";
 import BookTicket from "./pages/user/book-ticket/BookTicKet";
 import ForgotPassword from "./pages/user/ForgotPassword";
 import ResetPassword from "./pages/user/ResetPassword";
-import NotFound from "./pages/user/not-found/NotFound";
+import NotFound from "./pages/user/NotFound";
 import LayoutAdmin from "./templates/admin/Layout";
 
 import DashBoard from "./pages/admin/DashBoard";
