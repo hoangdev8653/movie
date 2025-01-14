@@ -6,12 +6,12 @@ import Ratting from "../../../components/Rating";
 import { Tabs } from "antd";
 import DanhGia from "./reviews/DanhGia";
 import LichChieu from "./LichChieu";
-import ThongTin from "./reviews/thongTin/ThongTin";
+import ThongTin from "./reviews/ThongTin";
 import Loader from "../../../components/loader/loader";
-import { movieStore } from "../../../store/movie";
+import { movieStore } from "../../../store/Movie";
 import styles from "./MovieDetail.module.scss";
 import Play from "../../../components/Play";
-import { reviewStore } from "../../../store/review";
+import { reviewStore } from "../../../store/Review";
 
 function PhimDetail() {
   const { data, getAllMovieBySlug } = movieStore();

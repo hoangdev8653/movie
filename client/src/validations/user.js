@@ -43,8 +43,10 @@ const updatePassword = Yup.object().shape({
   ),
 });
 
-const updateUser = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("Email is Required"),
+const updateProfile = Yup.object().shape({
+  password: Yup.string()
+    .min(6, "Password at least 6 character ")
+    .required("Password is Required"),
   phone: Yup.string()
     .required("Phone number is Required")
     .matches(phoneRegExp, "Phone number is not valid"),
@@ -58,5 +60,5 @@ export const userValidate = {
   forgotPassword,
   resetPassword,
   updatePassword,
-  updateUser,
+  updateProfile,
 };

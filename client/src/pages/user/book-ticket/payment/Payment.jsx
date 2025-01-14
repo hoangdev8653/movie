@@ -21,7 +21,7 @@ function Payment({ data, arrayGhe }) {
       style={{ boxShadow: "rgba(0, 0, 0, 0.3) 0px 0px 15px" }}
       className="w-full h-screen px-[8%] justify-between select-none block bg-white"
     >
-      <div className="mx-auto my-4 text-center">
+      <div className="mx-auto  text-center">
         <p className="text-green-500 font-semibold text-4xl">
           {formatPrice(price)}
         </p>

@@ -2,7 +2,7 @@ import InfoUser from "./infoUser/InfoUser";
 import BookTicketHistory from "./bookTicketHistory/BookTicketHistory";
 import { Tabs } from "antd";
 import avartaDeafaut from "../../../assets/Default_avatar_profile.jpg";
-import { BookTicketStore } from "../../../store/bookTicket";
+import { BookTicketStore } from "../../../store/BookTicket";
 import { formatPrice } from "../../../utils/forrmatPriceVn";
 import UpdateAvarta from "./UpdateAvarta";
 import { useState } from "react";
@@ -76,7 +76,7 @@ function Profile() {
           </ul>
         </div>
       </div>
-      <div className="mt-4 ml-8" style={{ width: "75%" }}>
+      <div className="mt-4 w-full">
         <Tabs
           defaultActiveKey="2"
           items={items}

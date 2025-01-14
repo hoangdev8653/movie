@@ -12,10 +12,10 @@ import { connectSocket } from "./configs/connectSocket.js";
 import morgan from "morgan";
 import http from "http";
 
-const port = process.env.PORT || 3007;
+const port = process.env.PORT;
 
 connectDb();
-connectRedis();
+// connectRedis();
 const app = express();
 const server = http.createServer(app);
 connectSocket(server);

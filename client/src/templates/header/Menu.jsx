@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import styles from "./Menu.module.scss";
 import { MdOutlineChevronRight } from "react-icons/md";
 import { IoMenuOutline } from "react-icons/io5";
-import { getLocalStorage } from "../../../utils/localStorage";
-import { Default_avatar_profile } from "../../../image";
-import { userStore } from "../../../store/user";
+import { getLocalStorage } from "../../utils/localStorage";
+import { Default_avatar_profile } from "../../image";
+import { userStore } from "../../store/User";
 import { useLocation } from "react-router-dom";
 
 function Menu() {
@@ -32,11 +31,11 @@ function Menu() {
   }, [isOpen]);
   return (
     <div>
-      <div className={styles.menu}>
+      <div className="block  tablet:hidden tablet:overflow-x-hidden lg:ml-[200px] ml-0 ">
         <ul className="flex gap-4 font-medium">
           <a href="/lich-chieu/">
             <li
-              className={`${styles.item} ${
+              className={`cursor-pointer text-base font-medium text-black hover:text-red-500 ${
                 location.pathname == "/lich-chieu/" ? "text-red-400" : ""
               }`}
             >
@@ -45,8 +44,8 @@ function Menu() {
           </a>
           <a href="/he-thong-rap">
             <li
-              className={`${styles.item} ${
-                location.pathname == "/he-thong-rap" ? "text-red-400" : ""
+              className={`cursor-pointer text-base font-medium text-black hover:text-red-500 ${
+                location.pathname == "/he-thong-rap/" ? "text-red-400" : ""
               }`}
             >
               Hệ Thống Rạp
@@ -54,8 +53,8 @@ function Menu() {
           </a>
           <a href="/news">
             <li
-              className={`${styles.item} ${
-                location.pathname == "/news" ? "text-red-400" : ""
+              className={`cursor-pointer text-base font-medium text-black hover:text-red-500 ${
+                location.pathname == "/tin-tuc/" ? "text-red-400" : ""
               }`}
             >
               Tin Tức
@@ -63,8 +62,10 @@ function Menu() {
           </a>
           <a href="/khuyen-mai-su-kien">
             <li
-              className={`${styles.item} ${
-                location.pathname == "/khuyen-mai-su-kien" ? "text-red-400" : ""
+              className={`cursor-pointer text-base font-medium text-black hover:text-red-500 ${
+                location.pathname == "/khuyen-mai-su-kien/"
+                  ? "text-red-400"
+                  : ""
               }`}
             >
               Khuyến Mãi/Sự Kiện
@@ -72,7 +73,10 @@ function Menu() {
           </a>
         </ul>
       </div>
-      <div onClick={handleShowMenu} className={styles.menu_mobile}>
+      <div
+        onClick={handleShowMenu}
+        className="hidden tablet:absolute tablet:block tablet:cursor-pointer tablet:right-[10px] tablet:top-5"
+      >
         <div className="relative">
           <div className=" hover:opacity-50">
             <IoMenuOutline className="text-2xl" />
@@ -87,11 +91,11 @@ function Menu() {
                       href="/profile"
                     >
                       <img
-                        className="rounded-full w-[32px] h-[32px] mx-1"
+                        className="rounded-full w-12 h-12 mx-1 object-cover"
                         src={user.avarta ? user.avarta : Default_avatar_profile}
                         alt="avarta"
                       />
-                      <span className="mr-1">{user.username}</span>
+                      <span className="text-base">{user.username}</span>
                     </a>
                   ) : (
                     <a
@@ -99,11 +103,11 @@ function Menu() {
                       href="/login"
                     >
                       <img
-                        className="rounded-full w-[32px] h-[32px] mx-2"
+                        className="rounded-full w-12 h-12 mx-2 object-cover"
                         src={Default_avatar_profile}
                         alt="avarta"
                       />
-                      <span className="mr-1">Đăng Nhập</span>
+                      <span className="text-base">Đăng Nhập</span>
                     </a>
                   )}
                   <p onClick={handleShowMenu} className="ml-3">
@@ -129,7 +133,7 @@ function Menu() {
                       <a
                         onClick={handleLogout}
                         href="/login"
-                        className=" font-medium"
+                        className="font-medium"
                       >
                         Đăng Xuất
                       </a>
@@ -141,7 +145,7 @@ function Menu() {
                   </div>
                 </div>
               </div>
-              <div className={styles.overlay}></div>
+              <div className="tablet:fixed tablet:top-0 tablet:left-0 tablet:w-full tablet:h-full tablet:bg-black tablet:opacity-50 tablet:z-40"></div>
             </div>
           ) : (
             <></>

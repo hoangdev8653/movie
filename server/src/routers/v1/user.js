@@ -16,6 +16,10 @@ router
     uploadCloud.single("avarta"),
     userController.updateAvarta
   );
+router
+  .route("/updateProfile")
+  .put(verifyAccessToken, userController.updateProfile);
+
 router.route("/forgot-password").post(userController.forgotPassword);
 router.route("/reset-password/").patch(userController.resetPassword);
 

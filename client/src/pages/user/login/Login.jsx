@@ -4,7 +4,7 @@ import styles from "./Login.module.scss";
 import { useNavigate, Link } from "react-router-dom";
 import { userValidate } from "../../../validations/user";
 import { useFormik } from "formik";
-import { userStore } from "../../../store/user";
+import { userStore } from "../../../store/User";
 import { CgSpinner } from "react-icons/cg";
 
 function Login() {

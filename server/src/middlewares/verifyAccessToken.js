@@ -8,19 +8,15 @@ export const verifyAccessToken = (req, res, next) => {
   const authHeader = req.headers["authorization"];
   const bearertoken = authHeader.split(" ");
   const token = bearertoken[1];
-  jwt.verify(
-    token,
-    process.env.SERCRET_KEY || "huyhoang123",
-    (err, payload) => {
-      if (err) {
-        if (err.name === "JsonWebTokenError") {
-          return next(createHttpError.Unauthorized());
-        }
-        return next(createHttpError.Unauthorized(err.message));
+  jwt.verify(token, process.env.SERCRET_KEY, (err, payload) => {
+    if (err) {
+      if (err.name === "JsonWebTokenError") {
+        return next(createHttpError.Unauthorized());
       }
-      req.userId = payload.userId;
-      req.payload = payload;
-      next();
+      return next(createHttpError.Unauthorized(err.message));
     }
-  );
+    req.userId = payload.userId;
+    req.payload = payload;
+    next();
+  });
 };

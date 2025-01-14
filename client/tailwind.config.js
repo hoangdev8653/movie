@@ -6,6 +6,7 @@ export default {
       screens: {
         msm: { max: "640px" },
         mmd: { max: "768px" },
+        tablet: { max: "860px" },
       },
     },
   },

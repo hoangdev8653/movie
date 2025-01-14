@@ -37,24 +37,5 @@ const user = mongoose.Schema({
   },
 });
 
-user.pre("save", async function (next) {
-  try {
-    const salt = await bcrypt.genSalt(10);
-    const hashPassword = await bcrypt.hash(this.password, salt);
-    this.password = hashPassword;
-  } catch (error) {
-    next(error);
-  }
-});
-
-user.methods.checkPassword = async function (password) {
-  try {
-    return await bcrypt.compare(password, this.password);
-  } catch (error) {
-    console.log(error);
-    return false;
-  }
-};
-
 const User = mongoose.model("user", user);
 export default User;

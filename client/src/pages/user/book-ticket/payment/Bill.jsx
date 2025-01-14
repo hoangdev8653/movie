@@ -1,7 +1,7 @@
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { BookTicketStore } from "../../../../store/bookTicket";
+import { BookTicketStore } from "../../../../store/BookTicket";
 
 function Bill({ totalPrice, arrayGhe, id }) {
   const { bookTicket } = BookTicketStore();

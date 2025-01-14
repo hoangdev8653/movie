@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { HeThongRap } from "../../store/heThongRap";
+import { HeThongRap } from "../../store/HeThongRap";
 import { MdOutlineModeEditOutline, MdDeleteForever } from "react-icons/md";
 import Paginate from "../../components/paginate/Paginate";
 

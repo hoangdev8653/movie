@@ -6,10 +6,8 @@ import {
   forgotPassword,
   getAllUser,
   updateAvarta,
-  updatePassword,
-  getUserCurrent,
   resetPassword,
-  updateUser,
+  updateProfile,
 } from "../apis/user";
 
 import { setLocalStorage, clearLocalStorage } from "../utils/localStorage";
@@ -43,14 +41,12 @@ export const userStore = create((set) => ({
         setTimeout(() => {
           set({ isLoading: false });
         }, 3000);
-
         toast.success("Đăng nhập thành công");
         set({ user: response.data.content });
         set({ role: response.data.content.role });
         setLocalStorage("user", response.data.content);
         setLocalStorage("accessToken", response.data.accessToken);
         setLocalStorage("refreshToken", response.data.refreshToken);
-
         return null;
       } else {
         set({ isLoading: false });
@@ -76,7 +72,6 @@ export const userStore = create((set) => ({
     } catch (error) {
       console.log(error);
       set({ isLoading: false });
-
       set({ error: error.message });
     }
   },
@@ -88,7 +83,6 @@ export const userStore = create((set) => ({
         setTimeout(() => {
           set({ isLoading: false });
         }, 3000);
-
         toast.success("Đăng kí thành công");
       }
       return null;
@@ -104,6 +98,23 @@ export const userStore = create((set) => ({
       const response = await updateAvarta(data);
       set({ isLoading: false });
       if (response.status === 200) {
+        toast.success("Cập nhật thành công");
+        setLocalStorage("user", response.data.content);
+      }
+    } catch (error) {
+      console.log(error);
+      set({ error: error.message });
+    }
+  },
+
+  updateProfile: async (data) => {
+    try {
+      set({ isLoading: true });
+      const response = await updateProfile(data);
+      if (response.status === 200) {
+        setTimeout(() => {
+          window.location.href("/");
+        }, 3000);
         toast.success("Cập nhật thành công");
         setLocalStorage("user", response.data.content);
       }

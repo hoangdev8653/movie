@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MdOutlineModeEditOutline, MdDeleteForever } from "react-icons/md";
-import { rapStore } from "../../store/rap";
+import { rapStore } from "../../store/Rap";
 import AddNew from "../../components/add-new/AddNew";
 import Paginate from "../../components/paginate/Paginate";
 

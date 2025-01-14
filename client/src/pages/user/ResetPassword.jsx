@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { userValidate } from "../../validations/user";
-import { userStore } from "../../store/user";
+import { userStore } from "../../store/User";
 
 function ResetPassword() {
   const location = useLocation();

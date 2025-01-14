@@ -64,10 +64,10 @@ export const updatePassword = async (data) => {
   });
 };
 
-export const updateUser = async (data) => {
+export const updateProfile = async (data) => {
   return await axiosConfig({
-    method: "post",
-    url: "/user/updateUser",
+    method: "put",
+    url: "/user/updateProfile",
     data,
   });
 };

@@ -1,4 +1,3 @@
-import styles from "./Footer.module.scss";
 import {
   cgv,
   bhd,
@@ -25,35 +24,41 @@ import {
   zaloPay,
   android,
   logo,
-} from "../../image";
+} from "../image";
 
 function Footer() {
   return (
-    <div className={styles.footer}>
-      <div className={styles.content}>
-        <div className={styles.copyRight}>
-          <div className={styles.info_section}>
+    <div className="bg-black">
+      <div className="text-xs max-w-[940px] mx-auto text-gray-500 justify-between">
+        <div className=" flex flex-col md:flex-row md:justify-around py-5 gap-2 md:gap-8">
+          <div className="hidden md:max-w-[30%] md:flex md:gap-12">
             <ul>
               <p className="text-white">TIX</p>
               <div>
-                <a href="/">FAQ</a>
+                <a className="hover:underline" href="/">
+                  FAQ
+                </a>
               </div>
               <div>
-                <a href="/">
+                <a className="hover:underline" href="/">
                   <p>Brand</p> <p>Guidelines</p>
                 </a>
               </div>
             </ul>
             <ul>
               <div className="mb-2">
-                <a href="/">Thỏa thuận sử dụng</a>
+                <a className="hover:underline" href="/">
+                  Thỏa thuận sử dụng
+                </a>
               </div>
               <div className="mt-4">
-                <a href="/">Chính sách đổi trả</a>
+                <a className="hover:underline" href="/">
+                  Chính sách đổi trả
+                </a>
               </div>
             </ul>
           </div>
-          <div className={styles.partner}>
+          <div className="hidden md:block md:max-w-[30%] ">
             <p className="text-white">Đối tác</p>
             <div className="grid grid-cols-5 ">
               <img className="rounded-full w-8 h-8 m-1" src={cgv} alt="cgv" />
@@ -123,7 +128,7 @@ function Footer() {
               />
             </div>
           </div>
-          <div className={styles.socal_media}>
+          <div className="max-w-[40%] flex gap-1   ">
             <div>
               <p className="text-white mx-4 mb-2">MOBILE APP</p>
               <div className="flex gap-8">
@@ -142,14 +147,14 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className={styles.infoCompany}>
+        <div className="md:justify-around md:pb-5 md:flex md:gap-2 md:mx-2 block text-center">
           <img
             className="w-15 h-10 rounded-lg mx-auto"
             src="https://movie-booking-project.vercel.app/img/logo-connect/zion-logo.jpg"
             alt="ion"
           />
           <div className="text-white mx-auto">
-            <p>
+            <p className="p-2 tablet:py-0 m-2">
               TIX - SẢN PHẨM CỦA CÔNG TY CỔ PHẦN ZIONĐịa chỉ: Z06 Đường số 13,
               Phường Tân Thuận Đông, Quận 7, Tp. Hồ Chí Minh, Việt Nam.Giấy
               chứng nhận đăng ký kinh doanh số: 0101659783,đăng ký thay đổi lần

@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import { userValidate } from "../../validations/user";
-import { userStore } from "../../store/user";
+import { userStore } from "../../store/User";
 import { useNavigate } from "react-router-dom";
 
 function ForgotPassword() {

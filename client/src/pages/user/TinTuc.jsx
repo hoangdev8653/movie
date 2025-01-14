@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SliderCustom from "../../components/SliderCustom/SliderCustom";
 import ModalCustom from "../../components/Modal";
-import { NewsStore } from "../../store/news";
+import { NewsStore } from "../../store/News";
 import { BsFillTagsFill } from "react-icons/bs";
 import { FaFacebookF, FaPinterest, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";

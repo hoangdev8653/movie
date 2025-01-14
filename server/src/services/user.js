@@ -5,6 +5,7 @@ import { getkey, setKey, deleteKey } from "../configs/connectRedis.js";
 import { verifyRefreshToken } from "../middlewares/verifyRefreshToken.js";
 import jwt from "jsonwebtoken";
 import { sendMail } from "../utils/sendMail.js";
+import { hashPassword, passwordMatch } from "../utils/password.js";
 const getAllUser = async () => {
   try {
     return await User.find();
@@ -19,16 +20,17 @@ const register = async ({ email, password, username, phone, address }) => {
     const checkEmail = await User.findOne({ email });
     if (checkEmail) {
       throw createHttpError.Conflict("Email is already in use");
-    } else {
-      const user = new User({
-        email,
-        password,
-        username,
-        phone,
-        address,
-      });
-      return await user.save();
     }
+    const hashpassword = await hashPassword(password);
+
+    const user = new User({
+      email,
+      password: hashpassword,
+      username,
+      phone,
+      address,
+    });
+    return await user.save();
   } catch (error) {
     throw error;
   }
@@ -40,10 +42,9 @@ const login = async ({ email, password }) => {
     if (!user) {
       throw createHttpError.NotFound("Email Not Found");
     }
-    const isValid = await user.checkPassword(password);
-
-    if (!isValid) {
-      throw createHttpError.Unauthorized("incorrect password");
+    const passwordmatch = await passwordMatch(password, user.password);
+    if (!passwordmatch) {
+      throw Error("Password Not Match");
     }
     const accessToken = SignAccessToken(user.id);
     const refreshToken = SignRefreshToken(user.id);
@@ -74,6 +75,23 @@ const currentUser = async (id) => {
     }
     getkey(`refreshToken_${id}`);
     return await user;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const updateProfile = async (id, { username, phone, password, address }) => {
+  try {
+    const user = await User.findById(id);
+    if (!user) {
+      throw createHttpError.NotFound("User Not Found");
+    }
+    const hashpassword = await hashPassword(password);
+    return await User.findByIdAndUpdate(
+      id,
+      { username, phone, password: hashpassword, address },
+      { new: true }
+    );
   } catch (error) {
     console.log(error);
   }
@@ -198,6 +216,7 @@ export const userService = {
   login,
   currentUser,
   deleteUser,
+  updateProfile,
   updateAvarta,
   forgotPassword,
   resetPassword,

@@ -1,6 +1,6 @@
 import { logo } from "../../image";
-import Menu from "./menu/Menu";
-import Avarta from "./avarta/Avarta";
+import Menu from "./Menu";
+import Avarta from "./Avarta";
 function Header() {
   return (
     <div

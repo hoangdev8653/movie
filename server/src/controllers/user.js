@@ -118,6 +118,28 @@ const currentUser = async (req, res, next) => {
   }
 };
 
+const updateProfile = async (req, res, next) => {
+  try {
+    const id = req.userId;
+    const { username, phone, password, address } = req.body;
+    const user = await userService.updateProfile(id, {
+      username,
+      phone,
+      password,
+      address,
+    });
+    return res
+      .status(StatusCodes.OK)
+      .json({ status: 200, message: "Xử lý thành công", content: user });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ status: 500, message: "Server Error" });
+    next(error);
+  }
+};
+
 const updateAvarta = async (req, res, next) => {
   try {
     const id = req.userId;
@@ -195,6 +217,7 @@ export const userController = {
   register,
   login,
   currentUser,
+  updateProfile,
   updateAvarta,
   deleteUser,
   forgotPassword,

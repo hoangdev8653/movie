@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { userValidate } from "../../../validations/user";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
-import { userStore } from "../../../store/user";
+import { userStore } from "../../../store/User";
 
 function Register() {
   const navigate = useNavigate();
@@ -52,7 +52,7 @@ function Register() {
             className="max-w-full relative w-full mr-3 ml-3 overflow-hidden"
           >
             <div className="mb-1 mt-1">
-              <label htmlFor="taikhoan">Tài khoản</label>
+              <label htmlFor="taikhoan">Email</label>
               <input
                 id="email"
                 name="email"

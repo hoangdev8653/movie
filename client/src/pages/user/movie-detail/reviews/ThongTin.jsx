@@ -1,10 +1,12 @@
 import React from "react";
-import styles from "./ThongTin.module.scss";
 
 function ThongTin({ data }) {
   return (
-    <div className={styles.content}>
-      <div className={styles.infoMovie}>
+    <div
+      style={{ color: "rgb(255 255 255/var(1))" }}
+      className="flex justify-center px-6 py-2 max-w-[870px] mx-auto font-medium gap-6 msm:block"
+    >
+      <div className="w-1/2 my-1 msm:w-full msn:my-2">
         <div className="flex gap-2 my-1">
           <p className="w-[30%]"> Ngày Khởi chiếu: </p>
           <p className="flex-1">{data[0].ngayKhoiChieu}</p>
@@ -26,7 +28,7 @@ function ThongTin({ data }) {
           <p className="flex-1">{data[0].quocGia}</p>
         </div>
       </div>
-      <div className={styles.decription}>
+      <div className="w-1/2 my-1 msm:w-full msn:my-2">
         <p>Mô Tả</p>
         <p>{data[0].moTa}.</p>
       </div>

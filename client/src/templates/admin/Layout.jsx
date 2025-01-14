@@ -1,5 +1,5 @@
 import React from "react";
-import Avarta from "../../templates/header/avarta/Avarta";
+import Avarta from "../../templates/header/Avarta";
 import { logo } from "../../image";
 import { IoIosSearch } from "react-icons/io";
 import Navbar from "./navbar/Navbar";
