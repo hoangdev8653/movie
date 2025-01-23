@@ -49,13 +49,14 @@ export const reviewStore = create((set) => ({
 
   createReview: async (data) => {
     try {
+      console.log(data);      
       set({ isLoading: true });
       const response = await createReview(data);
       if (response.status === 201) {
         setTimeout(() => {
           set((state) => ({
             isLoading: false,
-            data: [response.data.content, ...state.data],
+            data: [, ...state.data,response.data.content],
           }));
         }, 3000);
       }

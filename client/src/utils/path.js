@@ -7,7 +7,7 @@ export const PATH = {
   REGISTER: "/register",
   MOVIE: "/phim/:slug",
   DATVE: "/datve/:id",
-  TINTUC: "/news",
+  TINTUC: "/tin-tuc",
   HETHONGRAP: "/he-thong-rap",
   EVENTANDSALE: "/khuyen-mai-su-kien",
   LICHCHIEU: "/lich-chieu/",
@@ -22,6 +22,6 @@ export const PATH = {
   MOVIES: "/dashboard/movie",
   THEATER: "/dashboard/rap",
   USER: "/dashboard/user",
-  NEWS: "/dashboard/news",
+  NEWS: "/dashboard/tin-tuc",
   EVENT: "/dashboard/event",
 };

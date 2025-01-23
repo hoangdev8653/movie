@@ -3,6 +3,8 @@ import { reviewStore } from "../../../../store/Review";
 import Rating from "../../../../components/Rating";
 import ShowMore from "../../../../components/showMore";
 import LogoLoader from "../../../../components/loader/loader";
+import formatDate from "../../../../utils/formatDate"
+import {Default_avatar_profile} from "../../../../image"
 
 function Comment(props) {
   const movieId = props.data;
@@ -27,6 +29,10 @@ function Comment(props) {
     );
   }
 
+
+  console.log(data);
+  
+
   return (
     <div>
       {data && data.length > 0 ? (
@@ -41,10 +47,9 @@ function Comment(props) {
                   <div>
                     <span className="inline-block">
                       <img
-                        className="w-9 h-9 rounded-3xl"
+                        className="w-10 h-10 rounded-3xl object-cover"
                         src={
-                          item?.avarta ||
-                          "https://i.pravatar.cc/150?u=hdchgfwed123dfg"
+                          item?.userId?.avarta || Default_avatar_profile
                         }
                         alt="avatar"
                       />
@@ -53,7 +58,7 @@ function Comment(props) {
                       <p className="text-black text-sm font-medium capitalize">
                         {item?.userId?.username}
                       </p>
-                      <p>1 tuần trước</p>
+                      <p>{formatDate(item?.time)}</p>
                     </span>
                   </div>
                   <div className="float-right">

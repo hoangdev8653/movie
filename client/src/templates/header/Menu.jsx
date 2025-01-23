@@ -42,7 +42,7 @@ function Menu() {
               Lịch chiếu
             </li>
           </a>
-          <a href="/he-thong-rap">
+          <a href="/he-thong-rap/">
             <li
               className={`cursor-pointer text-base font-medium text-black hover:text-red-500 ${
                 location.pathname == "/he-thong-rap/" ? "text-red-400" : ""
@@ -51,7 +51,7 @@ function Menu() {
               Hệ Thống Rạp
             </li>
           </a>
-          <a href="/news">
+          <a href="/tin-tuc/">
             <li
               className={`cursor-pointer text-base font-medium text-black hover:text-red-500 ${
                 location.pathname == "/tin-tuc/" ? "text-red-400" : ""
@@ -60,7 +60,7 @@ function Menu() {
               Tin Tức
             </li>
           </a>
-          <a href="/khuyen-mai-su-kien">
+          <a href="/khuyen-mai-su-kien/">
             <li
               className={`cursor-pointer text-base font-medium text-black hover:text-red-500 ${
                 location.pathname == "/khuyen-mai-su-kien/"
